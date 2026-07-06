@@ -2903,7 +2903,7 @@
       <!-- 快速导航 -->
       <div style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid rgba(200, 170, 140, 0.2);">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px;">
-          <button class="quick-talk-btn" onclick="showQuickTalk(this, 'interview-invite')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">面试邀请</button>
+          
           <button class="quick-talk-btn" onclick="showQuickTalk(this, 'interview-postpone')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">面试延期/取消</button>
           <button class="quick-talk-btn" onclick="showQuickTalk(this, 'candidate-progress')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">候选人进度</button>
           <button class="quick-talk-btn" onclick="showQuickTalk(this, 'reject-notice')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">拒绝通知</button>
@@ -2915,9 +2915,9 @@
           <button class="quick-talk-btn" onclick="showQuickTalk(this, 'work-handover')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">工作交接</button>
           <button class="quick-talk-btn" onclick="showQuickTalk(this, 'review-kickoff')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">启动评审</button>
           <button class="quick-talk-btn" onclick="showQuickTalk(this, 'feedback-request')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">360反馈</button>
-          <button class="quick-talk-btn" onclick="showQuickTalk(this, 'sensitive-comm')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">绩效改进</button>
+          
           <button class="quick-talk-btn" onclick="showQuickTalk(this, 'cross-dept-comm')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">跨部门沟通</button>
-          <button class="quick-talk-btn" onclick="showQuickTalk(this, 'progress-sync')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">进度同步</button>
+          
         </div>
       </div>
 
@@ -2932,24 +2932,7 @@
       <script>
 // 常用话术数据
 const quickTalkData = {
-  'interview-invite': {
-    title: '面试邀请',
-    sections: [
-      {
-        tone: '友好温暖',
-        text: '嗨[名字]，感谢投递！我们对你很感兴趣，想邀请你来参加一轮面试。具体时间和地点我会邮件给你，到时候一起沟通。'
-      },
-      {
-        tone: '专业正式',
-        text: '[名字]好，感谢投递。我们想邀请你参加面试，详细信息邮件给你，请注意查收。'
-      },
-      {
-        tone: '温和委婉',
-        text: '（此场景不适用）'
-      }
-    ]
-  },
-  'interview-postpone': {
+'interview-postpone': {
     title: '面试延期/取消',
     sections: [
       {
@@ -3136,24 +3119,7 @@ const quickTalkData = {
       }
     ]
   },
-  'sensitive-comm': {
-    title: '绩效改进沟通',
-    sections: [
-      {
-        tone: '友好温暖',
-        text: '[名字]，今天约你聊聊，是因为我观察到最近有些地方可以做得更好。具体来说：\n1) [具体问题A]\n2) [具体问题B]\n\n我相信这些问题是可以解决的，接下来90天我陪你一起调整。我的建议是[改进方向]，公司也会提供[培训/资源]。我们每两周过一下进展，你看可以吗？'
-      },
-      {
-        tone: '专业正式',
-        text: '[名字]，本次沟通旨在讨论近期工作中的改进空间。根据观察，以下方面需要关注：\n1) [具体问题A]\n2) [具体问题B]\n\n公司期望你在90天内达成以下改进目标：[改进目标]。公司将提供必要支持，后续每两周进行一次进展评估。请于[日期]前回复确认。'
-      },
-      {
-        tone: '温和委婉',
-        text: '[名字]，我今天想和你坦诚地聊聊近况。我注意到[具体问题A]，还有其他一些地方感觉可以再进一步。不是否定你的努力，而是觉得你有潜力做得更好。接下来我们定个90天的小目标，我陪你一起。你觉得呢？'
-      }
-    ]
-  },
-  'cross-dept-comm': {
+'cross-dept-comm': {
     title: '跨部门沟通',
     sections: [
       {
@@ -3170,23 +3136,6 @@ const quickTalkData = {
       }
     ]
   },
-  'progress-sync': {
-    title: '进度同步',
-    sections: [
-      {
-        tone: '友好温暖',
-        text: '分享一下[项目名]的最新进展：\n\n进度：[百分比]，最近完成了[关键产出]\n问题：[遇到的问题]，预计延迟[天数]\n建议：[应对建议]\n\n下一步：[后续计划]，预计[交付时间]\n需要关注：[需要支持的事项]\n\n有问题随时cue我~'
-      },
-      {
-        tone: '专业正式',
-        text: '[项目名]进度同步：\n\n当前进度：[百分比]，已完成[关键产出]\n风险提示：[遇到的问题]，预计影响[天数]\n应对方案：[建议]\n下一阶段：[后续计划]，预计交付：[日期]\n需关注事项：[需要支持的事项]'
-      },
-      {
-        tone: '温和委婉',
-        text: '（此场景不适用）'
-      }
-    ]
-  }
 };
 
 // 显示话术内容
