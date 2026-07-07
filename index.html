@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI 入门学习手册</title>
   <style>
-    /* ===== 主题颜色变量 (夜间/日间/护眼) ===== */
+    /* ===== 主题颜色变量 (夜间/护眼) ===== */
     :root,
     body.theme-night {
       --bg-overlay: transparent;
@@ -148,7 +148,7 @@
       color: #2563eb;
     }
 
-    /* body 遮罩层：日间/护眼模式下覆盖在星空背景上 */
+    /* body 遮罩层：护眼模式下覆盖在星空背景上 */
     body::after {
       content: '';
       position: fixed;
@@ -2897,16 +2897,16 @@
           style="width: 100%; padding: 12px 16px; border: 1px solid rgba(200, 170, 140, 0.3); border-radius: 8px; 
           background: rgba(200, 170, 140, 0.08); color: var(--text-primary); font-size: 13px; 
           font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', sans-serif;">
-        <div id="quickSearchResults" style="display: none; margin-top: 12px; background: rgba(255, 245, 230, 0.8); border: 1px solid rgba(200, 170, 140, 0.2); border-radius: 8px; padding: 12px;"></div>
+        <div id="quickSearchResults" style="display: none; margin-top: 12px; background: rgba(255, 245, 230, 0.35); border: 1px solid rgba(200, 170, 140, 0.2); border-radius: 8px; padding: 12px;"></div>
       </div>
 
       <!-- 快速导航 -->
       <div style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid rgba(200, 170, 140, 0.2);">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px;">
           
-          <button class="quick-talk-btn" onclick="showQuickTalk(this, 'interview-postpone')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">面试延期/取消</button>
+          <button class="quick-talk-btn" onclick="showQuickTalk(this, 'interview-postpone')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">面试时间改动</button>
           <button class="quick-talk-btn" onclick="showQuickTalk(this, 'candidate-progress')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">候选人进度</button>
-          <button class="quick-talk-btn" onclick="showQuickTalk(this, 'reject-notice')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">拒绝通知</button>
+          <button class="quick-talk-btn" onclick="showQuickTalk(this, 'reject-notice')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">未通过通知</button>
           <button class="quick-talk-btn" onclick="showQuickTalk(this, 'offboard-reminder')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">离职交接</button>
           <button class="quick-talk-btn" onclick="showQuickTalk(this, 'deadline-reminder')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">催DDL</button>
           <button class="quick-talk-btn" onclick="showQuickTalk(this, 'task-followup')" style="background: rgba(220, 180, 130, 0.08); border: 1.5px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 14px 16px; border-radius: 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; text-align: center;">任务follow</button>
@@ -2933,19 +2933,15 @@
 // 常用话术数据
 const quickTalkData = {
 'interview-postpone': {
-    title: '面试延期/取消',
+    title: '面试时间改动',
     sections: [
       {
         tone: '友好温暖',
-        text: '嗨[名字]，因为[原因]，我们需要把面试延期到[新日期]。非常抱歉给你带来不便，我们很期待和你的对话。'
+        text: '哈喽呀，原定在[时间]的面试，因为 [原因]，需要调整一下时间，给你带来不便真的抱歉。我们这边 [新时间A] 或 [新时间B] 都可以，你看哪个方便？要是都不合适也没关系，把你方便的时间告诉我，我来协调。收到麻烦回复一下，辛苦啦～'
       },
       {
         tone: '专业正式',
-        text: '[名字]您好，因[原因]，原定[旧日期]的面试需要改期至[新日期]。特此通知，敬请查收。'
-      },
-      {
-        tone: '温和委婉',
-        text: '（此场景不适用）'
+        text: '[候选人姓名]您好，关于 [职位名称] 岗位的面试，原定安排在 [原定日期/时间]，因 [面试官日程调整]，现需变更面试时间，对此造成的不便敬请谅解。\n\n现提供以下时段供您选择：\n- [新时间A]\n- [新时间B]\n\n如以上时间均不合适，请告知您方便的时间，我们将协调确认。烦请收到后尽快回复，以便我们同步面试官。感谢您的配合。'
       }
     ]
   },
@@ -2953,33 +2949,21 @@ const quickTalkData = {
     title: '候选人询问进度回复',
     sections: [
       {
-        tone: '友好温暖',
-        text: '嗨[名字]，感谢你的耐心等待！我们还在评估中，下周应该就有结果了。有任何问题随时问我。'
-      },
-      {
-        tone: '专业正式',
-        text: '[名字]您好，感谢你的关注。我们的评估流程通常需要7-10个工作日，预计下周我们会有反馈。'
-      },
-      {
-        tone: '温和委婉',
-        text: '（此场景不适用）'
+        tone: '友好温暖 / 专业正式',
+        text: '目前还处于业务评估中，要是后续业务那边有反馈，我会尽快联系你～'
       }
     ]
   },
   'reject-notice': {
-    title: '拒绝通知',
+    title: '未通过通知',
     sections: [
       {
-        tone: '友好温暖',
-        text: '哈喽，很抱歉这轮面试暂时和这个岗位的要求不太匹配。不过你的背景有亮点，希望后续还能有合作的机会。祝你一切顺利！'
+        tone: '简历筛选未通过 · 友好温暖 / 专业正式',
+        text: '哈喽呀/你好，很抱歉业务这边反馈可能暂时和这个岗位的要求不太匹配，后续要是有更合适的岗位，希望还能有机会合作。祝您这边一切顺利！'
       },
       {
-        tone: '专业正式',
-        text: '[名字]您好，感谢您花时间参加我们的面试。经过评估，我们决定暂时不推进。感谢您的理解，祝您前程似锦。'
-      },
-      {
-        tone: '温和委婉',
-        text: '（已包含在友好温暖版本中）'
+        tone: '面试未通过 · 友好温暖 / 专业正式',
+        text: '您好，一面/二面反馈出来啦，很抱歉业务反馈这边可能暂时和这个岗位的要求不太匹配。我们将保留您的信息，如有未来匹配的岗位机会，希望还能有机会合作。祝您这边一切顺利！'
       }
     ]
   },
@@ -2993,10 +2977,6 @@ const quickTalkData = {
       {
         tone: '专业正式',
         text: '[名字]，请注意完成系统中的交接清单，截止日期为[日期]。如有疑问，可联系HR。'
-      },
-      {
-        tone: '温和委婉',
-        text: '（此场景不适用）'
       }
     ]
   },
@@ -3010,10 +2990,6 @@ const quickTalkData = {
       {
         tone: '专业正式',
         text: '[名字]，[项目名]截止日期为今日，请确保在下午5点前完成提交。'
-      },
-      {
-        tone: '温和委婉',
-        text: '（此场景不适用）'
       }
     ]
   },
@@ -3027,10 +3003,6 @@ const quickTalkData = {
       {
         tone: '专业正式',
         text: '[名字]，关于[任务名]的进度，请在今日给出更新。如有阻碍请及时反馈。'
-      },
-      {
-        tone: '温和委婉',
-        text: '（此场景不适用）'
       }
     ]
   },
@@ -3044,10 +3016,6 @@ const quickTalkData = {
       {
         tone: '专业正式',
         text: '[名字]，[任务名]状态如何？按原计划应该已完成，请确认进展。'
-      },
-      {
-        tone: '温和委婉',
-        text: '（此场景不适用）'
       }
     ]
   },
@@ -3061,10 +3029,6 @@ const quickTalkData = {
       {
         tone: '专业正式',
         text: '[名字]您好，欢迎入职。以下是入职首周需完成的必要事项：\n\n1) 身份验证与文件提交（身份证、学位证核验）\n2) IT系统开户（公司邮箱、VPN、GitHub）\n3) 薪酬与税务信息填写\n4) 工位与门卡申请\n\n各事项负责人及截止时间已邮件发送，请按时完成。如有疑问请联系HR。'
-      },
-      {
-        tone: '温和委婉',
-        text: '（此场景不适用）'
       }
     ]
   },
@@ -3078,10 +3042,6 @@ const quickTalkData = {
       {
         tone: '专业正式',
         text: '[名字]，为确保顺利交接，请于最后工作日前完成以下事项：\n\n1) 列出所有负责项目及当前进度\n2) 准备项目交接文档\n3) 与接手人完成知识转移会议\n4) 归还公司设备（笔记本、门卡、显示器等）\n\n详细清单已邮件发送，完成后请通知HR确认。'
-      },
-      {
-        tone: '温和委婉',
-        text: '[名字]，马上要离开了，有些交接工作我们一起理顺一下。主要是工作文档、项目进度、还有公司设备这几块，清单我发你了。不着急，我们慢慢来，有什么不清楚的随时聊。'
       }
     ]
   },
@@ -3095,10 +3055,6 @@ const quickTalkData = {
       {
         tone: '专业正式',
         text: '各位同事，2024年度绩效评估现已启动。时间安排如下：\n\n1月15-20日 员工自评\n1月21-25日 直属上司评估\n1月26-31日 HR复核汇总\n2月1-15日 反馈面谈\n\n请于1月20日前在HR系统中完成自评。如有疑问请联系HR团队。'
-      },
-      {
-        tone: '温和委婉',
-        text: '（此场景不适用）'
       }
     ]
   },
@@ -3112,10 +3068,6 @@ const quickTalkData = {
       {
         tone: '专业正式',
         text: '您好，我们正在进行[员工名字]的360度评估。鉴于您在工作中有过合作，诚邀您提供反馈。\n\n问卷约5分钟，反馈完全保密，仅对评估人和HR可见。截止日期：[日期]。\n\n问卷链接：[链接]\n\n感谢您的参与。'
-      },
-      {
-        tone: '温和委婉',
-        text: '你好呀，有件小事想麻烦你~我们正在收集[员工名字]的同事反馈，你的意见会很宝贵。匿名问卷，5分钟就能填完。截止[日期]，不急。\n\n链接：[链接]\n\n谢谢你！'
       }
     ]
   },
@@ -3129,10 +3081,6 @@ const quickTalkData = {
       {
         tone: '专业正式',
         text: '[对方名字]您好，[发起部门]现需[协作部门]配合完成以下协作事项：[协作事项]。\n\n当前进展：[背景说明]。期望时间节点：[截止日期]。此项协作对贵部门的价值：[互惠表述]。\n\n如有疑问或建议，欢迎沟通。'
-      },
-      {
-        tone: '温和委婉',
-        text: '[对方名字]，有个事想和你商量一下~我们这边在弄[项目名]，做到一半发现需要你们[协作部门]的帮忙，主要是[协作事项]。时间上想在[时间节点]前，不知道你们方不方便？\n\n不会让你们白辛苦的，我们这边也可以[可提供的支持]。先听听你的想法~'
       }
     ]
   },
@@ -3159,11 +3107,9 @@ function showQuickTalk(button, talkId) {
   data.sections.forEach((section, index) => {
     html += `
       <div style="margin-bottom: 12px;">
-        <div style="color: rgba(50, 130, 200, 0.9); font-size: 12px; margin-bottom: 8px; font-weight: 500;">${section.tone}</div>
-        <div style="background: rgba(255, 245, 230, 0.8); padding: 12px; border-radius: 6px; margin-bottom: 8px; color: var(--text-primary); line-height: 1.6; font-size: 14px;">${section.text}</div>
-        ${section.text !== '（此场景不适用）' && section.text !== '（已包含在友好温暖版本中）' ? 
-          `<button onclick="copyToClipboard('${section.text}')" style="background: rgba(200, 170, 140, 0.15); border: 1px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px;">复制</button>` 
-          : ''}
+        <div style="color: rgba(90, 55, 25, 0.95); font-size: 12px; margin-bottom: 8px; font-weight: 600;">${section.tone}</div>
+        <div style="background: rgba(255, 245, 230, 0.35); padding: 12px; border-radius: 6px; margin-bottom: 8px; color: var(--text-primary); line-height: 1.6; font-size: 14px;">${section.text}</div>
+        <button onclick="copyToClipboard('${section.text}')" style="background: rgba(200, 170, 140, 0.15); border: 1px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px;">复制</button>
       </div>
     `;
   });
