@@ -2894,9 +2894,7 @@
       <!-- 搜索栏 -->
       <div style="margin-bottom: 20px;">
         <input type="text" id="quickSearch" placeholder="输入关键词搜索..." 
-          style="width: 100%; padding: 12px 16px; border: 1px solid rgba(200, 170, 140, 0.3); border-radius: 8px; 
-          background: rgba(200, 170, 140, 0.08); color: var(--text-primary); font-size: 13px; 
-          font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', sans-serif;">
+          style="width: 100%; padding: 12px 16px; border: none; outline: none; border-radius: 10px; background: rgba(200, 170, 140, 0.08); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: var(--text-primary); font-size: 13px; box-shadow: none; font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', sans-serif;">
         <div id="quickSearchResults" style="display: none; margin-top: 12px; background: rgba(255, 245, 230, 0.35); border: 1px solid rgba(200, 170, 140, 0.2); border-radius: 8px; padding: 12px;"></div>
       </div>
 
@@ -3093,6 +3091,9 @@ function showQuickTalk(button, talkId) {
   
   if (!data) return;
   
+  // 保存当前话术ID，以便主题切换时重新渲染
+  window.currentQuickTalkId = talkId;
+  
   // 更新按钮样式
   document.querySelectorAll('.quick-talk-btn').forEach(btn => {
     btn.style.background = 'rgba(220, 180, 130, 0.08)';
@@ -3101,15 +3102,29 @@ function showQuickTalk(button, talkId) {
   button.style.background = 'rgba(220, 180, 130, 0.25)';
   button.style.borderColor = 'rgba(200, 170, 140, 0.6)';
   
+  // 检查当前主题 - 夜间模式没有theme-eye-care类
+  const isNightMode = !document.body.classList.contains('theme-eye-care');
+  
+  // 根据主题改变CSS变量
+  if (isNightMode) {
+    // 夜间模式：改成蓝色
+    document.documentElement.style.setProperty('--warning-bg', 'rgba(100,180,255,0.08)');
+    document.documentElement.style.setProperty('--warning-border', 'rgba(100,180,255,0.4)');
+  } else {
+    // 护眼模式：改回原有的黄色
+    document.documentElement.style.setProperty('--warning-bg', 'rgba(255,200,0,0.08)');
+    document.documentElement.style.setProperty('--warning-border', 'rgba(255,200,0,0.2)');
+  }
+  
   // 生成HTML内容
   let html = `<div style="margin-bottom: 20px;">`;
   
   data.sections.forEach((section, index) => {
     html += `
       <div style="margin-bottom: 12px;">
-        <div style="color: rgba(90, 55, 25, 0.95); font-size: 12px; margin-bottom: 8px; font-weight: 600;">${section.tone}</div>
-        <div style="background: rgba(255, 245, 230, 0.35); padding: 12px; border-radius: 6px; margin-bottom: 8px; color: var(--text-primary); line-height: 1.6; font-size: 14px;">${section.text}</div>
-        <button onclick="copyToClipboard('${section.text}')" style="background: rgba(200, 170, 140, 0.15); border: 1px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px;">复制</button>
+        <div style="color: ${isNightMode ? 'rgba(100, 180, 255, 0.7)' : 'rgba(90, 55, 25, 0.95)'}; font-size: 12px; margin-bottom: 8px; font-weight: 600;">${section.tone}</div>
+        <div style="background: var(--warning-bg); border-left: 3px solid var(--warning-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 8px; color: var(--text-primary); line-height: 1.6; font-size: 14px;">${section.text}</div>
+        <button class="copy-btn" data-copy-text="${section.text.replace(/"/g, '&quot;')}" style="background: rgba(200, 170, 140, 0.15); border: 1px solid rgba(200, 170, 140, 0.3); color: var(--text-primary); padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px;">复制</button>
       </div>
     `;
   });
@@ -3144,16 +3159,34 @@ document.getElementById('quickSearch').addEventListener('input', function(e) {
   }
 });
 
-// 复制到剪贴板功能
-function copyToClipboard(text) {
-  const textarea = document.createElement('textarea');
-  textarea.value = text.trim();
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand('copy');
-  document.body.removeChild(textarea);
-  
-  alert('已复制到剪贴板');
+// 复制到剪贴板功能（使用事件委托）
+document.addEventListener('click', function(e) {
+  if (!e.target.classList.contains('copy-btn')) return;
+
+  const btn = e.target;
+  const text = btn.getAttribute('data-copy-text');
+
+  // 使用现代剪贴板 API（兼容性好）
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => showCopyFeedback(btn));
+  } else {
+    // 降级方案
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    showCopyFeedback(btn);
+  }
+});
+
+function showCopyFeedback(btn) {
+  const originalText = btn.textContent;
+  btn.textContent = '✓';
+  setTimeout(() => {
+    btn.textContent = originalText;
+  }, 1000);
 }
 
 // 展开指定话术的函数
@@ -3329,6 +3362,50 @@ function expandSection(sectionId) {
 
 
 
+    /* 夜间模式下搜索框样式：无边框+毛玻璃 */
+    body:not(.theme-eye-care) #quickSearch {
+      background: rgba(255, 255, 255, 0.08) !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+      border: none !important;
+      outline: none !important;
+      border-radius: 10px !important;
+      color: var(--text-primary) !important;
+      box-shadow: none !important;
+    }
+    #quickSearch:focus {
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+    body:not(.theme-eye-care) #quickSearch:focus {
+      background: rgba(255, 255, 255, 0.12) !important;
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+    body:not(.theme-eye-care) #quickSearch::placeholder {
+      color: rgba(255, 255, 255, 0.35) !important;
+    }
+
+    /* 夜间模式下常用话术场景按钮样式 */
+    body:not(.theme-eye-care) .quick-talk-btn {
+      background: var(--surface-b) !important;
+      border: 1px solid var(--border-table) !important;
+      color: var(--text-dimmer) !important;
+    }
+    body:not(.theme-eye-care) .quick-talk-btn:hover {
+      background: var(--surface-d) !important;
+      border-color: var(--surface-h) !important;
+      color: var(--text-secondary) !important;
+    }
+    body:not(.theme-eye-care) .quick-talk-btn[style*="rgba(220, 180, 130, 0.25)"] {
+      background: linear-gradient(135deg, rgba(79,172,254,0.18) 0%, rgba(99,60,200,0.22) 100%) !important;
+      border-color: rgba(99,140,255,0.3) !important;
+      color: var(--text-white) !important;
+      font-weight: 600 !important;
+      box-shadow: 0 0 10px rgba(79,172,254,0.15) !important;
+    }
     </style>
 
       <h3 id="h3-12-Skill-库--即拿即用的-AI-技">📖 Skill 库 — 即拿即用的 AI 技能文件</h3>
@@ -5303,6 +5380,21 @@ ${toneMap[tone] || '自然得体'}
   var btn = document.getElementById('themeToggleBtn');
   var label = document.getElementById('themeToggleLabel');
   var currentTheme = localStorage.getItem('hr-manual-theme') || 'night';
+  
+  // 立即初始化CSS变量
+  function initCSSVariables(theme) {
+    const isNightMode = theme === 'night';
+    if (isNightMode) {
+      document.documentElement.style.setProperty('--warning-bg', 'rgba(100,180,255,0.08)');
+      document.documentElement.style.setProperty('--warning-border', 'rgba(100,180,255,0.4)');
+    } else {
+      document.documentElement.style.setProperty('--warning-bg', 'rgba(255,200,0,0.08)');
+      document.documentElement.style.setProperty('--warning-border', 'rgba(255,200,0,0.2)');
+    }
+  }
+  
+  // 页面加载时立即初始化
+  initCSSVariables(currentTheme);
   var labelTimer = null;
 
   function applyTheme(theme) {
@@ -5313,6 +5405,26 @@ ${toneMap[tone] || '自然得体'}
     btn.innerHTML = THEME_ICONS[theme];
     label.textContent = THEME_NAMES[theme];
     localStorage.setItem('hr-manual-theme', theme);
+    
+    // 根据主题改变CSS变量
+    const isNightMode = theme === 'night';
+    if (isNightMode) {
+      // 夜间模式：改成蓝色
+      document.documentElement.style.setProperty('--warning-bg', 'rgba(100,180,255,0.08)');
+      document.documentElement.style.setProperty('--warning-border', 'rgba(100,180,255,0.4)');
+    } else {
+      // 护眼模式：改回原有的黄色
+      document.documentElement.style.setProperty('--warning-bg', 'rgba(255,200,0,0.08)');
+      document.documentElement.style.setProperty('--warning-border', 'rgba(255,200,0,0.2)');
+    }
+    
+    // 如果话术内容正在显示，重新渲染以应用新的主题样式
+    var activeBtn = document.querySelector('.quick-talk-btn[style*="0.25"]');
+    if (activeBtn && window.currentQuickTalkId) {
+      setTimeout(function() {
+        showQuickTalk(activeBtn, window.currentQuickTalkId);
+      }, 50);
+    }
   }
 
   function showLabel(duration) {
