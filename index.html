@@ -407,6 +407,81 @@
       display: block;
     }
 
+    /* ===== 常用话术搜索结果容器 ===== */
+    #quickSearchResults {
+      max-height: 300px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.2) transparent;
+    }
+    #quickSearchResults::-webkit-scrollbar {
+      width: 4px;
+    }
+    #quickSearchResults::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    #quickSearchResults::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.2);
+      border-radius: 2px;
+    }
+    body.theme-eye-care #quickSearchResults {
+      scrollbar-color: rgba(180,140,80,0.3) transparent;
+    }
+    body.theme-eye-care #quickSearchResults::-webkit-scrollbar-thumb {
+      background: rgba(180,140,80,0.3);
+    }
+
+    /* ===== 常用话术搜索结果卡片样式 ===== */
+    .quick-search-result-card {
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .quick-search-result-card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(100,160,255,0.3);
+    }
+    .quick-search-result-content {
+      font-size: 14px;
+      color: var(--text-primary);
+      font-weight: 500;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+    .quick-search-result-scene {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .quick-search-no-result {
+      padding: 16px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    /* 护眼模式下常用话术搜索结果卡片 */
+    body.theme-eye-care .quick-search-result-card {
+      background: rgba(255,250,240,0.85);
+      border: 1px solid rgba(180,140,80,0.15);
+    }
+    body.theme-eye-care .quick-search-result-card:hover {
+      background: rgba(255,245,225,0.95);
+      border-color: rgba(180,140,80,0.35);
+    }
+    body.theme-eye-care .quick-search-result-content {
+      color: #3d2e1f;
+    }
+    body.theme-eye-care .quick-search-result-scene {
+      color: #7a6850;
+    }
+
     .search-result-item {
       padding: 12px;
       background: var(--surface-n);
@@ -1243,21 +1318,30 @@
     <div id="basic-layers" class="glass-box">
       <h3 id="h3-1-5层递进逻辑框架">5层递进逻辑框架</h3>
       <style>
+        /* 两列 grid：左列放层级方块（宽度收窄形成锥形），右列放说明卡片自动填充剩余空间；
+           每个元素通过 grid-row/grid-column 显式定位，不再依赖绝对定位或负margin，
+           因此左右两列会随容器宽度联动伸缩，不会出现重叠。 */
         .layers-container-v2 {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0;
+          display: grid;
+          grid-template-columns: minmax(170px, 350px) minmax(220px, 1fr);
+          column-gap: clamp(16px, 3vw, 40px);
+          row-gap: 0;
           margin-top: 16px;
+          max-width: 1230px;
         }
-        .layer-row-v2 {
-          position: relative;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          max-width: 920px;
-        }
+
+        .layers-container-v2 .gc1 { grid-column: 1; justify-self: center; width: 100%; }
+        .layers-container-v2 .gc2 { grid-column: 2; }
+        .layers-container-v2 .gr1 { grid-row: 1; }
+        .layers-container-v2 .gr2 { grid-row: 2; }
+        .layers-container-v2 .gr3 { grid-row: 3; }
+        .layers-container-v2 .gr4 { grid-row: 4; }
+        .layers-container-v2 .gr5 { grid-row: 5; }
+        .layers-container-v2 .gr6 { grid-row: 6; }
+        .layers-container-v2 .gr7 { grid-row: 7; }
+        .layers-container-v2 .gr8 { grid-row: 8; }
+        .layers-container-v2 .gr9 { grid-row: 9; }
+
         .layer-box-v2 {
           background: var(--surface-o);
           backdrop-filter: blur(8px);
@@ -1268,13 +1352,14 @@
           flex-direction: column;
           align-items: center;
           text-align: center;
-          flex-shrink: 0;
+          box-sizing: border-box;
         }
-        .layer-box-v2.layer1 { width: 350px; border-color: rgba(186,85,211,0.75); background: rgba(186,85,211,0.08); }
-        .layer-box-v2.layer2 { width: 300px; border-color: rgba(255,193,7,0.75); background: rgba(255,193,7,0.08); }
-        .layer-box-v2.layer3 { width: 250px; border-color: rgba(244,130,130,0.75); background: rgba(244,130,130,0.08); }
-        .layer-box-v2.layer4 { width: 200px; border-color: rgba(128,128,128,0.75); background: rgba(128,128,128,0.08); }
-        .layer-box-v2.layer5 { width: 150px; border-color: rgba(100,150,200,0.75); background: rgba(100,150,200,0.08); }
+        /* 用百分比宽度替代写死的px，5层依次收窄形成锥形，同时随左列的可用宽度一起联动缩放 */
+        .layer-box-v2.layer1 { width: 100%; max-width: 350px; border-color: rgba(186,85,211,0.75); background: rgba(186,85,211,0.08); }
+        .layer-box-v2.layer2 { width: 86%;  max-width: 300px; border-color: rgba(255,193,7,0.75); background: rgba(255,193,7,0.08); }
+        .layer-box-v2.layer3 { width: 72%;  max-width: 250px; border-color: rgba(244,130,130,0.75); background: rgba(244,130,130,0.08); }
+        .layer-box-v2.layer4 { width: 58%;  max-width: 200px; border-color: rgba(128,128,128,0.75); background: rgba(128,128,128,0.08); }
+        .layer-box-v2.layer5 { width: 64%;  max-width: 220px; border-color: rgba(100,150,200,0.75); background: rgba(100,150,200,0.08); }
 
         .layer-title-v2 {
           font-size: 13px;
@@ -1298,11 +1383,9 @@
           display: flex;
           flex-direction: column;
           justify-content: center;
-          position: absolute;
-          right: 0;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 260px;
+          width: 100%;
+          box-sizing: border-box;
+          align-self: center;
         }
         .core-box-v2.core1 { border-color: rgba(186,85,211,0.7); background: rgba(186,85,211,0.06); }
         .core-box-v2.core2 { border-color: rgba(255,193,7,0.7); background: rgba(255,193,7,0.06); }
@@ -1312,56 +1395,21 @@
         .core-title-v2 {
           font-size: 12px;
           color: var(--text-primary);
-          font-weight: 500;
+          font-weight: 700;
           margin-bottom: 6px;
         }
         .core-note-v2 {
           font-size: 11px;
-          color: var(--text-body);
-          font-style: italic;
+          color: var(--text-body2);
+          line-height: 1.6;
+          white-space: normal;
         }
 
         .layer-arrow-v2 {
-          width: 920px;
-          height: 28px;
+          width: 100%;
+          height: 50px;
           position: relative;
           display: block;
-        }
-
-        /* ---- 响应式设计：小屏幕调整 ---- */
-        @media (max-width: 768px) {
-          .layer-row-v2 {
-            flex-direction: column;
-            width: 100%;
-            align-items: center;
-            position: relative;
-          }
-          
-          .layer-box-v2 {
-            position: relative;
-            width: 85% !important;
-            max-width: 100%;
-            padding-bottom: 20px !important;
-            padding-top: 20px !important;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
-          
-          .core-box-v2 {
-            position: static !important;
-            bottom: auto !important;
-            right: auto !important;
-            left: auto !important;
-            transform: none !important;
-            width: 100% !important;
-            top: auto !important;
-            background: transparent !important;
-            border: none !important;
-            margin-top: 12px;
-            padding: 8px 0 !important;
-            border-top: 1px solid rgba(255,255,255,0.2);
-          }
         }
         .layer-arrow-v2::before {
           content: '';
@@ -1369,112 +1417,123 @@
           left: 50%;
           top: 0;
           width: 1.5px;
-          height: 14px;
+          height: 36px;
           background: #5F5E5A;
         }
         .layer-arrow-v2::after {
           content: '';
           position: absolute;
           left: 50%;
-          top: 14px;
+          top: 36px;
           transform: translateX(-50%);
           border-left: 6px solid transparent;
           border-right: 6px solid transparent;
           border-top: 8px solid #5F5E5A;
         }
 
-        @media (max-width: 960px) {
-          .layer-row-v2 {
-            display: grid;
-            grid-template-columns: 1fr 200px;
-            gap: 20px;
-            max-width: 820px;
-            justify-items: center;
-            align-items: center;
+        /* ---- 响应式：窄屏改为单列堆叠，DOM顺序本身就是 box→core→arrow 依次排列，
+           所以这里只需重置 grid 定位，不需要再单独处理每一层 ---- */
+        @media (max-width: 860px) {
+          .layers-container-v2 {
+            grid-template-columns: 1fr;
+            row-gap: 0;
           }
+          .layers-container-v2 .gc1,
+          .layers-container-v2 .gc2 {
+            grid-column: 1;
+            justify-self: stretch;
+          }
+          .layers-container-v2 .gr1, .layers-container-v2 .gr2, .layers-container-v2 .gr3,
+          .layers-container-v2 .gr4, .layers-container-v2 .gr5, .layers-container-v2 .gr6,
+          .layers-container-v2 .gr7, .layers-container-v2 .gr8, .layers-container-v2 .gr9 {
+            grid-row: auto;
+          }
+          .layer-box-v2 { width: 100% !important; max-width: 100% !important; }
           .core-box-v2 {
-            position: static;
-            width: 200px;
-            transform: none;
-            justify-self: center;
+            width: 100%;
+            background: transparent !important;
+            border: none !important;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            border-radius: 0;
+            margin-top: 12px;
+            padding: 8px 0 !important;
+            text-align: left;
           }
-          .layer-arrow-v2 {
-            width: calc(100% - 220px);
-            max-width: 600px;
-            margin: 0 auto;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .layer-row-v2 { display: flex; flex-direction: column; gap: 0; max-width: none; }
-          .layer-box-v2 { width: 100% !important; }
-          .core-box-v2 { position: static; width: 100% !important; transform: none; border: none; background: transparent; padding: 8px 0 0 0; text-align: center; }
-          .layer-arrow-v2 { width: 100%; }
+          .layer-arrow-v2 { display: none; }
         }
       </style>
       <div class="layers-container-v2">
-        <div class="layer-row-v2">
-          <div class="layer-box-v2 layer1">
+          <div class="layer-box-v2 layer1 gc1 gr1">
             <div class="layer-title-v2">第1层：大脑 / LLM</div>
-            <div class="layer-items-v2">GPT · Claude · Gemini · Token · 上下文 · Multi-modal · 推理模型</div>
+            <div class="layer-items-v2" style="text-align: left; width: 100%;">
+              <div style="margin-bottom: 8px;"><strong>对应概念：</strong>LLM/大语言模型</div>
+              <div style="margin-bottom: 8px;"><strong>代表对象：</strong>GPT、Claude、Gemini</div>
+              <div><strong>关键词：</strong>Token、Context Window、多模态、推理模型</div>
+            </div>
           </div>
-          <div class="core-box-v2 core1">
+          <div class="core-box-v2 core1 gc2 gr1">
             <div class="core-title-v2">核心：基础能力</div>
-            <div class="core-note-v2">（可编辑讲解区域）</div>
+            <div class="core-note-v2">
+                这一层是地基，决定 AI 的基础能力：<br>
+                输入的Token的多少和质量一定程度上决定了成本以及输出的速度；<br>
+                上下文窗口的大小则决定了这个AI的工作记忆上限；<br>
+                多模态则是指AI不止能读文字，还可以读取图片或者听声音；<br>
+                不同的推理模型，他们的推理能力也是不一样的。
+            </div>
           </div>
-        </div>
 
-        <div class="layer-arrow-v2"></div>
+          <div class="layer-arrow-v2 gc1 gr2"></div>
 
-        <div class="layer-row-v2">
-          <div class="layer-box-v2 layer2">
+          <div class="layer-box-v2 layer2 gc1 gr3">
             <div class="layer-title-v2">第2层：沟通方式</div>
-            <div class="layer-items-v2">GUI（网页） · CLI（命令行） · 桌面版 · Prompt · Engineering</div>
+            <div class="layer-items-v2" style="text-align: left; width: 100%;">
+              <div><strong>对应概念：</strong>GUI、CLI、桌面版、Prompt Engineering</div>
+            </div>
           </div>
-          <div class="core-box-v2 core2">
+          <div class="core-box-v2 core2 gc2 gr3">
             <div class="core-title-v2">核心：交互方式</div>
-            <div class="core-note-v2">（可编辑讲解区域）</div>
+            <div class="core-note-v2">决定人和AI"怎么对话"：GUI（图形界面）和CLI（命令行）是主要的两种方式，而Prompt Engineering（提示词工程）则是“怎么和AI好好的沟通”，决定了AI能否准确理解你的意图并执行你的命令。</div>
           </div>
-        </div>
 
-        <div class="layer-arrow-v2"></div>
+          <div class="layer-arrow-v2 gc1 gr4"></div>
 
-        <div class="layer-row-v2">
-          <div class="layer-box-v2 layer3">
+          <div class="layer-box-v2 layer3 gc1 gr5">
             <div class="layer-title-v2">第3层：工具和手册</div>
-            <div class="layer-items-v2">RAG · MCP · Skills · Harness · 工具整合</div>
+            <div class="layer-items-v2" style="text-align: left; width: 100%;">
+              <div><strong>对应概念：</strong>RAG、MCP、Skills、Harness</div>
+            </div>
           </div>
-          <div class="core-box-v2 core3">
+          <div class="core-box-v2 core3 gc2 gr5">
             <div class="core-title-v2">核心：扩展功能</div>
-            <div class="core-note-v2">（可编辑讲解区域）</div>
+            <div class="core-note-v2">解决AI"知识不新、手不够长"的问题：RAG让AI能查外部资料；MCP是万能接口，连接各种工具和数据源；Skills是预设的操作手册；Harness是调度这一切的运行框架。</div>
           </div>
-        </div>
 
-        <div class="layer-arrow-v2"></div>
+          <div class="layer-arrow-v2 gc1 gr6"></div>
 
-        <div class="layer-row-v2">
-          <div class="layer-box-v2 layer4">
+          <div class="layer-box-v2 layer4 gc1 gr7">
             <div class="layer-title-v2">第4层：智能体 / Agent</div>
-            <div class="layer-items-v2">Claude Code · Codex · Hermes · LLM+Tools · 自主循环</div>
+            <div class="layer-items-v2" style="text-align: left; width: 100%;">
+              <div><strong>对应概念：</strong>Agent、自主决策</div>
+            </div>
           </div>
-          <div class="core-box-v2 core4">
+          <div class="core-box-v2 core4 gc2 gr7">
             <div class="core-title-v2">核心：自主执行</div>
-            <div class="core-note-v2">（可编辑讲解区域）</div>
+            <div class="core-note-v2">核心公式是Agent = LLM + 工具 + 自主循环，因此这一层强调的是AI自主决策和执行能力，代表的对象有Claude Code, Codex, Hermes等。</div>
           </div>
-        </div>
 
-        <div class="layer-arrow-v2"></div>
+          <div class="layer-arrow-v2 gc1 gr8"></div>
 
-        <div class="layer-row-v2">
-          <div class="layer-box-v2 layer5">
+          <div class="layer-box-v2 layer5 gc1 gr9">
             <div class="layer-title-v2">第5层：办公应用</div>
-            <div class="layer-items-v2">IDE (VS Code) · Cursor · Qoder Work · Vibe Coding · 自然语言驱动</div>
+            <div class="layer-items-v2" style="text-align: left; width: 100%;">
+              <div style="margin-bottom: 8px;"><strong>对应概念：</strong>IDE、办公环境、自然语言</div>
+              <div><strong>代表对象：</strong>VS Code、Cursor</div>
+            </div>
           </div>
-          <div class="core-box-v2 core5">
+          <div class="core-box-v2 core5 gc2 gr9">
             <div class="core-title-v2">核心：实际应用</div>
-            <div class="core-note-v2">（可编辑讲解区域）</div>
+            <div class="core-note-v2">这一层主要指IDE，可以理解为AI工作的"办公环境"；像Cursor、VS Code这类工具，可以理解为办公室，而不同的AI agent是员工。你作为老板可以把不同的AI放到这个办公室里，方便调用。Vibe Coding则是指自然语言提需求，AI负责生成、修改、调试代码，人更多是把关方向、验收结果。</div>
           </div>
-        </div>
       </div>
       <p style="font-size: 12px; color: var(--text-body2); margin-top: 12px; font-style: italic;">递进关系：基础 → 交互 → 扩展 → 自主 → 应用｜每一层都是下一层的基础，循序渐进学习</p>
     </div>
@@ -2895,7 +2954,7 @@
       <div style="margin-bottom: 20px;">
         <input type="text" id="quickSearch" placeholder="输入关键词搜索..." 
           style="width: 100%; padding: 12px 16px; border: none; outline: none; border-radius: 10px; background: rgba(200, 170, 140, 0.08); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: var(--text-primary); font-size: 13px; box-shadow: none; font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', sans-serif;">
-        <div id="quickSearchResults" style="display: none; margin-top: 12px; background: rgba(255, 245, 230, 0.35); border: 1px solid rgba(200, 170, 140, 0.2); border-radius: 8px; padding: 12px;"></div>
+        <div id="quickSearchResults" style="display: none; margin-top: 12px; padding: 4px 0;"></div>
       </div>
 
       <!-- 快速导航 -->
@@ -3135,29 +3194,69 @@ function showQuickTalk(button, talkId) {
 
 // 常用话术搜索功能
 document.getElementById('quickSearch').addEventListener('input', function(e) {
-  const keyword = e.target.value.toLowerCase();
+  const keyword = e.target.value.toLowerCase().trim();
   const results = document.getElementById('quickSearchResults');
-  
+
   if (!keyword) {
     results.style.display = 'none';
     return;
   }
-  
-  const scenarioNames = Array.from(document.querySelectorAll('#template-quick > div > div:nth-child(2) > div')).map(el => {
-    const title = el.querySelector('div').textContent.replace('▼', '').replace('▶', '').trim();
-    return title;
-  });
-  
-  const matchedScenarios = scenarioNames.filter(name => name.toLowerCase().includes(keyword));
-  
+
+  // 直接搜索 quickTalkData 数据
+  var matchedScenarios = [];
+  for (var key in quickTalkData) {
+    var data = quickTalkData[key];
+    // 匹配标题
+    if (data.title.toLowerCase().indexOf(keyword) !== -1) {
+      matchedScenarios.push({ id: key, title: data.title, matchedText: null });
+      continue;
+    }
+    // 匹配话术内容和语气标签
+    for (var i = 0; i < data.sections.length; i++) {
+      var section = data.sections[i];
+      if (section.text.toLowerCase().indexOf(keyword) !== -1 ||
+          section.tone.toLowerCase().indexOf(keyword) !== -1) {
+        matchedScenarios.push({ id: key, title: data.title, matchedText: section.text });
+        break;
+      }
+    }
+  }
+
   if (matchedScenarios.length > 0) {
-    results.innerHTML = '<strong>找到相关话术：</strong><br>' + matchedScenarios.map(s => '• ' + s).join('<br>');
+    var html = '';
+    for (var j = 0; j < matchedScenarios.length; j++) {
+      var s = matchedScenarios[j];
+      // 第一行：匹配到的话术内容预览，或场景标题
+      var preview = s.title;
+      if (s.matchedText) {
+        var truncated = s.matchedText.replace(/\n/g, ' ');
+        preview = truncated.length > 60 ? truncated.substring(0, 60) + '...' : truncated;
+      }
+      html += '<div class="quick-search-result-card" onclick="quickSearchClick(\'' + s.id + '\')">'
+            + '<div class="quick-search-result-content">' + preview + '</div>'
+            + '<div class="quick-search-result-scene">📄 ' + s.title + '</div>'
+            + '</div>';
+    }
+    results.innerHTML = html;
     results.style.display = 'block';
   } else {
-    results.innerHTML = '未找到相关话术';
+    results.innerHTML = '<div class="quick-search-no-result">未找到相关话术</div>';
     results.style.display = 'block';
   }
 });
+
+// 点击搜索结果展示对应话术
+window.quickSearchClick = function(talkId) {
+  var btn = document.querySelector('.quick-talk-btn[onclick*="' + talkId + '"]');
+  if (btn) {
+    showQuickTalk(btn, talkId);
+  }
+  // 收起搜索结果并清空搜索框
+  var results = document.getElementById('quickSearchResults');
+  var searchInput = document.getElementById('quickSearch');
+  if (results) results.style.display = 'none';
+  if (searchInput) searchInput.value = '';
+};
 
 // 复制到剪贴板功能（使用事件委托）
 document.addEventListener('click', function(e) {
@@ -5331,13 +5430,18 @@ ${toneMap[tone] || '自然得体'}
     }
 
     window.searchResultClick = function(pageId) {
-      const navItem = document.querySelector(`.nav-item[onclick="showPage('${pageId}', this)"]`);
-      if (navItem) {
-        showPage(pageId, navItem);
-        searchPanel.classList.remove('active');
-        searchInput.value = '';
-        clearBtn.classList.remove('show');
-      }
+      var navItems = document.querySelectorAll('.nav-item');
+      var navItem = null;
+      navItems.forEach(function(item) {
+        var oc = item.getAttribute('onclick') || '';
+        if (oc.indexOf("'" + pageId + "'") !== -1) {
+          navItem = item;
+        }
+      });
+      showPage(pageId, navItem);
+      searchPanel.classList.remove('active');
+      searchInput.value = '';
+      clearBtn.classList.remove('show');
     };
 
     // 事件监听
