@@ -642,8 +642,8 @@
 
     .cards-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5vw;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.2vw;
       width: 100%;
     }
 
@@ -652,11 +652,11 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--surface-h);
-      border-radius: 20px;
-      padding: 3vh 2.5vw;
+      border-radius: 18px;
+      padding: 2.2vh 1.6vw;
       cursor: pointer;
       transition: all 0.25s ease;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 4 / 3;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -1047,6 +1047,8 @@
   <div class="topnav-divider"></div>
   <div class="nav-item" onclick="showPage('basic', this)">AI基础认知</div>
   <div class="nav-item" onclick="showPage('method', this)">AI工作方法</div>
+  <div class="nav-item" onclick="showPage('iclaw', this)">iclaw使用指南</div>
+  <div class="nav-item" onclick="showPage('chengxiaobang', this)">程小帮使用指南</div>
   <div class="nav-item" onclick="showPage('template', this)">话术/Prompt/Skill库</div>
   <div class="nav-item" onclick="showPage('safety', this)">AI使用风险与安全</div>
   <div class="nav-item" onclick="showPage('otherai', this)">其他AI工具参考</div>
@@ -1087,18 +1089,26 @@
             <div class="card-desc">了解 AI 的本质、核心概念与5层递进逻辑</div>
           </div>
           <div class="module-card" onclick="showPage('method', document.querySelectorAll('.nav-item')[1])">
-            <div class="card-title">工作方法</div>
-            <div class="card-desc">Prompt、Skill、Project 与 AI 高效协作的方法论</div>
+            <div class="card-title">工作方法（通用）</div>
+            <div class="card-desc">Prompt、Skill、Token优化的通用原则与常见误区</div>
           </div>
-          <div class="module-card" onclick="showPage('template', document.querySelectorAll('.nav-item')[2])">
+          <div class="module-card" onclick="showPage('iclaw', document.querySelectorAll('.nav-item')[2])">
+            <div class="card-title">🐾 iclaw使用指南</div>
+            <div class="card-desc">飞书里的公司官方AI助手，个性化配置、Skill、记忆机制等</div>
+          </div>
+          <div class="module-card" onclick="showPage('chengxiaobang', document.querySelectorAll('.nav-item')[3])">
+            <div class="card-title">💻 程小帮使用指南</div>
+            <div class="card-desc">桌面版公司官方AI Agent，办公文档、知识库、飞书协作等</div>
+          </div>
+          <div class="module-card" onclick="showPage('template', document.querySelectorAll('.nav-item')[4])">
             <div class="card-title">话术/Prompt/Skill库</div>
             <div class="card-desc">常用场景即用模板，可复用 Skill 资源一键获取</div>
           </div>
-          <div class="module-card" onclick="showPage('safety', document.querySelectorAll('.nav-item')[3])">
+          <div class="module-card" onclick="showPage('safety', document.querySelectorAll('.nav-item')[5])">
             <div class="card-title">风险安全</div>
             <div class="card-desc">HR 场景的数据安全、合规要点与使用规范</div>
           </div>
-          <div class="module-card" onclick="showPage('otherai', document.querySelectorAll('.nav-item')[4])">
+          <div class="module-card" onclick="showPage('otherai', document.querySelectorAll('.nav-item')[6])">
             <div class="card-title">其他AI工具参考</div>
             <div class="card-desc">Claude / ChatGPT / Codex / DeepSeek 等工具的功能对比与用法</div>
           </div>
@@ -1550,19 +1560,15 @@
   <!-- ===== AI工作方法 ===== -->
   <div id="page-method" class="page">
     <div class="page-header">
-      <div class="page-title">🎯 AI工作方法</div>
-      <div class="page-sub">与AI高效协作的方法论，重点不是功能说明</div>
+      <div class="page-title">🎯 AI工作方法（通用）</div>
+      <div class="page-sub">跟工具无关的方法论：怎么写Prompt、什么是Skill、Token怎么省、常踩的坑。具体到 iclaw / 程小帮 怎么操作，见各自专页</div>
     </div>
 
     <div class="tabs">
       <div class="tab-btn active" onclick="showTab('method','prompt',this)">💬 Prompt</div>
-      <div class="tab-btn" onclick="showTab('method','config',this)">⚙️ 个性化配置</div>
-      <div class="tab-btn" onclick="showTab('method','token',this)"> Token优化</div>
       <div class="tab-btn" onclick="showTab('method','skill',this)"> Skill</div>
-      <div class="tab-btn" onclick="showTab('method','project',this)">🔁 持续任务与记忆</div>
-      <div class="tab-btn" onclick="showTab('method','artifact',this)">📷 图片与文件能力</div>
+      <div class="tab-btn" onclick="showTab('method','token',this)"> Token优化</div>
       <div class="tab-btn" onclick="showTab('method','mistake',this)">🚨 常见误区</div>
-      <div class="tab-btn" onclick="showTab('method','advanced',this)">🎓 进阶玩法</div>
     </div>
 
     <div id="method-prompt" class="glass-box active">
@@ -2142,308 +2148,31 @@
         <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px; margin-top: 12px;">
           <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">
             <strong>💡 关于 Token 成本的建议：</strong><br>
-            如果担心反复沟通创建Skill会消耗较多Token，可以先用 <code>/model</code> 切换到轻量模型来讨论和打磨思路，确认框架和细节都没问题了，再切回默认模型生成定稿版本的Skill。这样既能充分迭代，又能控制成本。
+            如果担心反复沟通创建Skill会消耗较多Token，可以先用轻量模型/免费工具来讨论和打磨思路，确认框架和细节都没问题了，再用主力模型生成定稿版本的Skill。这样既能充分迭代，又能控制成本。
           </p>
         </div>
       </div>
 
       <div style="margin-bottom: 16px;">
-        <h4 id="h4-11-iclaw中怎么创建和安装-Skill"  style="color: var(--text-primary); margin-bottom: 12px;">🛠️ 在 iclaw 中怎么创建和安装 Skill</h4>
-
-        <div style="background: var(--surface-o); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 12px;">
-          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>🧩 自己创建：用 skill-creator</strong></p>
-          <p style="font-size: 11px; color: var(--text-body); line-height: 1.7;">
-            iclaw 内置了 <strong>skill-creator</strong> 这个 skill，专门用来帮你创建自定义 skill。比如你想固定一套"生成周报"的流程，可以直接和 iclaw 说"用 skill-creator 帮我做一个周报skill"，它会引导你按前面提到的 Plan→Refine→Finalize 思路，把流程标准化下来，方便你以后每次复用。
-          </p>
-        </div>
-
-        <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;"><strong>📥 安装同事分享的 Skill：直接发到飞书对话框</strong></p>
-          <ol style="font-size: 11px; color: var(--text-body); padding-left: 20px; line-height: 1.8; margin: 0;">
-            <li>找同事要 <code>.skill</code> 文件（团队共享处下载，或对方直接转发）</li>
-            <li>在飞书对话中，把 <code>.skill</code> 文件直接发给自己的 iclaw</li>
-            <li>iclaw 会自动把它安装到 skills 目录，不用手动配置</li>
-            <li>安装完成后即可直接使用</li>
-          </ol>
-          <p style="font-size: 11px; color: var(--text-hint); margin-top: 8px; font-style: italic;">注意：每个人需要自己在自己的 iclaw 里装一份，skill 文件本身可以在同事间随意传递。</p>
-        </div>
-      </div>
-
-      <div>
-        <h4 id="h4-12-在哪里存放和分享-Skill"  style="color: var(--text-primary); margin-bottom: 8px;">💾 在哪里存放和分享 Skill</h4>
+        <h4 id="h4-11-在哪里存放和分享-Skill"  style="color: var(--text-primary); margin-bottom: 8px;">💾 在哪里存放和分享 Skill</h4>
         <div class="skill-card">
-          <strong>📁 团队共享处：</strong> 把 <code>.skill</code> 文件放在团队共享的存储位置（如共享云盘），方便同事下载后直接发给自己的 iclaw 安装。
+          <strong>📁 团队共享处：</strong> 把写好的 Skill 文件放在团队共享的存储位置（如共享云盘），方便同事下载后直接使用。
         </div>
         <div class="skill-card">
-          <strong>🤝 直接转发：</strong> 也可以在飞书里直接把 <code>.skill</code> 文件转发给同事，对方拿到后同样发给自己的 iclaw 即可安装，不需要走共享处。
+          <strong>🤝 直接转发：</strong> 也可以直接把 Skill 文件转发给同事，让对方装到自己的 AI 工具里。
         </div>
-      </div>
-    </div>
-
-    <div id="method-project" class="glass-box">
-      <h3 id="h3-6-持续任务与记忆--如何让-iclaw-持续跟">🔁 持续任务与记忆 — 如何让 iclaw 持续跟进任务</h3>
-
-      <style>
-        .project-highlight {
-          background: rgba(100,200,100,0.08);
-          border-left: 3px solid rgba(100,200,100,0.4);
-          padding: 12px 14px;
-          border-radius: 6px;
-          margin: 10px 0;
-          font-size: 12px;
-          color: var(--text-secondary);
-        }
-      </style>
-
-      <p style="font-size: 12px; color: var(--text-body); line-height: 1.6; margin-bottom: 12px;">
-        有时候一个任务需要多次迭代：招聘需要持续跟进候选人进度、培训方案需要多次调整、数据分析需要补充新数据。iclaw 没有 Claude 那种"上传文件建知识库"式的 Project，而是靠<strong>命名会话</strong>隔离不同任务的上下文，靠<strong>长期记忆文件</strong>跨会话记住重要信息，靠<strong>心跳机制</strong>主动帮你盯着该关注的事。
-      </p>
-
-      <div style="margin-bottom: 16px;">
-        <h4 id="h4-13-命名会话--给不同任务开独立房间"  style="color: var(--text-primary); margin-bottom: 8px;">🎯 命名会话 — 给不同任务开独立房间</h4>
-        <div style="background: var(--accent-b); border-left: 3px solid var(--accent-h); padding: 12px 14px; border-radius: 6px; margin-bottom: 8px;">
-          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;">
-            <strong>✦ 用法：</strong> 用 <code>session:项目名</code> 的格式创建一个持久命名会话，例如 <code>session:2024校招</code>。这个会话专门处理这一件事，上下文和其他任务互不干扰，也不会被自动清理。
-          </p>
-          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;">
-            <strong>✦ 多会话切换：</strong> 可以随时用 <code>/sessions</code> 查看当前所有活跃会话，跨会话查看或发送消息，不用记住每个会话具体聊到哪了。
-          </p>
-        </div>
-      </div>
-
-      <div style="margin-bottom: 16px;">
-        <h4 id="h4-14-命名会话-vs-Skill-vs"  style="color: var(--text-primary); margin-bottom: 8px;">🤔 命名会话 vs Skill vs Prompt</h4>
-        <table style="width: 100%; font-size: 11px; color: var(--text-body); border-collapse: collapse;">
-          <tr style="background: var(--surface-b); border-bottom: 1px solid var(--border-table-header);">
-            <td style="padding: 8px; border-right: 1px solid var(--border-table);"><strong>Prompt</strong></td>
-            <td style="padding: 8px; border-right: 1px solid var(--border-table);">一次性的指令</td>
-            <td style="padding: 8px;">用于临时任务，不需要记忆</td>
-          </tr>
-          <tr style="background: var(--surface-b); border-bottom: 1px solid var(--border-table-header);">
-            <td style="padding: 8px; border-right: 1px solid var(--border-table);"><strong>Skill</strong></td>
-            <td style="padding: 8px; border-right: 1px solid var(--border-table);">可复用的标准</td>
-            <td style="padding: 8px;">用于重复出现的工作（每次招聘都用同一套标准）</td>
-          </tr>
-          <tr style="background: var(--surface-b);">
-            <td style="padding: 8px; border-right: 1px solid var(--border-table);"><strong>命名会话</strong></td>
-            <td style="padding: 8px; border-right: 1px solid var(--border-table);">长期任务的独立上下文</td>
-            <td style="padding: 8px;">用于一个需要持续推进的具体项目（这个月的校招、这个季度的薪酬调整）</td>
-          </tr>
-        </table>
-      </div>
-
-      <div style="margin-bottom: 16px;">
-        <h4 id="h4-15-适用场景"  style="color: var(--text-primary); margin-bottom: 8px;">📌 适用场景</h4>
-
-        <div class="project-highlight">
-          <strong>招聘进度跟进</strong><br>
-          开一个 <code>session:校招进度</code>，跟进3个候选人，iclaw记住每个人的进度、反馈、下一步，不用每次都重新介绍这3个人的信息。
-        </div>
-
-        <div class="project-highlight">
-          <strong>方案设计和迭代</strong><br>
-          在同一个命名会话里设计绩效制度，第一版给出初稿，你反馈说"这一条太复杂了"，iclaw在这个会话里直接修改第一版，保持前后一致。
-        </div>
-
-        <div class="project-highlight">
-          <strong>数据分析持续更新</strong><br>
-          你需要每月生成HR数据报告。用同一个命名会话，每月更新数据，历史记录和对比都在。
-        </div>
-
-        <div class="project-highlight">
-          <strong>团队培训计划</strong><br>
-          设计一个为期3个月的培训方案，在同一个会话里逐周优化，iclaw能记住前面的周、员工的反馈、学习进度等。
-        </div>
-      </div>
-
-      <div style="margin-bottom: 16px;">
-        <h4 id="h4-16-长期记忆--MEMORY-md-和-memory-目录"  style="color: var(--text-primary); margin-bottom: 8px;">🧠 长期记忆 — MEMORY.md 和 memory/ 目录</h4>
-        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
-          除了命名会话，iclaw 还有跨会话都能读到的"长期记忆"，相当于给 iclaw 装了一个记事本：
-        </p>
-        <ol style="font-size: 12px; color: var(--text-body); padding-left: 20px; line-height: 1.8;">
-          <li><code>memory/YYYY-MM-DD.md</code> —— 每天的原始记录，按日期存放</li>
-          <li><code>MEMORY.md</code> —— 从每日记录中精炼出来的长期记忆</li>
-          <li>这些文件跨会话持久存在，iclaw <strong>每次新会话启动时都会自动读取</strong>，不用你重新说一遍背景</li>
-          <li>用 <code>/memory</code> 指令可以随时查看或管理这些记忆文件</li>
-        </ol>
-      </div>
-
-      <div style="margin-bottom: 16px;">
-        <h4 id="h4-17-心跳机制--让-iclaw-主动帮你盯着"  style="color: var(--text-primary); margin-bottom: 8px;">💓 心跳机制（Heartbeat）— 让 iclaw 主动帮你盯着</h4>
-        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
-          不只是定时提醒。通过配置 <code>HEARTBEAT.md</code>，可以让 iclaw 每隔一段时间自动检查邮件、日历、天气等，发现重要事项主动告诉你，类似"值班"模式。
-        </p>
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
-          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>✅ 适用场景</strong></p>
-          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-            <li>多项检查可以合并（邮件 + 日历 + 通知一次完成）</li>
-            <li>需要参考最近的对话上下文来判断"重不重要"</li>
-            <li>时间可以有小幅偏差，不需要精确到分钟</li>
-          </ul>
-          <p style="font-size: 11px; color: var(--text-hint); margin-top: 8px; font-style: italic;">如果需要精确定时（比如每周一早上9点整发周报到指定频道），用 Cron 定时任务更合适，见「Token优化」tab里对定时任务的介绍。</p>
-        </div>
+        <p style="font-size: 11px; color: var(--text-hint); margin-top: 8px; font-style: italic;">具体怎么"装"到某个工具里（比如发文件自动安装、还是要上传到指定位置），每个工具的操作方式不一样，详见「🐾 iclaw使用指南」「💻 程小帮使用指南」各自的 Skill tab。</p>
       </div>
 
       <div>
-        <h4 id="h4-18-限制"  style="color: var(--text-primary); margin-bottom: 8px;">⚠️ 需要注意的地方</h4>
-        <div style="background: var(--danger-accent-bg); border-left:3px solid var(--danger-accent-border); padding: 12px 14px; border-radius: 6px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">
-            <strong>记忆不是无限的：</strong> memory文件会持续累积，定期让iclaw帮你精炼一下MEMORY.md，避免堆积太多过时信息。
+        <h4 id="h4-12-跨工具复用-Skill-的注意事项"  style="color: var(--text-primary); margin-bottom: 8px;">🔀 如果这份 Skill 也想在别的工具里用</h4>
+        <div style="background: var(--surface-o); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
+          <p style="font-size: 12px; color: var(--text-body); line-height: 1.7; margin: 0;">
+            iclaw 和程小帮的 Skill 都基于 <strong>SKILL.md</strong> 这套开放格式（一个文件夹 + SKILL.md，包含 name/description），格式上大概率是通的。但搬去另一个工具用之前，注意两点：<br><br>
+            <strong>1. 确认文件结构：</strong> 如果导出的是单个打包文件而不是"文件夹 + SKILL.md"，另一个工具可能认不出这个格式，需要先解包确认里面的结构。<br>
+            <strong>2. 检查内容里有没有引用某个工具专属的能力：</strong> 比如 Skill 正文里如果写了调用 iclaw 或程小帮某个专属的工具/组件，换到另一边可能执行不了，需要按目标工具实际有的能力改写适配。<br><br>
+            简单说：格式大概率通用，但内容不一定能直接抄，跨工具用之前先检查一遍。
           </p>
-          <p style="font-size: 12px; color: var(--text-secondary);">
-            <strong>不是实时数据库：</strong> 会话记忆不会实时同步到其他系统。如果你需要 HR 系统中的最新数据，还是要让iclaw主动去查（比如通过邮件、飞书查询），而不是完全依赖记忆。
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div id="method-artifact" class="glass-box">
-      <h3 id="h3-7-图片与文件能力--让-iclaw-帮你处理"> 图片与文件能力 — 让 iclaw 帮你处理</h3>
-
-      <p style="font-size: 12px; color: var(--text-body); line-height: 1.6; margin-bottom: 12px;">
-        iclaw 没有 Claude Artifact 那种"独立产出物+分享链接"，但它对图片和文件的处理能力很实用：发一张截图，它能看懂内容；发一个文件，它能直接读写。这些是日常场景里学了就能马上用上的功能。
-      </p>
-
-      <div style="margin-bottom: 16px;">
-        <h4 style="color: var(--text-primary); margin-bottom: 8px;">📷 图片分析：不只是 OCR</h4>
-        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
-          发截图给 iclaw，它不只是识别文字，而是真的能"看懂"图片：
-        </p>
-        <ul style="font-size: 12px; color: var(--text-body); padding-left: 20px; line-height: 1.8;">
-          <li>📊 <strong>理解图表内容和数据趋势：</strong> 发一张数据表格截图，可以提取数据并生成图表</li>
-          <li>🖥️ <strong>分析 UI 界面布局：</strong> 发一张系统截图，帮你分析界面结构或找问题</li>
-          <li>💻 <strong>阅读代码截图并给出建议：</strong> 拍一张代码截图，直接分析并给建议</li>
-          <li>✍️ <strong>理解手写笔记：</strong> 手写的会议纪要、笔记也能识别和整理</li>
-        </ul>
-      </div>
-
-      <div style="margin-bottom: 16px;">
-        <h4 style="color: var(--text-primary); margin-bottom: 8px;">📁 飞书文件/图片下载与处理</h4>
-        <div style="background: var(--accent-b); border-left: 3px solid var(--accent-h); padding: 12px 14px; border-radius: 6px;">
-          <p style="font-size: 11px; color: var(--text-secondary);">
-            iclaw 可以直接下载飞书消息中的图片和文件到本地，然后进行分析或处理。比如你在群里发一张数据表格截图，iclaw 可以提取里面的数据，直接生成柱状图、饼图等可视化结果发回来。
-          </p>
-        </div>
-      </div>
-
-      <div style="margin-bottom: 16px;">
-        <h4 style="color: var(--text-primary); margin-bottom: 8px;">📝 文件读写编辑</h4>
-        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
-          iclaw 可以直接在工作区里读写和编辑文件，也能运行 Shell 命令、Python/Node 脚本来处理数据。常见场景：
-        </p>
-        <ul style="font-size: 12px; color: var(--text-body); padding-left: 20px; line-height: 1.8;">
-          <li>整理一批候选人简历文件，统一格式后输出汇总表</li>
-          <li>处理一份 Excel 数据，跑一段脚本清洗、计算后生成新文件</li>
-          <li>把多个文件合并、拆分，或按规则批量重命名</li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 style="color: var(--text-primary); margin-bottom: 8px;">⚠️ 注意事项</h4>
-        <div style="background: var(--danger-accent-bg); border-left:3px solid var(--danger-accent-border); padding: 12px 14px; border-radius: 6px;">
-          <p style="font-size: 12px; color: var(--text-secondary);">
-            <strong>隐私和敏感信息：</strong> 发截图或文件给 iclaw 分析前，检查一下里面是否包含真实的员工姓名、工资数字、身份证号等敏感信息，能脱敏的先脱敏。
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div id="method-config" class="glass-box">
-      <h3 id="h3-8-个性化配置--让-iclaw-更懂你">⚙️ 个性化配置 — 让 iclaw 更懂你</h3>
-      
-      <p style="font-size: 12px; color: var(--text-body); line-height: 1.6; margin-bottom: 12px;">
-        <strong>在开始使用 iclaw 之前，花一点时间配置好 SOUL.md 和 USER.md</strong>，可以让它更理解你的风格、需求和工作习惯。这样每次对话都会更高效，少做很多重复解释。
-      </p>
-
-      <div style="margin-bottom: 16px;">
-        <h4 id="h4-25-1-配置-SOUL-md-和-USER-md"  style="color: var(--text-primary); margin-bottom: 8px;">1️⃣ 配置 SOUL.md 和 USER.md</h4>
-        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
-          iclaw 每次"醒来"（新会话启动）都会读取这两个文件，让它更懂你、更像你喜欢的风格。
-        </p>
-        
-        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
-          <strong>🎭 SOUL.md — 定义 iclaw 的性格：</strong><br>
-          <span style="font-size: 11px; color: var(--text-body);">
-            • 说话风格（如"请用简洁语言，避免冗长段落和套话"）<br>
-            • 行为准则（如"给建议前先说清楚风险，不要替我做最终决定"）<br>
-            • 回应习惯（如"我更喜欢表格而不是段落，请添加具体例子"）
-          </span>
-        </div>
-
-        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
-          <strong>👤 USER.md — 记录你的个人信息：</strong><br>
-          <span style="font-size: 11px; color: var(--text-body);">
-            • 你的职位和主要职责（如"我是一位招聘专员，负责校招和中层社招招聘"）<br>
-            • 你所在的行业和公司规模（如"互联网公司，5000人规模"）<br>
-            • 你的工作重点和关心的指标（如"重视候选人的学习能力和文化匹配度"）<br>
-            • 你的工作节奏（如"我通常在周一和周五做总结"）
-          </span>
-        </div>
-
-        <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px;">
-          <strong>💡 配置的技巧：</strong> 可以先和 iclaw 聊一聊你的工作习惯，让它帮你把内容整理成 SOUL.md / USER.md 的初稿，然后再自己调整确认。不用一次写完美，用起来之后随时可以再编辑补充。
-        </div>
-      </div>
-
-      <div style="margin-bottom: 16px;">
-        <h4 id="h4-26-2-寻找和复用现成的-Skill"  style="color: var(--text-primary); margin-bottom: 8px;">2️⃣ 寻找和复用现成的 Skill</h4>
-        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
-          不用所有东西都自己写。很多同事已经配置好了 Skill，可以直接复用。
-        </p>
-        
-        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
-          <strong>🔍 Skill 的来源：</strong><br>
-          <span style="font-size: 11px; color: var(--text-body);">
-            • <strong>团队共享处：</strong> 团队共享的存储位置里通常存放着大家整理好的 <code>.skill</code> 文件<br>
-            • <strong>同事直接分享：</strong> 请同事把用得顺手的 <code>.skill</code> 文件直接转发给你<br>
-            • <strong>自己创建：</strong> 用 <code>skill-creator</code> 这个内置 skill，把你的经验固化成新的 skill
-          </span>
-        </div>
-
-        <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px;">
-          <strong>✅ 复用 Skill 的步骤：</strong><br>
-          <span style="font-size: 11px; color: var(--text-body);">
-            1. 找同事要或从团队共享处拿到合适的 <code>.skill</code> 文件<br>
-            2. 直接把文件发给自己的 iclaw，它会自动安装到 skills 目录<br>
-            3. 用 <code>/tools</code> 确认已经装好<br>
-            4. 后续直接调用，省去大量重复工作
-          </span>
-        </div>
-      </div>
-
-      <div style="margin-bottom: 16px;">
-        <h4 id="h4-27-3-参考企业规范和最佳实践"  style="color: var(--text-primary); margin-bottom: 8px;">3️⃣ 参考企业规范和最佳实践</h4>
-        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
-          如果公司有统一的 AI 使用规范，配置 SOUL.md / USER.md 时可以参考这些标准。
-        </p>
-        
-        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px;">
-          <strong>📋 参考的内容包括：</strong><br>
-          <span style="font-size: 11px; color: var(--text-body);">
-            • 公司的 AI 使用政策和规范（详见「AI使用风险与安全」页）<br>
-            • HR 工作的标准流程和评估标准<br>
-            • 团队已经验证过的 Skill 和工作流程
-          </span>
-        </div>
-      </div>
-
-      <div style="margin-bottom: 16px;">
-        <h4 id="h4-28-个性化配置的最佳实践"  style="color: var(--text-primary); margin-bottom: 8px;">💡 个性化配置的最佳实践</h4>
-        
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
-          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>✅ 定期审视和更新</strong></p>
-          <p style="font-size: 11px; color: var(--text-body);">每个月检查一下你的 SOUL.md / USER.md 是否还符合你的需求。随着工作重点的变化，也应该相应调整。</p>
-        </div>
-
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
-          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>✅ 记录和分享你的配置</strong></p>
-          <p style="font-size: 11px; color: var(--text-body);">把你调整好的 Skill 分享给团队，帮助同事避免重复配置。</p>
-        </div>
-
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
-          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>✅ 别忘了 memory 文件</strong></p>
-          <p style="font-size: 11px; color: var(--text-body);">SOUL.md / USER.md 是相对固定的"人设"，而工作中的具体进展、历史信息交给 memory/ 目录和 MEMORY.md 记录（详见「持续任务与记忆」tab），两者配合使用效果更好。</p>
         </div>
       </div>
     </div>
@@ -2474,7 +2203,7 @@
         <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px;">
           <p style="font-size: 11px; color: var(--text-body);">
             <strong>举个例子：</strong> 如果你的 Prompt 输入了 10,000 Token，AI 输出了 5,000 Token，费用可能是：10,000 × 输入价格 + 5,000 × 输出价格。<br><br>
-            用 <code>/status</code> 指令可以随时查看当前会话的模型、用量和费用情况
+            大部分工具都能随时查看当前的模型、用量和费用情况，具体查看方式见 iclaw / 程小帮 各自专页
           </p>
         </div>
       </div>
@@ -2490,7 +2219,7 @@
 
         <div style="margin-bottom: 10px;">
           <strong style="color: var(--text-secondary);">2️⃣ 避免重复提供信息</strong>
-          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">如果在命名会话或 Skill 中已经说过，不要在 Prompt 中再说一遍。直接说"根据我的招聘标准 Skill，评估这个候选人"。</p>
+          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">如果在长期记忆/Skill 中已经说过，不要在 Prompt 中再说一遍。直接说"根据我的招聘标准 Skill，评估这个候选人"。</p>
         </div>
 
         <div style="margin-bottom: 10px;">
@@ -2504,18 +2233,18 @@
         </div>
 
         <div style="margin-bottom: 10px;">
-          <strong style="color: var(--text-secondary);">5️⃣ 分解大任务</strong>
-          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">不好：一个超长的 Prompt 做5件事。好的：分成5个短对话，每个只需要 200-300 Token。<br><br>复杂任务先让 iclaw 把方案定清楚，确定方向对了再执行，可以直接说"先帮我做个计划，不用着急开始做"。用 <code>/reasoning</code> 开关推理模式，让 iclaw 在回答前多做一步内部推理，适合数学、逻辑、复杂分析类任务。直接让 AI 执行复杂任务可能会造成错误或返工，每一次错误尝试都会导致上下文堆积。</p>
+          <strong style="color: var(--text-secondary);">5️⃣ 分解大任务，先规划再执行</strong>
+          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">不好：一个超长的 Prompt 做5件事。好的：分成5个短对话，每个只需要 200-300 Token。<br><br>复杂任务先让 AI 把方案定清楚，确定方向对了再执行，可以直接说"先帮我做个计划，不用着急开始做"。直接让 AI 执行复杂任务可能会造成错误或返工，每一次错误尝试都会导致上下文堆积。</p>
         </div>
 
         <div style="margin-bottom: 10px;">
-          <strong style="color: var(--text-secondary);">6️⃣ 利用流式输出</strong>
-          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">如果发现回答方向不对，及时停下比等它说完再改更省 Token，可以直接用 <code>/stop</code> 打断当前生成。</p>
+          <strong style="color: var(--text-secondary);">6️⃣ 及时打断，不用等它说完</strong>
+          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">如果发现回答方向不对，及时停下比等它说完再改更省 Token，大部分工具都支持中途打断。</p>
         </div>
 
         <div style="margin-bottom: 10px;">
           <strong style="color: var(--text-secondary);">7️⃣ 善用缓存机制</strong>
-          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">短时间内重复用同样的背景文件或 Skill，部分模型会有缓存机制降低成本，但如果间隔太久（比如半小时以上）再次调用，缓存效果会打折。具体的缓存策略和费率可以用 <code>/status</code> 查看，或咨询负责 iclaw 的同事。</p>
+          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">短时间内重复用同样的背景文件或 Skill，部分模型会有缓存机制降低成本，但如果间隔太久（比如半小时以上）再次调用，缓存效果会打折。</p>
         </div>
 
         <div style="margin-bottom: 10px;">
@@ -2535,23 +2264,60 @@
 
         <div style="margin-bottom: 10px;">
           <strong style="color: var(--text-secondary);">1️⃣1️⃣ 避免上下文冗余</strong>
-          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">多个问题合并成一条消息，不要想到一条指令是一条。出错请纠正，去重新编辑原本的消息，把正确的要求补进去。<br><br>如果只是想临时问一句不相关的问题，不想混进正在处理的任务上下文，可以开一个新的命名会话（<code>session:临时提问</code>）问完就丢，不占用主线任务的上下文。</p>
+          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">多个问题合并成一条消息，不要想到一条指令是一条。出错请纠正，去重新编辑原本的消息，把正确的要求补进去。<br><br>如果只是想临时问一句不相关的问题，不想混进正在处理的任务上下文，可以开一个新的独立会话/话题问完就丢，不占用主线任务的上下文。</p>
         </div>
 
         <div style="margin-bottom: 10px;">
           <strong style="color: var(--text-secondary);">1️⃣2️⃣ 主动清理上下文</strong>
-          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;"><strong>iclaw 的常用指令：</strong><br><br><strong>/new：</strong> 开启新会话，清除当前上下文，适合开始一个全新的任务。<br><br><strong>/status：</strong> 查看当前会话状态、用了哪个模型、Token用量和费用。<br><br><strong>/compact：</strong> 主动压缩上下文，清理历史消息中的冗余内容，节省 Token 但不丢失重要信息。一些AI会自己主动压缩，但一般只会在占用很高时才触发，容易"临近上限就开始草草收尾"。所以当感觉对话变长、运行卡顿时，主动 <code>/compact</code> 一下，比等它自己触发更可控。<br><br>如果要长时间离开某个任务，先 <code>/compact</code> 压缩一下再走，回来时上下文更干净。</p>
+          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">一些AI会自己主动压缩上下文，但一般只会在占用很高时才触发，容易"临近上限就开始草草收尾"。所以当感觉对话变长、运行卡顿时，主动请求压缩一次，比等它自己触发更可控。如果要长时间离开某个任务，先压缩一下再走，回来时上下文更干净。</p>
         </div>
 
         <div style="margin-bottom: 10px;">
-          <strong style="color: var(--text-secondary);">1️⃣3️⃣ 新任务先盯着 iclaw</strong>
-          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">如果发现方向错了，及时止损。用 <code>/stop</code> 停止当前生成，然后再重新编辑上一条消息的提示词。<br><br><strong>通用小建议：</strong> 优先选择编辑而非重写整个文件。除非文件被编辑过，否则不要重复阅读已读过的文件。输出追求简洁，但推理过程必须详尽。</p>
+          <strong style="color: var(--text-secondary);">1️⃣3️⃣ 按任务难度切换模型</strong>
+          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">不是所有任务都需要用最强的模型。复杂推理（如方案设计、疑难分析）用强模型，简单任务（如格式整理、翻译）用轻量模型，可以灵活控制成本。</p>
         </div>
 
         <div>
-          <strong style="color: var(--text-secondary);">1️⃣4️⃣ 按任务难度切换模型</strong>
-          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">不是所有任务都需要用最强的模型。用 <code>/model &lt;name&gt;</code> 可以按需切换：<br><br>• <strong>全局切换</strong> — 所有新会话默认用新模型<br>• <strong>会话级切换</strong> — 只有当前会话用不同模型<br>• <strong>任务级指定</strong> — 单个 Cron 定时任务可以单独指定模型<br><br>复杂推理（如方案设计、疑难分析）用强模型，简单任务（如格式整理、翻译）用轻量模型，可以灵活控制成本。</p>
+          <strong style="color: var(--text-secondary);">1️⃣4️⃣ 新任务先盯着 AI</strong>
+          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">如果发现方向错了，及时止损，停止当前生成，然后再重新编辑上一条消息的提示词。<br><br><strong>通用小建议：</strong> 优先选择编辑而非重写整个文件。除非文件被编辑过，否则不要重复阅读已读过的文件。输出追求简洁，但推理过程必须详尽。</p>
         </div>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🔀 这些技巧在 iclaw / 程小帮 里具体怎么操作</h4>
+        <table style="width: 100%; font-size: 11px; color: var(--text-body); border-collapse: collapse;">
+          <tr style="background: var(--surface-b); border-bottom: 1px solid var(--border-table-header);">
+            <td style="padding: 8px; border-right: 1px solid var(--border-table); font-weight: 600;">技巧</td>
+            <td style="padding: 8px; border-right: 1px solid var(--border-table); font-weight: 600;">🐾 iclaw</td>
+            <td style="padding: 8px; font-weight: 600;">💻 程小帮</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-table);">
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);">临时提问不占主线上下文</td>
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);">开一个命名会话 <code>session:临时提问</code></td>
+            <td style="padding: 8px;">另开一个新任务</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-table);">
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);">主动清理/压缩上下文</td>
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);"><code>/compact</code></td>
+            <td style="padding: 8px;"><code>/compact</code></td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-table);">
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);">按需切换模型</td>
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);"><code>/model &lt;name&gt;</code>，支持全局/会话/单任务三级切换</td>
+            <td style="padding: 8px;">输入框下方直接切换，按需选择模型和推理模式</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-table);">
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);">及时打断</td>
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);"><code>/stop</code></td>
+            <td style="padding: 8px;">点「停止」按钮</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);">查看用量和费用</td>
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);"><code>/status</code></td>
+            <td style="padding: 8px;">点头像→「剩余用量」，或设置页「用量统计」</td>
+          </tr>
+        </table>
+        <p style="font-size: 11px; color: var(--text-hint); margin-top: 8px; font-style: italic;">更详细的操作说明见各自专页的 Token优化 tab。</p>
       </div>
 
       <div style="margin-bottom: 16px;">
@@ -2692,40 +2458,41 @@
       </div>
 
       <div class="mistake-item">
-        <div class="mistake-title">❌ 误区8：混淆 Project 和 Artifact 的用途</div>
+        <div class="mistake-title">❌ 误区8：混淆"持续迭代的工作"和"最终定稿产出"</div>
         <div class="mistake-desc">
-          有人会把"设计一份招聘指南"放在 Project 中反复迭代，最后生成的内容还留在 Project 里；或者把一份需要持续跟进的任务（如招聘进度）当成 Artifact 保存。<br><br>
-          <strong>问题：</strong> 用错工具，导致工作流程混乱。
+          有人会把"设计一份招聘指南"放在持续迭代的工作区里反复改，最后生成的内容还留在那里没有单独保存；或者把一份需要持续跟进的任务（如招聘进度）当成一次性产出直接扔掉上下文。<br><br>
+          <strong>问题：</strong> 用错方式，导致工作流程混乱，要么找不到定稿，要么持续性任务每次都要重新说明背景。
         </div>
         <div class="mistake-solution">
-          ✅ 解决方案：明确区分用途<br><br>
-          <strong>📊 Project 的作用：</strong><br>
-          • 长期任务的工作空间，AI 保留上下文<br>
+          ✅ 解决方案：明确区分两种性质的工作<br><br>
+          <strong>🔁 持续迭代的工作空间：</strong><br>
+          • 长期任务，需要 AI 保留上下文<br>
           • 需要多次迭代和反馈<br>
           • 任务进行中，内容还在变化<br>
           • 例：招聘一个岗位（涉及多个候选人、多轮反馈）、薪酬方案设计（v1→反馈→v2→反馈→最终版）<br><br>
-          <strong>💾 Artifact 的作用：</strong><br>
+          <strong>📦 最终定稿产出：</strong><br>
           • 最终产出物，可复用的文件<br>
           • 需要保存、下载、分享<br>
           • 内容已经定型或成熟<br>
           • 例：招聘文案模板（写好后，之后每次招聘都复用）、员工手册（最终版本）<br><br>
           <strong>最佳实践的流程：</strong><br>
-          Project（设计和迭代） → Artifact（最终成品） → 保存和复用
+          持续工作区（设计和迭代） → 定稿产出（最终成品） → 保存和复用<br><br>
+          <span style="font-style: italic; color: var(--text-hint);">具体在 iclaw / 程小帮 里怎么实现这两种模式，见各自专页。</span>
         </div>
       </div>
 
       <div class="mistake-item">
-        <div class="mistake-title">❌ 误区9：不分享 Artifact，知识无法沉淀</div>
+        <div class="mistake-title">❌ 误区9：不分享定稿产出，知识无法沉淀</div>
         <div class="mistake-desc">
           你自己用 AI 生成了一份很好的招聘指南、面试问题库、薪酬对标表，但只有你在用。同事还在重复做类似的工作。<br><br>
           <strong>问题：</strong> 无法形成团队的共识，重复劳动。
         </div>
         <div class="mistake-solution">
-          ✅ 解决方案：建立团队的 Artifact 库<br>
-          • 把重要的 Artifact 上传到团队 Wiki、Notion 或 GitHub<br>
-          • 给同事分享 Artifact 链接或下载版本<br>
+          ✅ 解决方案：建立团队的产出物库<br>
+          • 把重要的产出上传到团队 Wiki、Notion 或共享云盘<br>
+          • 给同事分享链接或下载版本<br>
           • 定期审视和更新，形成"团队标准"<br>
-          • 新员工来了，直接用团队的 Artifact 作为参考和学习资料
+          • 新员工来了，直接用团队沉淀的资料作为参考和学习资料
         </div>
       </div>
 
@@ -2741,21 +2508,20 @@
       </div>
 
       <div class="mistake-item">
-        <div class="mistake-title">❌ 误区11：混淆 Skill 和 定时任务/心跳机制</div>
+        <div class="mistake-title">❌ 误区11：混淆 Skill 和 自动化/定时执行</div>
         <div class="mistake-desc">
-          有人认为 Skill 和 定时任务（Cron）/心跳机制是替代关系，不知道何时用哪个。<br><br>
-          <strong>问题：</strong> 两者实际上是上下层关系。误解可能导致工作流程设计不合理。<br><br>
+          有人认为 Skill 和 自动化功能（定时任务、后台巡检等）是替代关系，不知道何时用哪个。<br><br>
+          <strong>问题：</strong> 两者实际上是上下层关系，误解可能导致工作流程设计不合理。<br><br>
           <strong>区别：</strong><br>
-          • <strong>Skill</strong> = 模板 / 操作手册。定义"怎么做"，包含说明、资源和可选脚本，手动调用或让 iclaw 按需自动选中。<br>
-          • <strong>定时任务（Cron）</strong> = 定时器。定义"什么时间点重复做"，需要精确定时时用。<br>
-          • <strong>心跳机制（Heartbeat）</strong> = 后台巡检。定义"隔一段时间主动看看有没有需要关注的事"，时间可以有偏差，适合合并多项检查。
+          • <strong>Skill</strong> = 模板 / 操作手册。定义"怎么做"，包含说明、资源和可选脚本，手动调用或让 AI 按需自动选中。<br>
+          • <strong>自动化</strong> = 定时器 / 后台巡检。定义"什么时候、以什么频率重复做"，需要精确定时或持续盯着时用。
         </div>
         <div class="mistake-solution">
           ✅ 解决方案：<br>
           • 先用 <strong>Skill</strong> 定义工作流程本身（如"每天的日报怎么写"、"候选人评估的标准"）<br>
-          • 需要精确定时执行 → 用 <strong>Cron 定时任务</strong>（如"每周一早上9点整自动生成周报，推送到指定频道"）<br>
-          • 需要主动帮忙盯着、判断重不重要 → 用 <strong>心跳机制</strong>（如"每隔一小时看看邮件和日历，有急事再告诉我"）<br>
-          • 如果只需要一个"工作模板"，用 Skill；需要"定时重复执行"，用 Cron；需要"AI主动判断要不要提醒你"，用心跳机制；三者也可以组合使用
+          • 再用 <strong>自动化功能</strong> 定义执行计划（如"每天早上10点自动生成日报"、"每周五自动汇总招聘进度"）<br>
+          • 如果只需要一个"工作模板"，用 Skill；需要"定时/持续重复执行"，用自动化功能；两者也可以组合使用<br><br>
+          <span style="font-style: italic; color: var(--text-hint);">iclaw 和程小帮具体的自动化机制不完全一样（一个有心跳机制、一个有定时任务+目标追踪），具体案例见各自专页的常见误区/相关tab。</span>
         </div>
       </div>
 
@@ -2801,8 +2567,342 @@
       </div>
     </div>
 
-    <div id="method-advanced" class="glass-box">
-      <h3 id="h3-11-进阶玩法--同时做几件事">🎓 进阶玩法 — 同时做几件事</h3>
+  </div>
+
+  <!-- ===== iclaw 使用指南 ===== -->
+  <div id="page-iclaw" class="page">
+    <div class="page-header">
+      <div class="page-title">🐾 iclaw 使用指南</div>
+      <div class="page-sub">iclaw 是嵌入飞书的公司官方 AI 助手，这里是它的专属操作说明。通用的方法论（Prompt/Skill/Token优化原则/常见误区）见「AI工作方法（通用）」页</div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab-btn active" onclick="showTab('iclaw','config',this)">⚙️ 个性化配置</div>
+      <div class="tab-btn" onclick="showTab('iclaw','skill',this)">🎯 Skill怎么装</div>
+      <div class="tab-btn" onclick="showTab('iclaw','token',this)">💰 Token优化指令</div>
+      <div class="tab-btn" onclick="showTab('iclaw','memory',this)">🔁 持续任务与记忆</div>
+      <div class="tab-btn" onclick="showTab('iclaw','media',this)">📷 图片与文件能力</div>
+      <div class="tab-btn" onclick="showTab('iclaw','mistake',this)">🚨 误区案例</div>
+      <div class="tab-btn" onclick="showTab('iclaw','advanced',this)">🎓 进阶玩法</div>
+    </div>
+
+    <div id="iclaw-config" class="glass-box active">
+      <h3>⚙️ 个性化配置 — 让 iclaw 更懂你</h3>
+      
+      <p style="font-size: 12px; color: var(--text-body); line-height: 1.6; margin-bottom: 12px;">
+        <strong>在开始使用 iclaw 之前，花一点时间配置好 SOUL.md 和 USER.md</strong>，可以让它更理解你的风格、需求和工作习惯。这样每次对话都会更高效，少做很多重复解释。
+      </p>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">1️⃣ 配置 SOUL.md 和 USER.md</h4>
+        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
+          iclaw 每次"醒来"（新会话启动）都会读取这两个文件，让它更懂你、更像你喜欢的风格。
+        </p>
+        
+        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
+          <strong>🎭 SOUL.md — 定义 iclaw 的性格：</strong><br>
+          <span style="font-size: 11px; color: var(--text-body);">
+            • 说话风格（如"请用简洁语言，避免冗长段落和套话"）<br>
+            • 行为准则（如"给建议前先说清楚风险，不要替我做最终决定"）<br>
+            • 回应习惯（如"我更喜欢表格而不是段落，请添加具体例子"）
+          </span>
+        </div>
+
+        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
+          <strong>👤 USER.md — 记录你的个人信息：</strong><br>
+          <span style="font-size: 11px; color: var(--text-body);">
+            • 你的职位和主要职责（如"我是一位招聘专员，负责校招和中层社招招聘"）<br>
+            • 你所在的行业和公司规模（如"互联网公司，5000人规模"）<br>
+            • 你的工作重点和关心的指标（如"重视候选人的学习能力和文化匹配度"）<br>
+            • 你的工作节奏（如"我通常在周一和周五做总结"）
+          </span>
+        </div>
+
+        <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px;">
+          <strong>💡 配置的技巧：</strong> 可以先和 iclaw 聊一聊你的工作习惯，让它帮你把内容整理成 SOUL.md / USER.md 的初稿，然后再自己调整确认。不用一次写完美，用起来之后随时可以再编辑补充。
+        </div>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">2️⃣ 参考企业规范和最佳实践</h4>
+        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
+          如果公司有统一的 AI 使用规范，配置 SOUL.md / USER.md 时可以参考这些标准。
+        </p>
+        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px;">
+          <strong>📋 参考的内容包括：</strong><br>
+          <span style="font-size: 11px; color: var(--text-body);">
+            • 公司的 AI 使用政策和规范（详见「AI使用风险与安全」页）<br>
+            • HR 工作的标准流程和评估标准<br>
+            • 团队已经验证过的 Skill 和工作流程
+          </span>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">💡 个性化配置的最佳实践</h4>
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>✅ 定期审视和更新</strong></p>
+          <p style="font-size: 11px; color: var(--text-body);">每个月检查一下你的 SOUL.md / USER.md 是否还符合你的需求。随着工作重点的变化，也应该相应调整。</p>
+        </div>
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
+          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>✅ 别忘了 memory 文件</strong></p>
+          <p style="font-size: 11px; color: var(--text-body);">SOUL.md / USER.md 是相对固定的"人设"，而工作中的具体进展、历史信息交给 memory/ 目录和 MEMORY.md 记录（详见「持续任务与记忆」tab），两者配合使用效果更好。</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="iclaw-skill" class="glass-box">
+      <h3>🎯 Skill 怎么创建和安装</h3>
+      <p style="font-size: 12px; color: var(--text-body); margin-bottom: 12px;">Skill 是什么、为什么用、怎么设计内容，见「AI工作方法（通用）」页的 Skill tab。这里只讲 iclaw 里具体怎么创建和安装。</p>
+
+      <div style="margin-bottom: 16px;">
+        <div style="background: var(--surface-o); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 12px;">
+          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>🧩 自己创建：用 skill-creator</strong></p>
+          <p style="font-size: 11px; color: var(--text-body); line-height: 1.7;">
+            iclaw 内置了 <strong>skill-creator</strong> 这个 skill，专门用来帮你创建自定义 skill。比如你想固定一套"生成周报"的流程，可以直接和 iclaw 说"用 skill-creator 帮我做一个周报skill"，它会引导你按 Plan→Refine→Finalize 的思路，把流程标准化下来，方便你以后每次复用。
+          </p>
+        </div>
+
+        <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;"><strong>📥 安装同事分享的 Skill：直接发到飞书对话框</strong></p>
+          <ol style="font-size: 11px; color: var(--text-body); padding-left: 20px; line-height: 1.8; margin: 0;">
+            <li>找同事要 <code>.skill</code> 文件（团队共享处下载，或对方直接转发）</li>
+            <li>在飞书对话中，把 <code>.skill</code> 文件直接发给自己的 iclaw</li>
+            <li>iclaw 会自动把它安装到 skills 目录，不用手动配置</li>
+            <li>安装完成后即可直接使用</li>
+          </ol>
+          <p style="font-size: 11px; color: var(--text-hint); margin-top: 8px; font-style: italic;">注意：每个人需要自己在自己的 iclaw 里装一份，skill 文件本身可以在同事间随意传递。</p>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🔍 寻找和复用现成的 Skill</h4>
+        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
+          <strong>Skill 的来源：</strong><br>
+          <span style="font-size: 11px; color: var(--text-body);">
+            • <strong>团队共享处：</strong> 团队共享的存储位置里通常存放着大家整理好的 <code>.skill</code> 文件<br>
+            • <strong>同事直接分享：</strong> 请同事把用得顺手的 <code>.skill</code> 文件直接转发给你<br>
+            • <strong>自己创建：</strong> 用 <code>skill-creator</code> 把你的经验固化成新的 skill
+          </span>
+        </div>
+        <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px;">
+          <strong>✅ 复用 Skill 的步骤：</strong><br>
+          <span style="font-size: 11px; color: var(--text-body);">
+            1. 找同事要或从团队共享处拿到合适的 <code>.skill</code> 文件<br>
+            2. 直接把文件发给自己的 iclaw，它会自动安装到 skills 目录<br>
+            3. 用 <code>/tools</code> 确认已经装好<br>
+            4. 后续直接调用，省去大量重复工作
+          </span>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">💾 在哪里存放和分享 Skill</h4>
+        <div class="skill-card" style="background: rgba(100,180,255,0.08); border-left: 3px solid rgba(100,180,255,0.4); padding: 12px 14px; border-radius: 6px; margin: 10px 0; font-size: 12px; color: var(--text-secondary);">
+          <strong>📁 团队共享处：</strong> 把 <code>.skill</code> 文件放在团队共享的存储位置（如共享云盘），方便同事下载后直接发给自己的 iclaw 安装。
+        </div>
+        <div class="skill-card" style="background: rgba(100,180,255,0.08); border-left: 3px solid rgba(100,180,255,0.4); padding: 12px 14px; border-radius: 6px; margin: 10px 0; font-size: 12px; color: var(--text-secondary);">
+          <strong>🤝 直接转发：</strong> 也可以在飞书里直接把 <code>.skill</code> 文件转发给同事，对方拿到后同样发给自己的 iclaw 即可安装，不需要走共享处。
+        </div>
+        <p style="font-size: 11px; color: var(--text-hint); margin-top: 8px; font-style: italic;">如果这份 Skill 也想在程小帮里用，先看「AI工作方法（通用）」Skill tab 末尾的跨工具复用提醒。</p>
+      </div>
+    </div>
+
+    <div id="iclaw-token" class="glass-box">
+      <h3>💰 Token优化 — iclaw 具体指令</h3>
+      <p style="font-size: 12px; color: var(--text-body); margin-bottom: 12px;">省 Token 的通用原则见「AI工作方法（通用）」页。这里是 iclaw 里对应的具体指令。</p>
+
+      <table style="width: 100%; font-size: 11px; color: var(--text-body); border-collapse: collapse;">
+        <tr style="background: var(--surface-b); border-bottom: 1px solid var(--border-table-header);">
+          <td style="padding: 8px; border-right: 1px solid var(--border-table); font-weight: 600;">指令</td>
+          <td style="padding: 8px; font-weight: 600;">作用</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border-table);">
+          <td style="padding: 8px; border-right: 1px solid var(--border-table);"><code>/new</code></td>
+          <td style="padding: 8px;">开启新会话，清除当前上下文，适合开始一个全新的任务</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border-table);">
+          <td style="padding: 8px; border-right: 1px solid var(--border-table);"><code>/status</code></td>
+          <td style="padding: 8px;">查看当前会话状态、用了哪个模型、Token用量和费用</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border-table);">
+          <td style="padding: 8px; border-right: 1px solid var(--border-table);"><code>/compact</code></td>
+          <td style="padding: 8px;">主动压缩上下文，清理历史消息中的冗余内容，节省 Token 但不丢失重要信息</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border-table);">
+          <td style="padding: 8px; border-right: 1px solid var(--border-table);"><code>/stop</code></td>
+          <td style="padding: 8px;">停止当前生成，发现方向不对及时打断</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border-table);">
+          <td style="padding: 8px; border-right: 1px solid var(--border-table);"><code>/reasoning</code></td>
+          <td style="padding: 8px;">开关推理模式，让 iclaw 在回答前多做一步内部推理，适合数学、逻辑、复杂分析类任务</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border-right: 1px solid var(--border-table);"><code>/model &lt;name&gt;</code></td>
+          <td style="padding: 8px;">按需切换模型：全局切换（所有新会话默认用）/ 会话级切换（只当前会话）/ 任务级指定（单个Cron任务单独指定）</td>
+        </tr>
+      </table>
+
+      <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px; margin-top: 12px;">
+        <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">
+          一些AI会自己主动压缩，但一般只会在占用很高时才触发，容易"临近上限就开始草草收尾"。所以当感觉对话变长、运行卡顿时，主动 <code>/compact</code> 一下，比等它自己触发更可控。如果要长时间离开某个任务，先 <code>/compact</code> 压缩一下再走，回来时上下文更干净。
+        </p>
+      </div>
+
+      <div style="margin-top: 12px;">
+        <p style="font-size: 11px; color: var(--text-body);">短时间内重复用同样的背景文件或 Skill，部分模型会有缓存机制降低成本，但如果间隔太久（比如半小时以上）再次调用，缓存效果会打折。具体的缓存策略和费率可以用 <code>/status</code> 查看，或咨询负责 iclaw 的同事。</p>
+      </div>
+    </div>
+
+    <div id="iclaw-memory" class="glass-box">
+      <h3>🔁 持续任务与记忆 — 如何让 iclaw 持续跟进任务</h3>
+
+      <style>
+        .project-highlight {
+          background: rgba(100,200,100,0.08);
+          border-left: 3px solid rgba(100,200,100,0.4);
+          padding: 12px 14px;
+          border-radius: 6px;
+          margin: 10px 0;
+          font-size: 12px;
+          color: var(--text-secondary);
+        }
+      </style>
+
+      <p style="font-size: 12px; color: var(--text-body); line-height: 1.6; margin-bottom: 12px;">
+        有时候一个任务需要多次迭代：招聘需要持续跟进候选人进度、培训方案需要多次调整、数据分析需要补充新数据。iclaw 靠<strong>命名会话</strong>隔离不同任务的上下文，靠<strong>长期记忆文件</strong>跨会话记住重要信息，靠<strong>心跳机制</strong>主动帮你盯着该关注的事。
+      </p>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🎯 命名会话 — 给不同任务开独立房间</h4>
+        <div style="background: var(--accent-b); border-left: 3px solid var(--accent-h); padding: 12px 14px; border-radius: 6px; margin-bottom: 8px;">
+          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;">
+            <strong>✦ 用法：</strong> 用 <code>session:项目名</code> 的格式创建一个持久命名会话，例如 <code>session:2024校招</code>。这个会话专门处理这一件事，上下文和其他任务互不干扰，也不会被自动清理。
+          </p>
+          <p style="font-size: 11px; color: var(--text-secondary);">
+            <strong>✦ 多会话切换：</strong> 可以随时用 <code>/sessions</code> 查看当前所有活跃会话，跨会话查看或发送消息，不用记住每个会话具体聊到哪了。
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">📌 适用场景</h4>
+        <div class="project-highlight">
+          <strong>招聘进度跟进</strong><br>
+          开一个 <code>session:校招进度</code>，跟进3个候选人，iclaw记住每个人的进度、反馈、下一步，不用每次都重新介绍这3个人的信息。
+        </div>
+        <div class="project-highlight">
+          <strong>方案设计和迭代</strong><br>
+          在同一个命名会话里设计绩效制度，第一版给出初稿，你反馈说"这一条太复杂了"，iclaw在这个会话里直接修改第一版，保持前后一致。
+        </div>
+        <div class="project-highlight">
+          <strong>数据分析持续更新</strong><br>
+          你需要每月生成HR数据报告。用同一个命名会话，每月更新数据，历史记录和对比都在。
+        </div>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🧠 长期记忆 — MEMORY.md 和 memory/ 目录</h4>
+        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
+          除了命名会话，iclaw 还有跨会话都能读到的"长期记忆"，相当于给 iclaw 装了一个记事本：
+        </p>
+        <ol style="font-size: 12px; color: var(--text-body); padding-left: 20px; line-height: 1.8;">
+          <li><code>memory/YYYY-MM-DD.md</code> —— 每天的原始记录，按日期存放</li>
+          <li><code>MEMORY.md</code> —— 从每日记录中精炼出来的长期记忆</li>
+          <li>这些文件跨会话持久存在，iclaw <strong>每次新会话启动时都会自动读取</strong>，不用你重新说一遍背景</li>
+          <li>用 <code>/memory</code> 指令可以随时查看或管理这些记忆文件</li>
+        </ol>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">💓 心跳机制（Heartbeat）— 让 iclaw 主动帮你盯着</h4>
+        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
+          不只是定时提醒。通过配置 <code>HEARTBEAT.md</code>，可以让 iclaw 每隔一段时间自动检查邮件、日历、天气等，发现重要事项主动告诉你，类似"值班"模式。
+        </p>
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
+          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>✅ 适用场景</strong></p>
+          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+            <li>多项检查可以合并（邮件 + 日历 + 通知一次完成）</li>
+            <li>需要参考最近的对话上下文来判断"重不重要"</li>
+            <li>时间可以有小幅偏差，不需要精确到分钟</li>
+          </ul>
+          <p style="font-size: 11px; color: var(--text-hint); margin-top: 8px; font-style: italic;">如果需要精确定时（比如每周一早上9点整发周报到指定频道），用 Cron 定时任务更合适。</p>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">⚠️ 需要注意的地方</h4>
+        <div style="background: var(--danger-accent-bg); border-left:3px solid var(--danger-accent-border); padding: 12px 14px; border-radius: 6px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">
+            <strong>记忆不是无限的：</strong> memory文件会持续累积，定期让iclaw帮你精炼一下MEMORY.md，避免堆积太多过时信息。
+          </p>
+          <p style="font-size: 12px; color: var(--text-secondary);">
+            <strong>不是实时数据库：</strong> 会话记忆不会实时同步到其他系统。如果你需要 HR 系统中的最新数据，还是要让iclaw主动去查（比如通过邮件、飞书查询），而不是完全依赖记忆。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="iclaw-media" class="glass-box">
+      <h3>📷 图片与文件能力 — 让 iclaw 帮你处理</h3>
+
+      <p style="font-size: 12px; color: var(--text-body); line-height: 1.6; margin-bottom: 12px;">
+        iclaw 对图片和文件的处理能力很实用：发一张截图，它能看懂内容；发一个文件，它能直接读写。这些是日常场景里学了就能马上用上的功能。
+      </p>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">📷 图片分析：不只是 OCR</h4>
+        <ul style="font-size: 12px; color: var(--text-body); padding-left: 20px; line-height: 1.8;">
+          <li>📊 <strong>理解图表内容和数据趋势：</strong> 发一张数据表格截图，可以提取数据并生成图表</li>
+          <li>🖥️ <strong>分析 UI 界面布局：</strong> 发一张系统截图，帮你分析界面结构或找问题</li>
+          <li>💻 <strong>阅读代码截图并给出建议：</strong> 拍一张代码截图，直接分析并给建议</li>
+          <li>✍️ <strong>理解手写笔记：</strong> 手写的会议纪要、笔记也能识别和整理</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">📁 飞书文件/图片下载与处理</h4>
+        <div style="background: var(--accent-b); border-left: 3px solid var(--accent-h); padding: 12px 14px; border-radius: 6px;">
+          <p style="font-size: 11px; color: var(--text-secondary);">
+            iclaw 可以直接下载飞书消息中的图片和文件到本地，然后进行分析或处理。比如你在群里发一张数据表格截图，iclaw 可以提取里面的数据，直接生成柱状图、饼图等可视化结果发回来。
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">📝 文件读写编辑</h4>
+        <ul style="font-size: 12px; color: var(--text-body); padding-left: 20px; line-height: 1.8;">
+          <li>整理一批候选人简历文件，统一格式后输出汇总表</li>
+          <li>处理一份 Excel 数据，跑一段脚本清洗、计算后生成新文件</li>
+          <li>把多个文件合并、拆分，或按规则批量重命名</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">⚠️ 注意事项</h4>
+        <div style="background: var(--danger-accent-bg); border-left:3px solid var(--danger-accent-border); padding: 12px 14px; border-radius: 6px;">
+          <p style="font-size: 12px; color: var(--text-secondary);">
+            <strong>隐私和敏感信息：</strong> 发截图或文件给 iclaw 分析前，检查一下里面是否包含真实的员工姓名、工资数字、身份证号等敏感信息，能脱敏的先脱敏。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="iclaw-mistake" class="glass-box">
+      <h3>🚨 误区案例：Skill 与 心跳机制/定时任务</h3>
+      <p style="font-size: 12px; color: var(--text-body); margin-bottom: 12px;">通用框架见「AI工作方法（通用）」页误区11。这里是在 iclaw 里的具体案例。</p>
+      <div class="mistake-item" style="background: rgba(200,100,100,0.08); border-left: 3px solid rgba(200,100,100,0.4); padding: 12px 14px; border-radius: 6px;">
+        <div style="font-size: 11px; color: var(--text-body); line-height: 1.6;">
+          在 iclaw 里，"自动化"具体分成两种：<br><br>
+          • <strong>Cron 定时任务</strong> = 定时器。定义"什么时间点重复做"，需要精确定时时用（如"每周一早上9点整自动生成周报，推送到指定频道"）。<br>
+          • <strong>心跳机制（Heartbeat）</strong> = 后台巡检。定义"隔一段时间主动看看有没有需要关注的事"，时间可以有偏差，适合合并多项检查（如"每隔一小时看看邮件和日历，有急事再告诉我"）。<br><br>
+          如果只需要一个"工作模板"，用 Skill；需要"定时重复执行"，用 Cron；需要"AI主动判断要不要提醒你"，用心跳机制；三者也可以组合使用。
+        </div>
+      </div>
+    </div>
+
+    <div id="iclaw-advanced" class="glass-box">
+      <h3>🎓 进阶玩法 — 同时做几件事</h3>
 
       <p style="font-size: 12px; color: var(--text-body); line-height: 1.6; margin-bottom: 12px;">
         平时用 iclaw 大多是"问一句、等它答完、再问下一句"，一件事排队做完再做下一件。但遇到几件互不相关、可以同时进行的事情时，其实不用这样排队。
@@ -2841,6 +2941,233 @@
             几件事互不依赖、可以并行时才值得这样用（比如"查邮件"和"整理文件"互不相关）。如果后一件事需要等前一件事的结果才能做，就不适合同时进行，老老实实一步步来即可。
           </p>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 程小帮使用指南 ===== -->
+  <div id="page-chengxiaobang" class="page">
+    <div class="page-header">
+      <div class="page-title">💻 程小帮使用指南</div>
+      <div class="page-sub">程小帮是公司官方的桌面版 AI Agent，全员可用。通用的方法论见「AI工作方法（通用）」页</div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab-btn active" onclick="showTab('cxb','task',this)">▶️ 任务执行与审批</div>
+      <div class="tab-btn" onclick="showTab('cxb','model',this)">💰 多模型与额度</div>
+      <div class="tab-btn" onclick="showTab('cxb','office',this)">📄 办公文档产出</div>
+      <div class="tab-btn" onclick="showTab('cxb','feishu',this)">🤝 飞书协作</div>
+      <div class="tab-btn" onclick="showTab('cxb','kb',this)">📚 知识库</div>
+      <div class="tab-btn" onclick="showTab('cxb','plugin',this)">🧩 专家与插件/技能</div>
+      <div class="tab-btn" onclick="showTab('cxb','report',this)">🌐 灵动报告与发布</div>
+      <div class="tab-btn" onclick="showTab('cxb','cron',this)">⏰ 定时任务与技巧</div>
+    </div>
+
+    <div id="cxb-task" class="glass-box active">
+      <h3>▶️ 任务执行与审批</h3>
+      <p style="font-size: 12px; color: var(--text-body); line-height: 1.6; margin-bottom: 12px;">
+        程小帮是装在电脑上的 AI 助手：把任务整段描述给它，它会自动拆解、调用工具多轮完成——读写文件、执行命令、搜索资料、生成文档、操作飞书等。很多以前要自己动手一步步做的事，现在可以直接口述需求交给它办。
+      </p>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🆕 新建任务</h4>
+        <p style="font-size: 12px; color: var(--text-body);">点侧边栏「新建任务」，直接用自然语言说需求即可，比如"帮我把这份表格整理成周报"。执行过程是流式展示的，每一步在对话里都能看到。任务还在跑的时候，可以继续输入补充或修正指令，会直接并入当前任务；也可以随时点「停止」中断。</p>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">✅ 审批方式（关系到安全和效率，建议了解）</h4>
+        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
+          <strong>替我审批（默认）：</strong>
+          <span style="font-size: 11px; color: var(--text-body);"> 常规读写自动放行，涉及敏感文件、危险命令等高风险操作会弹出审批卡，等你点确认。</span>
+        </div>
+        <div style="background: var(--danger-accent-bg); border-left:3px solid var(--danger-accent-border); padding: 12px 14px; border-radius: 6px;">
+          <strong>完全访问：</strong>
+          <span style="font-size: 11px; color: var(--text-secondary);"> 跳过确认直接执行，适合你已经很信任、反复做的任务，开启时会有风险提示，一般任务不建议常开。</span>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">📋 计划模式</h4>
+        <p style="font-size: 12px; color: var(--text-body);">输入框上有个「计划」开关。开启后 AI 先给你一份 Markdown 方案，你看过点「实施此计划」它才动手，适合改动范围大或你自己需求还没想清楚的任务，能避免它走偏。</p>
+      </div>
+
+      <div>
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">❓ 需求含糊时</h4>
+        <p style="font-size: 12px; color: var(--text-body);">AI 会用结构化选项向你提问澄清，而不是自己瞎猜着做。</p>
+      </div>
+    </div>
+
+    <div id="cxb-model" class="glass-box">
+      <h3>💰 公司 Coding Plan 与多模型</h3>
+      <div style="margin-bottom: 16px;">
+        <div style="background: var(--accent-b); border-left: 3px solid var(--accent-h); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">企业版订阅登录后，你可以<strong>直接使用公司下发的模型额度</strong>，不需要自己配置 API Key。</p>
+        </div>
+        <div style="background: var(--accent-b); border-left: 3px solid var(--accent-h); padding: 12px 14px; border-radius: 6px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin: 0;"><strong>可以切换模型：</strong> 输入框下方能切换不同的模型和推理模式。简单问答用轻量模型响应更快，复杂分析用更强的模型效果更好——按需切换即可，不用一直用同一个。</p>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">📊 额度查看方式（按月计，每月1日重置）</h4>
+        <ul style="font-size: 12px; color: var(--text-body); padding-left: 20px; line-height: 1.8;">
+          <li>点头像 →「剩余用量」：看当月套餐大致用量</li>
+          <li>设置页「用量统计」：更细，能看 Token 每日/近120周/近48个月趋势，以及各模型的用量明细</li>
+        </ul>
+      </div>
+
+      <div>
+        <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px;">
+          <p style="font-size: 11px; color: var(--text-secondary); margin: 0;">如果公司还给团队配了 Claude Code、Codex 等编程 CLI 工具，侧边栏「更多」→「AI Plan 配置」可以把订阅额度接进这些工具里用。这个偏技术岗常用，日常办公一般不用管。</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="cxb-office" class="glass-box">
+      <h3>📄 办公文档产出</h3>
+      <p style="font-size: 12px; color: var(--text-body); line-height: 1.6; margin-bottom: 12px;">
+        程小帮内置了办公文档能力（office-suite 插件，默认开启），可以直接：
+      </p>
+      <ul style="font-size: 12px; color: var(--text-body); padding-left: 20px; line-height: 1.8; margin-bottom: 12px;">
+        <li>生成 <strong>Word / PPT / Excel</strong> 文档</li>
+        <li>读取、解析 <strong>PDF</strong></li>
+      </ul>
+      <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
+        <p style="font-size: 12px; color: var(--text-body); margin: 0;">用法很直接，比如"把这份数据做成一份汇报 PPT""帮我把这个方案写成 Word 文档"，说清楚需求，AI 会直接产出文件。</p>
+      </div>
+    </div>
+
+    <div id="cxb-feishu" class="glass-box">
+      <h3>🤝 飞书协作</h3>
+      <p style="font-size: 12px; color: var(--text-body); margin-bottom: 12px;">分两种场景：</p>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">1️⃣ 桌面端里让 AI 操作你的飞书</h4>
+        <p style="font-size: 12px; color: var(--text-body);">在设置页「飞书操作授权」完成授权后，AI 能以你的身份处理飞书消息、读写云文档、管理日程等。比如直接说"把这篇总结发到 xx 群"，它会帮你发出去。</p>
+        <p style="font-size: 11px; color: var(--text-hint); font-style: italic; margin-top: 6px;">这是授权 AI 以你的身份操作，相关注意事项见「AI使用风险与安全」页。</p>
+      </div>
+
+      <div>
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">2️⃣ 离开电脑也能用 ——「连接飞书」远程使用</h4>
+        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
+          入口：侧边栏「连接飞书」（以前叫「连接手机」，现已改名，说的是同一个功能）。核心逻辑是：手机飞书上发消息，由<strong>你这台电脑上的程小帮</strong>在后台本地回答，用的是你本机的文件、工具和模型额度。
+        </p>
+        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
+          <strong>私聊方式（推荐）：</strong>
+          <span style="font-size: 11px; color: var(--text-body);"> 在「连接飞书」→「聊天绑定」里开启私聊绑定，之后在手机飞书搜"程小帮"私聊即可提问，开启后随应用启动自动连接。</span>
+        </div>
+        <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px;">
+          <strong>群绑定方式：</strong>
+          <span style="font-size: 11px; color: var(--text-body);"> 把"程小帮"机器人拉进群，你（群主/管理员）去绑定这个群，之后群里任何人 @程小帮 都会由你的桌面端回答（额度算在你身上）。</span>
+        </div>
+        <p style="font-size: 11px; color: var(--text-hint); margin-top: 8px; font-style: italic;">注意：群里提问消耗的是绑定者的模型额度，建议先在小群试用；高风险操作的审批卡只有绑定者能确认，别人点"同意"不生效。</p>
+      </div>
+    </div>
+
+    <div id="cxb-kb" class="glass-box">
+      <h3>📚 知识库</h3>
+      <p style="font-size: 12px; color: var(--text-body); margin-bottom: 12px;">入口：侧边栏「更多」→「知识库」（以前叫"资产库"，现已合并改名为一个页面）。</p>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🗂️ 本地知识库</h4>
+        <ul style="font-size: 12px; color: var(--text-body); padding-left: 20px; line-height: 1.8;">
+          <li><strong>会话产生：</strong> 和程小帮对话时产出的文档、图片（PPT、报告、图表）会自动收进来</li>
+          <li><strong>用户上传：</strong> 登记一个本地文件夹后，程小帮自动扫描、分类，文件原位引用不会复制一份</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">☁️ 远程知识库</h4>
+        <p style="font-size: 12px; color: var(--text-body);">公司服务端共享的知识库（需登录公司账号），启用后检索时会和你的个人知识库一并召回。</p>
+      </div>
+
+      <div>
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">💡 使用要点</h4>
+        <ul style="font-size: 12px; color: var(--text-body); padding-left: 20px; line-height: 1.8;">
+          <li>收录之后正常提问就行，AI 会自动检索并带出处引用，不用你每次手动指定文件</li>
+          <li>图片和扫描版 PDF 会走 OCR 提取文字，识别效果取决于原件清晰度</li>
+          <li>知识库页面里有「检索测试」功能，可以直接发问验证 AI 到底有没有检索到你的资料、引用了哪些来源</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="cxb-plugin" class="glass-box">
+      <h3>🧩 专家与插件/技能</h3>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🎭 专家</h4>
+        <p style="font-size: 12px; color: var(--text-body);">侧边栏「专家」入口。专家相当于一个"角色 + 一套配好的能力组合"，比如某个领域专用的助手。在"市场"标签选一个点"召唤"，就在当前会话里生效了，用完不影响别的会话。</p>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🔌 插件</h4>
+        <p style="font-size: 12px; color: var(--text-body);">侧边栏「插件」入口，按分类分组（办公协作、开发工具等），按需一键启停。前面提到的"办公文档""飞书操作""知识库"相关能力，本质都是插件，默认已经开着。</p>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🎯 技能</h4>
+        <p style="font-size: 12px; color: var(--text-body);">把一套固定流程沉淀成 AI 可复用的能力，藏在「插件」页的「技能」标签里，不单独占侧边栏位置。日常不用主动管理，AI 会按需自动调用。程小帮的技能采用开放的 <strong>SKILL.md</strong> 格式（文件夹 + SKILL.md，包含 name/description）。</p>
+      </div>
+
+      <div>
+        <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">💡 如果这份技能是从 iclaw 那边过来的（或者想反过来搬去 iclaw），先看「AI工作方法（通用）」页 Skill tab 末尾的跨工具复用提醒——格式大概率通用，但内容里如果引用了对方工具专属的能力，需要按程小帮实际有的能力（读写文件、办公文档、飞书操作等）改写适配。</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="cxb-report" class="glass-box">
+      <h3>🌐 灵动报告与网页发布</h3>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">✨ 灵动报告</h4>
+        <p style="font-size: 12px; color: var(--text-body);">在会话里说"把这个方案做成可视化页面"，程小帮会把技术方案、数据、架构等做成一张排版精美的可视化网页。</p>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🔗 网页托管</h4>
+        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;">生成的页面（或你自己的 HTML 文件）说一句"发布到内网"，就能拿到一个公司内网链接，直接发给同事就能打开。</p>
+        <div style="background: var(--danger-accent-bg); border-left:3px solid var(--danger-accent-border); padding: 12px 14px; border-radius: 6px;">
+          <p style="font-size: 11px; color: var(--text-secondary); margin: 0;"><strong>注意：</strong> 知道链接的人都能查看，不要拿去发布敏感信息；发布的是当时的快照，内容改了要重新发布一次才会更新。</p>
+        </div>
+      </div>
+
+      <div>
+        <p style="font-size: 12px; color: var(--text-body);">所有发布过的站点，都能在侧边栏「更多」→「站点」里统一管理（打开、复制链接、编辑、删除）。回到对话里说"帮我改一下这个页面的xx"，程小帮会自动拉回源代码改完覆盖发布，链接保持不变，不用重新发一个新链接。</p>
+      </div>
+    </div>
+
+    <div id="cxb-cron" class="glass-box">
+      <h3>⏰ 定时任务与实用技巧</h3>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">⏰ 定时任务</h4>
+        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;">在对话里直接说一句话就能创建，比如"每天早上9点帮我汇总昨天的群消息"，到点会自动跑一轮。管理入口在侧边栏「更多」→「定时任务」，可以查看、修改或取消。</p>
+        <p style="font-size: 11px; color: var(--text-hint); font-style: italic;">注意：定时任务目前只能在桌面端会话里创建，飞书远程会话不支持。</p>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">💡 冷门但好用的小技巧</h4>
+        <ul style="font-size: 12px; color: var(--text-body); padding-left: 20px; line-height: 1.9;">
+          <li><code>/compact</code>：对话太长时程小帮会自动压缩上下文，你也可以随时手动输入主动压缩一次</li>
+          <li><code>/goal</code> 长期目标：给会话设一个长期目标，AI 会自动持续推进直到达成，中途关了应用重启也能接着跑，不用你天天惦记催它</li>
+          <li>对话里的结论可以直接说"保存到知识库"，不用手动复制粘贴整理</li>
+          <li>飞书群话题里可以"接力免@"：开启一个话题后，同事在这个话题里继续说话不用每次都@，程小帮会自动接着回答（除非消息里@了别人）</li>
+          <li>电脑关机/断网时飞书消息不会石沉大海：由云端程小帮兜底先回答，等电脑重新上线后，离线期间的内容会自动同步回桌面会话，上下文不会断</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🛠️ 实用小贴士</h4>
+        <ul style="font-size: 12px; color: var(--text-body); padding-left: 20px; line-height: 1.8;">
+          <li><strong>问题上报：</strong> 点头像→「问题上报」，会自动打包日志上传，把上报ID发给技术支持同学就能帮你定位问题</li>
+          <li><strong>更新日志/检查更新：</strong> 用户菜单里能看版本变化、手动检查新版本</li>
+          <li><strong>技术支持：</strong> 用户菜单里直接能打开支持群，遇到解决不了的问题直接进群问</li>
+        </ul>
+      </div>
+
+      <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
+        <p style="font-size: 11px; color: var(--text-hint); margin: 0; font-style: italic;">💡 「项目与编码」（绑定本地项目文件夹让 AI 直接改代码）、「操作电脑」（跨应用模拟点击操作，Beta功能）、「AI Plan 配置」（把公司订阅接入 Claude Code/Codex 等编程 CLI）这三项主要是技术/研发岗在用，日常办公协作基本不涉及，这里先不展开，用到时再单独了解即可。</p>
       </div>
     </div>
   </div>
@@ -5598,6 +5925,24 @@ ${getOutputFormatDesc()}
           </div>
         </div>
       </div>
+
+      <div>
+        <h4 style="color: var(--text-primary); margin-bottom: 10px;">5️⃣ 授权 AI 操作你的账号身份时的注意事项</h4>
+        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
+          像程小帮这类桌面 Agent，授权后能<strong>以你的身份</strong>操作飞书（发消息、读写云文档、管理日程等），这类"身份代理"型授权需要格外注意：
+        </p>
+        <div style="background: var(--danger-accent-bg); border-left:3px solid var(--danger-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">
+            <strong>以你身份发出的内容，责任在你：</strong> AI 代发的消息、代写的云文档，一旦发出，别人看到的是"你"说的、"你"写的。重要或对外的内容，发出前务必自己确认过一遍。
+          </p>
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">
+            <strong>群绑定后，额度和责任都在绑定者身上：</strong> 把 Agent 拉进群并绑定后，群里任何人 @ 它都由你的账号回答，消耗的是你的模型额度；涉及高风险操作的审批卡，也只有你（绑定者）能确认，别人点"同意"不生效。建议先在小范围群里试用，再决定要不要绑定大群。
+          </p>
+          <p style="font-size: 12px; color: var(--text-secondary);">
+            <strong>「完全访问」模式要谨慎开启：</strong> 跳过审批直接执行意味着 AI 不会再等你确认高风险操作，只在非常熟悉、反复验证过的任务上开启，一般任务建议保持默认的"替我审批"。
+          </p>
+        </div>
+      </div>
     </div>
 
     <div id="safety-compliance" class="glass-box">
@@ -5884,7 +6229,7 @@ ${getOutputFormatDesc()}
   <div id="page-otherai" class="page">
     <div class="page-header">
       <div class="page-title">🔀 其他AI工具参考</div>
-      <div class="page-sub">公司统一使用的 AI 工具是 iclaw，如果你或同事平时也会用到 Claude、ChatGPT、Codex、DeepSeek 等其他工具，这里整理了它们的功能对比和使用方式，供参考</div>
+      <div class="page-sub">公司官方的 AI 工具是 iclaw 和程小帮，如果你或同事平时也会用到 Claude、ChatGPT、Codex、DeepSeek 等其他工具，这里整理了它们的功能对比和使用方式，供参考</div>
     </div>
 
     <div class="tabs">
@@ -6344,7 +6689,9 @@ ${getOutputFormatDesc()}
       const titleMap = {
         'home': '首页',
         'basic': 'AI基础认知',
-        'method': 'AI工作方法',
+        'method': 'AI工作方法（通用）',
+        'iclaw': 'iclaw使用指南',
+        'chengxiaobang': '程小帮使用指南',
         'template': '话术/Prompt/Skill库',
         'safety': 'AI使用风险与安全',
         'otherai': '其他AI工具参考'
