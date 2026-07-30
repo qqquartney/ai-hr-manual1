@@ -1049,6 +1049,7 @@
   <div class="nav-item" onclick="showPage('method', this)">AI工作方法</div>
   <div class="nav-item" onclick="showPage('template', this)">话术/Prompt/Skill库</div>
   <div class="nav-item" onclick="showPage('safety', this)">AI使用风险与安全</div>
+  <div class="nav-item" onclick="showPage('otherai', this)">其他AI工具参考</div>
   
   <div class="topnav-utils">
     <div class="search-container">
@@ -1096,6 +1097,10 @@
           <div class="module-card" onclick="showPage('safety', document.querySelectorAll('.nav-item')[3])">
             <div class="card-title">风险安全</div>
             <div class="card-desc">HR 场景的数据安全、合规要点与使用规范</div>
+          </div>
+          <div class="module-card" onclick="showPage('otherai', document.querySelectorAll('.nav-item')[4])">
+            <div class="card-title">其他AI工具参考</div>
+            <div class="card-desc">Claude / ChatGPT / Codex / DeepSeek 等工具的功能对比与用法</div>
           </div>
         </div>
       </div>
@@ -1554,9 +1559,10 @@
       <div class="tab-btn" onclick="showTab('method','config',this)">⚙️ 个性化配置</div>
       <div class="tab-btn" onclick="showTab('method','token',this)"> Token优化</div>
       <div class="tab-btn" onclick="showTab('method','skill',this)"> Skill</div>
-      <div class="tab-btn" onclick="showTab('method','project',this)"> Project</div>
-      <div class="tab-btn" onclick="showTab('method','artifact',this)"> Artifact</div>
+      <div class="tab-btn" onclick="showTab('method','project',this)">🔁 持续任务与记忆</div>
+      <div class="tab-btn" onclick="showTab('method','artifact',this)">📷 图片与文件能力</div>
       <div class="tab-btn" onclick="showTab('method','mistake',this)">🚨 常见误区</div>
+      <div class="tab-btn" onclick="showTab('method','advanced',this)">🎓 进阶玩法</div>
     </div>
 
     <div id="method-prompt" class="glass-box active">
@@ -1819,6 +1825,15 @@
           <p style="font-size: 11px; color: var(--text-body2); margin-top: 8px; font-style: italic;">与AI的对话是迭代过程，第二、三轮通常比第一轮好得多。</p>
         </div>
       </div>
+
+      <div class="prompt-section">
+        <h4 id="h4-6-Prompt-不止是文字">📷 Prompt 不止是文字</h4>
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
+          <p style="font-size: 12px; color: var(--text-body); margin: 0; line-height: 1.6;">
+            很多人习惯把所有内容都打字描述给AI，其实<strong>直接发一张截图</strong>往往更快更准。比如：一份数据表格的截图，让 iclaw 直接提取数据生成图表；一个系统界面的截图，让它帮你分析布局或排查问题；甚至一段手写笔记的照片，它也能读懂并整理成文字。能截图说明的，就不用打字重新描述一遍。
+          </p>
+        </div>
+      </div>
     </div>
 
     <div id="method-skill" class="glass-box">
@@ -2020,7 +2035,7 @@
 4. 应该考虑入职时长吗？
 
 <strong style="color: var(--accent-g); font-size: 13px;">下一步：</strong>
-用这个思路和Claude进行头脑风暴，逐步完善框架。
+用这个思路和iclaw进行头脑风暴，逐步完善框架。
           </div>
         </div>
 
@@ -2118,7 +2133,7 @@
             输出方式可以是指定语言的文字形式，也可以是表格，excel，html，评分表+总结等形式。这些都主要取决于你最终要得到什么。不要让AI自己决定，要你来驱动。例如，如果是文字形式，你希望是什么语言？要给出几种答案？简介的还是详细的？如果是评分标准，你可以和AI讨论并确认5分应该是什么样的？4分呢？或者及格是多少？当你不确定怎么确认这些的时候，你可以询问AI的建议做参考，例如“我不是很确定如何确认评分细节，你能给我一些方向吗？”</li>
             
             <li><strong>第五步：最终生成</strong><br>
-            当你觉得框架、流程和输出形式都没什么问题，你不用着急生成，可以先让AI陪你预演一遍（例如："基于我们刚才讨论的内容，你先不用着急生成skill，先和我过一遍流程"），查漏补缺，再让AI生成最终的Skill。Skill可以直接保存在账号上，下次使用时可以直接调用（例如Claude和Codex CLI是可以直接在对话框里输入斜杠“/”来调用。你也可以下载Skill，安装到别的AI中，前提是这个AI也支持使用Skill。</li>
+            当你觉得框架、流程和输出形式都没什么问题，你不用着急生成，可以先让AI陪你预演一遍（例如："基于我们刚才讨论的内容，你先不用着急生成skill，先和我过一遍流程"），查漏补缺，再让AI生成最终的Skill。生成好的Skill文件保存下来后，下次使用时直接把文件发给iclaw即可自动安装、随时调用。</li>
           </ol>
 
           <p style="font-size: 12px; color: var(--text-hint); margin-top: 8px; font-style: italic;">适合：没有coding基础，想法还不够清晰、希望AI帮助启发、时间灵活的情况</p>
@@ -2127,90 +2142,47 @@
         <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px; margin-top: 12px;">
           <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">
             <strong>💡 关于 Token 成本的建议：</strong><br>
-            如果担心和Claude沟通创建Skill会消耗较多Token，可以先用<strong>免费工具</strong>（如DeepSeek、ChatGPT免费版）来讨论和打磨思路，确认框架和细节都没问题了，再用Claude最后生成定稿版本的Skill。这样既能充分迭代，又能控制成本。
+            如果担心反复沟通创建Skill会消耗较多Token，可以先用 <code>/model</code> 切换到轻量模型来讨论和打磨思路，确认框架和细节都没问题了，再切回默认模型生成定稿版本的Skill。这样既能充分迭代，又能控制成本。
           </p>
         </div>
       </div>
 
       <div style="margin-bottom: 16px;">
-        <h4 id="h4-11-不同-AI-工具创建和使用-Skill"  style="color: var(--text-primary); margin-bottom: 12px;">🛠️ 不同 AI 工具创建和使用 Skill 的对比</h4>
-        
-        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
-          不同的AI工具（Claude、ChatGPT、Codex等）在创建和使用Skill时有各自的特点。选择合适的工具能让你事半功倍。
-        </p>
+        <h4 id="h4-11-iclaw中怎么创建和安装-Skill"  style="color: var(--text-primary); margin-bottom: 12px;">🛠️ 在 iclaw 中怎么创建和安装 Skill</h4>
 
-        <table style="width: 100%; font-size: 11px; color: var(--text-body); border-collapse: collapse; margin-bottom: 12px;">
-          <tr style="background: var(--surface-d); border-bottom: 1px solid var(--border-table-header);">
-            <td style="padding: 12px; border-right: 1px solid var(--border-table); font-weight: 600; color: var(--text-primary);">工具</td>
-            <td style="padding: 12px; border-right: 1px solid var(--border-table); font-weight: 600; color: var(--text-primary);">创建 Skill</td>
-            <td style="padding: 12px; border-right: 1px solid var(--border-table); font-weight: 600; color: var(--text-primary);">使用 Skill</td>
-            <td style="padding: 12px; font-weight: 600; color: var(--text-primary);">最适合场景</td>
-          </tr>
-          
-          <tr style="border-bottom: 1px solid var(--border-table);">
-            <td style="padding: 12px; border-right: 1px solid var(--border-table); font-weight: 500;">Claude<br>（Web/App）</td>
-            <td style="padding: 12px; border-right: 1px solid var(--border-table);">✅ 优秀<br>支持多轮迭代讨论，能很好地理解复杂需求</td>
-            <td style="padding: 12px; border-right: 1px solid var(--border-table);">✅ 优秀<br>上传Skill文件或粘贴内容都支持，体验流畅</td>
-            <td style="padding: 12px;">适合细致的Skill打磨和日常使用</td>
-          </tr>
-
-          <tr style="border-bottom: 1px solid var(--border-table);">
-            <td style="padding: 12px; border-right: 1px solid var(--border-table); font-weight: 500;">Claude Code<br>（CLI）</td>
-            <td style="padding: 12px; border-right: 1px solid var(--border-table);">✅ 优秀<br>在命令行中迭代开发Skill，适合技术型HR</td>
-            <td style="padding: 12px; border-right: 1px solid var(--border-table);">✅ 非常优秀<br>可以集成到工作流中，甚至自动调用Skill</td>
-            <td style="padding: 12px;">技术背景强的HR，或需要自动化Skill使用的场景</td>
-          </tr>
-
-          <tr style="border-bottom: 1px solid var(--border-table);">
-            <td style="padding: 12px; border-right: 1px solid var(--border-table); font-weight: 500;">ChatGPT<br>（免费/Plus）</td>
-            <td style="padding: 12px; border-right: 1px solid var(--border-table);">⭐ 适中<br>可以讨论和迭代，但理解复杂需求不如Claude</td>
-            <td style="padding: 12px; border-right: 1px solid var(--border-table);">⭐ 适中<br>可以使用，但每次都需要重新上传或粘贴</td>
-            <td style="padding: 12px;">成本敏感场景，用免费版初期探索Skill</td>
-          </tr>
-
-          <tr style="border-bottom: 1px solid var(--border-table);">
-            <td style="padding: 12px; border-right: 1px solid var(--border-table); font-weight: 500;">Codex<br></td>
-            <td style="padding: 12px; border-right: 1px solid var(--border-table);">⭐ 不太适合<br>Codex主要针对代码，用来创建Skill不是最优选择</td>
-            <td style="padding: 12px; border-right: 1px solid var(--border-table);">✅ 很好<br>如果已有Skill，可以通过API集成到HR系统中</td>
-            <td style="padding: 12px;">技术团队集成Skill到内部系统</td>
-          </tr>
-
-          <tr>
-            <td style="padding: 12px; border-right: 1px solid var(--border-table); font-weight: 500;">DeepSeek<br>（免费）</td>
-            <td style="padding: 12px; border-right: 1px solid var(--border-table);">✅ 不错<br>免费且能处理复杂逻辑，很适合初期讨论</td>
-            <td style="padding: 12px; border-right: 1px solid var(--border-table);">✅ 不错<br>同样支持上传和粘贴</td>
-            <td style="padding: 12px;">控制成本的首选，适合头脑风暴阶段</td>
-          </tr>
-        </table>
-
-        <div style="background: var(--accent-c); border: 1px solid var(--accent-e); border-radius: 8px; padding: 12px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin: 0; line-height: 1.6;">
-            <strong>💡 推荐的 Skill 创建流程：</strong><br>
-            1️⃣ <strong>头脑风暴阶段：</strong>用 DeepSeek 或 ChatGPT 免费版讨论思路，不用担心成本<br>
-            2️⃣ <strong>框架确认阶段：</strong>在 Claude 中细化细节，确保框架和标准清晰<br>
-            3️⃣ <strong>生成最终版：</strong>让 Claude 生成定稿，保存为 .md 文件<br>
-            4️⃣ <strong>持续使用：</strong>在 Claude.ai 中上传使用，或通过 Claude Code 集成到工作流
+        <div style="background: var(--surface-o); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 12px;">
+          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>🧩 自己创建：用 skill-creator</strong></p>
+          <p style="font-size: 11px; color: var(--text-body); line-height: 1.7;">
+            iclaw 内置了 <strong>skill-creator</strong> 这个 skill，专门用来帮你创建自定义 skill。比如你想固定一套"生成周报"的流程，可以直接和 iclaw 说"用 skill-creator 帮我做一个周报skill"，它会引导你按前面提到的 Plan→Refine→Finalize 思路，把流程标准化下来，方便你以后每次复用。
           </p>
+        </div>
+
+        <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;"><strong>📥 安装同事分享的 Skill：直接发到飞书对话框</strong></p>
+          <ol style="font-size: 11px; color: var(--text-body); padding-left: 20px; line-height: 1.8; margin: 0;">
+            <li>找同事要 <code>.skill</code> 文件（团队共享处下载，或对方直接转发）</li>
+            <li>在飞书对话中，把 <code>.skill</code> 文件直接发给自己的 iclaw</li>
+            <li>iclaw 会自动把它安装到 skills 目录，不用手动配置</li>
+            <li>安装完成后即可直接使用</li>
+          </ol>
+          <p style="font-size: 11px; color: var(--text-hint); margin-top: 8px; font-style: italic;">注意：每个人需要自己在自己的 iclaw 里装一份，skill 文件本身可以在同事间随意传递。</p>
         </div>
       </div>
 
       <div>
         <h4 id="h4-12-在哪里存放和分享-Skill"  style="color: var(--text-primary); margin-bottom: 8px;">💾 在哪里存放和分享 Skill</h4>
         <div class="skill-card">
-          <strong>📁 本地保存：</strong> 在你的电脑上建一个文件夹 ~/AI_Skills/，把所有 Skill 文件存在这里。定期备份到云盘（Google Drive、Dropbox等）。
+          <strong>📁 团队共享处：</strong> 把 <code>.skill</code> 文件放在团队共享的存储位置（如共享云盘），方便同事下载后直接发给自己的 iclaw 安装。
         </div>
         <div class="skill-card">
-          <strong>🤝 团队分享：</strong> 把写好的 Skill 分享给同事，放在团队的 Wiki、Notion、或 GitHub 仓库里，这样大家都能用。
-        </div>
-        <div class="skill-card">
-          <strong>☁️ 公开分享：</strong> 优秀的 Skill 可以上传到 GitHub，与全球社区分享。搜索关键词（如"HR hiring skill"）可以找到别人写的 Skill 直接复用。
+          <strong>🤝 直接转发：</strong> 也可以在飞书里直接把 <code>.skill</code> 文件转发给同事，对方拿到后同样发给自己的 iclaw 即可安装，不需要走共享处。
         </div>
       </div>
     </div>
 
     <div id="method-project" class="glass-box">
-      <h3 id="h3-6-Project--如何让-AI-持续跟">📊 Project — 如何让 AI 持续跟进任务</h3>
-      
+      <h3 id="h3-6-持续任务与记忆--如何让-iclaw-持续跟">🔁 持续任务与记忆 — 如何让 iclaw 持续跟进任务</h3>
+
       <style>
         .project-highlight {
           background: rgba(100,200,100,0.08);
@@ -2224,26 +2196,23 @@
       </style>
 
       <p style="font-size: 12px; color: var(--text-body); line-height: 1.6; margin-bottom: 12px;">
-        有时候一个任务需要多次迭代：招聘需要持续跟进候选人进度、培训方案需要多次调整、数据分析需要补充新数据。<strong>Project 就是让 AI 记住这个任务的所有上下文，不用每次都从零开始。</strong>
+        有时候一个任务需要多次迭代：招聘需要持续跟进候选人进度、培训方案需要多次调整、数据分析需要补充新数据。iclaw 没有 Claude 那种"上传文件建知识库"式的 Project，而是靠<strong>命名会话</strong>隔离不同任务的上下文，靠<strong>长期记忆文件</strong>跨会话记住重要信息，靠<strong>心跳机制</strong>主动帮你盯着该关注的事。
       </p>
 
       <div style="margin-bottom: 16px;">
-        <h4 id="h4-13-Project-的核心特点"  style="color: var(--text-primary); margin-bottom: 8px;">🎯 Project 的核心特点</h4>
+        <h4 id="h4-13-命名会话--给不同任务开独立房间"  style="color: var(--text-primary); margin-bottom: 8px;">🎯 命名会话 — 给不同任务开独立房间</h4>
         <div style="background: var(--accent-b); border-left: 3px solid var(--accent-h); padding: 12px 14px; border-radius: 6px; margin-bottom: 8px;">
           <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;">
-            <strong>✦ 持久化工作空间：</strong> 跨对话保留记忆。你上传的文件、自定义指令、对话历史都会被保存。每次进入 Project，AI 都能记住之前的所有内容。
+            <strong>✦ 用法：</strong> 用 <code>session:项目名</code> 的格式创建一个持久命名会话，例如 <code>session:2024校招</code>。这个会话专门处理这一件事，上下文和其他任务互不干扰，也不会被自动清理。
           </p>
           <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;">
-            <strong>✦ 自动化读取资源：</strong> 可以上传 Skill 文件、校准简历、岗位配置等。Claude 每次进入都会自动读取这些资源，不用每次都重新上传。
-          </p>
-          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;">
-            <strong>✦ 多人协作：</strong> Pro/Team 用户可用。Team 版支持多人协作和权限管理，整个团队可以在同一个 Project 中协作。
+            <strong>✦ 多会话切换：</strong> 可以随时用 <code>/sessions</code> 查看当前所有活跃会话，跨会话查看或发送消息，不用记住每个会话具体聊到哪了。
           </p>
         </div>
       </div>
 
       <div style="margin-bottom: 16px;">
-        <h4 id="h4-14-Project-vs-Skill-vs"  style="color: var(--text-primary); margin-bottom: 8px;">🤔 Project vs Skill vs Prompt</h4>
+        <h4 id="h4-14-命名会话-vs-Skill-vs"  style="color: var(--text-primary); margin-bottom: 8px;">🤔 命名会话 vs Skill vs Prompt</h4>
         <table style="width: 100%; font-size: 11px; color: var(--text-body); border-collapse: collapse;">
           <tr style="background: var(--surface-b); border-bottom: 1px solid var(--border-table-header);">
             <td style="padding: 8px; border-right: 1px solid var(--border-table);"><strong>Prompt</strong></td>
@@ -2256,293 +2225,189 @@
             <td style="padding: 8px;">用于重复出现的工作（每次招聘都用同一套标准）</td>
           </tr>
           <tr style="background: var(--surface-b);">
-            <td style="padding: 8px; border-right: 1px solid var(--border-table);"><strong>Project</strong></td>
-            <td style="padding: 8px; border-right: 1px solid var(--border-table);">长期任务的工作空间</td>
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);"><strong>命名会话</strong></td>
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);">长期任务的独立上下文</td>
             <td style="padding: 8px;">用于一个需要持续推进的具体项目（这个月的校招、这个季度的薪酬调整）</td>
           </tr>
         </table>
       </div>
 
       <div style="margin-bottom: 16px;">
-        <h4 id="h4-15-Project-的适用场景"  style="color: var(--text-primary); margin-bottom: 8px;">📌 Project 的适用场景</h4>
-        
+        <h4 id="h4-15-适用场景"  style="color: var(--text-primary); margin-bottom: 8px;">📌 适用场景</h4>
+
         <div class="project-highlight">
           <strong>招聘进度跟进</strong><br>
-          你在跟进3个候选人，需要AI记住每个人的进度、反馈、下一步。而不是每次都重新介绍这3个人的信息。
+          开一个 <code>session:校招进度</code>，跟进3个候选人，iclaw记住每个人的进度、反馈、下一步，不用每次都重新介绍这3个人的信息。
         </div>
-        
+
         <div class="project-highlight">
           <strong>方案设计和迭代</strong><br>
-          在 Project 中设计绩效制度，第一版AI给出初稿，你反馈说"这一条太复杂了"，AI在 Project 中直接修改第一版，保持前后一致。
+          在同一个命名会话里设计绩效制度，第一版给出初稿，你反馈说"这一条太复杂了"，iclaw在这个会话里直接修改第一版，保持前后一致。
         </div>
-        
+
         <div class="project-highlight">
           <strong>数据分析持续更新</strong><br>
-          你需要每月生成HR数据报告。建一个 Project，AI每月在同一个 Project 中更新数据，保持历史记录和对比。
+          你需要每月生成HR数据报告。用同一个命名会话，每月更新数据，历史记录和对比都在。
         </div>
-        
+
         <div class="project-highlight">
           <strong>团队培训计划</strong><br>
-          设计一个为期3个月的培训方案。在 Project 中，AI帮你逐周优化，还能记住前面的周、员工的反馈、学习进度等。
-        </div>
-        
-        <div class="project-highlight">
-          <strong>员工手册编写</strong><br>
-          编写公司的员工手册。第一周写第1-3章，AI记住了你的风格；第二周写第4-6章，AI会自动保持一致的风格和深度。
+          设计一个为期3个月的培训方案，在同一个会话里逐周优化，iclaw能记住前面的周、员工的反馈、学习进度等。
         </div>
       </div>
 
       <div style="margin-bottom: 16px;">
-        <h4 id="h4-16-如何在-Claude-中创建-Proj"  style="color: var(--text-primary); margin-bottom: 8px;">🛠️ 如何在 Claude 中创建 Project</h4>
+        <h4 id="h4-16-长期记忆--MEMORY-md-和-memory-目录"  style="color: var(--text-primary); margin-bottom: 8px;">🧠 长期记忆 — MEMORY.md 和 memory/ 目录</h4>
+        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
+          除了命名会话，iclaw 还有跨会话都能读到的"长期记忆"，相当于给 iclaw 装了一个记事本：
+        </p>
         <ol style="font-size: 12px; color: var(--text-body); padding-left: 20px; line-height: 1.8;">
-          <li>在 Claude.ai 上，点击左边栏的 <strong>"Create Project"</strong></li>
-          <li>给 Project 起一个名字，例如"2024年校招进度"</li>
-          <li>上传相关的文件（JD、候选人信息、公司背景等）或直接粘贴文本</li>
-          <li>在 Project 中开始对话。AI 会把这个 Project 的所有信息作为背景</li>
-          <li>每次新对话时，Project 内的信息都会被 AI 记住</li>
-          <li>可以为 Project 添加备注、标签，方便后续查找</li>
+          <li><code>memory/YYYY-MM-DD.md</code> —— 每天的原始记录，按日期存放</li>
+          <li><code>MEMORY.md</code> —— 从每日记录中精炼出来的长期记忆</li>
+          <li>这些文件跨会话持久存在，iclaw <strong>每次新会话启动时都会自动读取</strong>，不用你重新说一遍背景</li>
+          <li>用 <code>/memory</code> 指令可以随时查看或管理这些记忆文件</li>
         </ol>
       </div>
 
       <div style="margin-bottom: 16px;">
-        <h4 id="h4-17-Project-的最佳实践"  style="color: var(--text-primary); margin-bottom: 8px;">💡 Project 的最佳实践</h4>
-        
+        <h4 id="h4-17-心跳机制--让-iclaw-主动帮你盯着"  style="color: var(--text-primary); margin-bottom: 8px;">💓 心跳机制（Heartbeat）— 让 iclaw 主动帮你盯着</h4>
+        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
+          不只是定时提醒。通过配置 <code>HEARTBEAT.md</code>，可以让 iclaw 每隔一段时间自动检查邮件、日历、天气等，发现重要事项主动告诉你，类似"值班"模式。
+        </p>
         <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
-          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;"><strong>✅ 在 Project 中保持清晰的上下文</strong></p>
+          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>✅ 适用场景</strong></p>
           <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-            <li>第一次对话时，清楚地说明这个 Project 的目标、背景、现状</li>
-            <li>定期总结进度：已完成、进行中、待处理</li>
-            <li>如果有重要的改变（如需求变化），明确告诉 AI</li>
+            <li>多项检查可以合并（邮件 + 日历 + 通知一次完成）</li>
+            <li>需要参考最近的对话上下文来判断"重不重要"</li>
+            <li>时间可以有小幅偏差，不需要精确到分钟</li>
           </ul>
-        </div>
-
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-top: 10px;">
-          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;"><strong>✅ 利用 Project 进行版本管理</strong></p>
-          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-            <li>如果需要多个版本（如A方案和B方案），可以在 Project 中并行讨论</li>
-            <li>AI会记住各个版本的细节，帮你对比和选择</li>
-          </ul>
-        </div>
-
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-top: 10px;">
-          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;"><strong>✅ 定期导出和备份</strong></p>
-          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-            <li>Project 完成后，导出为 PDF 或 Word，保存到本地或云盘</li>
-            <li>这既是备份，也是一份最终的工作记录</li>
-          </ul>
+          <p style="font-size: 11px; color: var(--text-hint); margin-top: 8px; font-style: italic;">如果需要精确定时（比如每周一早上9点整发周报到指定频道），用 Cron 定时任务更合适，见「Token优化」tab里对定时任务的介绍。</p>
         </div>
       </div>
 
       <div>
-        <h4 id="h4-18-Project-的限制"  style="color: var(--text-primary); margin-bottom: 8px;">⚠️ Project 的限制</h4>
+        <h4 id="h4-18-限制"  style="color: var(--text-primary); margin-bottom: 8px;">⚠️ 需要注意的地方</h4>
         <div style="background: var(--danger-accent-bg); border-left:3px solid var(--danger-accent-border); padding: 12px 14px; border-radius: 6px;">
           <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">
-            <strong>上下文有限制：</strong> Project 中的对话如果太长（通常在50-100条消息后），AI 可能开始遗忘最早的部分。应对办法是定期总结和导出。
+            <strong>记忆不是无限的：</strong> memory文件会持续累积，定期让iclaw帮你精炼一下MEMORY.md，避免堆积太多过时信息。
           </p>
           <p style="font-size: 12px; color: var(--text-secondary);">
-            <strong>不是实时数据库：</strong> Project 中的数据不会实时同步到其他系统。如果你需要 HR 系统中的最新数据，需要手动更新给 AI。
+            <strong>不是实时数据库：</strong> 会话记忆不会实时同步到其他系统。如果你需要 HR 系统中的最新数据，还是要让iclaw主动去查（比如通过邮件、飞书查询），而不是完全依赖记忆。
           </p>
         </div>
       </div>
     </div>
 
     <div id="method-artifact" class="glass-box">
-      <h3 id="h3-7-Artifact--如何沉淀-AI-产">💾 Artifact — 如何沉淀 AI 产出</h3>
-      
+      <h3 id="h3-7-图片与文件能力--让-iclaw-帮你处理"> 图片与文件能力 — 让 iclaw 帮你处理</h3>
+
       <p style="font-size: 12px; color: var(--text-body); line-height: 1.6; margin-bottom: 12px;">
-        <strong>Artifact 是 AI 生成的可复用文件或内容。</strong>与 Prompt 的一次性输出不同，Artifact 是被保存、编辑、分享、反复使用的成果。
+        iclaw 没有 Claude Artifact 那种"独立产出物+分享链接"，但它对图片和文件的处理能力很实用：发一张截图，它能看懂内容；发一个文件，它能直接读写。这些是日常场景里学了就能马上用上的功能。
       </p>
 
       <div style="margin-bottom: 16px;">
-        <h4 id="h4-19-Artifact-的核心特点"  style="color: var(--text-primary); margin-bottom: 8px;">🎯 Artifact 的核心特点</h4>
-        <div style="background: var(--accent-b); border-left: 3px solid var(--accent-h); padding: 12px 14px; border-radius: 6px; margin-bottom: 8px;">
-          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;">
-            <strong>✦ 单次对话的独立输出物：</strong> 是 Claude 在对话中生成的独立内容（代码、工具、卡片、文档等）。
-          </p>
-          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;">
-            <strong>✦ 右侧面板展示：</strong> 出现在右侧面板，可以预览、编辑、分享。
-          </p>
-          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;">
-            <strong>✦ 跨对话持久化存储：</strong> 不跨对话保存，但可以带持久化存储（Pro 及以上账户）。意味着你可以长期保存和复用 Artifact。
-          </p>
-        </div>
-      </div>
-
-      <div style="margin-bottom: 16px;">
-        <h4 id="h4-20-什么是-Artifact"  style="color: var(--text-primary); margin-bottom: 8px;">📋 什么是 Artifact？</h4>
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">📷 图片分析：不只是 OCR</h4>
         <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
-          当你让 AI 生成一个重要的、可以被反复使用的内容时，AI 会在专门的窗口中生成，你可以：
+          发截图给 iclaw，它不只是识别文字，而是真的能"看懂"图片：
         </p>
         <ul style="font-size: 12px; color: var(--text-body); padding-left: 20px; line-height: 1.8;">
-          <li>💾 <strong>保存：</strong> 下载为 Word、PDF、HTML 等格式</li>
-          <li>✏️ <strong>编辑：</strong> 直接在 Artifact 中修改内容</li>
-          <li>🔄 <strong>反复使用：</strong> 明年招聘时，直接用去年的招聘文案 Artifact 改一改</li>
-          <li>🤝 <strong>分享：</strong> 复制链接分享给同事</li>
-          <li>📊 <strong>版本管理：</strong> 同一个 Artifact 可以有多个版本</li>
+          <li>📊 <strong>理解图表内容和数据趋势：</strong> 发一张数据表格截图，可以提取数据并生成图表</li>
+          <li>🖥️ <strong>分析 UI 界面布局：</strong> 发一张系统截图，帮你分析界面结构或找问题</li>
+          <li>💻 <strong>阅读代码截图并给出建议：</strong> 拍一张代码截图，直接分析并给建议</li>
+          <li>✍️ <strong>理解手写笔记：</strong> 手写的会议纪要、笔记也能识别和整理</li>
         </ul>
       </div>
 
       <div style="margin-bottom: 16px;">
-        <h4 id="h4-21-Artifact-的常见类型"  style="color: var(--text-primary); margin-bottom: 8px;">🎯 Artifact 的常见类型</h4>
-        
-        <table style="width: 100%; font-size: 11px; color: var(--text-body); border-collapse: collapse;">
-          <tr style="background: var(--surface-b); border-bottom: 1px solid var(--border-table-header);">
-            <td style="padding: 10px; border-right: 1px solid var(--border-table); font-weight: 600; color: var(--text-secondary);">类型</td>
-            <td style="padding: 10px; border-right: 1px solid var(--border-table); font-weight: 600; color: var(--text-secondary);">例子</td>
-            <td style="padding: 10px; font-weight: 600; color: var(--text-secondary);">使用频率</td>
-          </tr>
-          <tr style="border-bottom: 1px solid var(--border-table);">
-            <td style="padding: 10px; border-right: 1px solid var(--border-table);">📄 文档</td>
-            <td style="padding: 10px; border-right: 1px solid var(--border-table);">员工手册、招聘指南、OKR模板</td>
-            <td style="padding: 10px;">经常复用</td>
-          </tr>
-          <tr style="border-bottom: 1px solid var(--border-table);">
-            <td style="padding: 10px; border-right: 1px solid var(--border-table);">📝 文案</td>
-            <td style="padding: 10px; border-right: 1px solid var(--border-table);">招聘文案、内部邮件模板、新闻稿</td>
-            <td style="padding: 10px;">定期修改后复用</td>
-          </tr>
-          <tr style="border-bottom: 1px solid var(--border-table);">
-            <td style="padding: 10px; border-right: 1px solid var(--border-table);">📊 表格/流程图</td>
-            <td style="padding: 10px; border-right: 1px solid var(--border-table);">薪酬表、面试流程图、组织结构</td>
-            <td style="padding: 10px;">频繁更新和参考</td>
-          </tr>
-          <tr style="border-bottom: 1px solid var(--border-table);">
-            <td style="padding: 10px; border-right: 1px solid var(--border-table);">🔧 工具/计算器</td>
-            <td style="padding: 10px; border-right: 1px solid var(--border-table);">薪酬计算器、年假计算工具</td>
-            <td style="padding: 10px;">长期使用</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border-right: 1px solid var(--border-table);">💻 代码</td>
-            <td style="padding: 10px; border-right: 1px solid var(--border-table);">HR系统、数据处理脚本</td>
-            <td style="padding: 10px;">技术性应用</td>
-          </tr>
-        </table>
-      </div>
-
-      <div style="margin-bottom: 16px;">
-        <h4 id="h4-22-如何创建和管理-Artifact"  style="color: var(--text-primary); margin-bottom: 8px;">🛠️ 如何创建和管理 Artifact</h4>
-        
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
-          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>1️⃣ 自动生成</strong></p>
-          <p style="font-size: 11px; color: var(--text-body);">当你要求 AI 生成比较长的内容（如一份完整的文档），AI 会自动在 Artifact 窗口中生成。你会看到一个单独的面板。</p>
-        </div>
-
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
-          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>2️⃣ 编辑和优化</strong></p>
-          <p style="font-size: 11px; color: var(--text-body);">在 Artifact 中你可以直接修改内容，也可以告诉 AI "把第3段的语气改得更友好"，AI 会在 Artifact 中实时更新。</p>
-        </div>
-
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
-          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>3️⃣ 保存和分享</strong></p>
-          <p style="font-size: 11px; color: var(--text-body);">右上角有"下载""复制链接"等按钮。你可以下载为 .docx 或 .pdf，或者复制链接分享给同事（他们可以看到这个 Artifact，但不能编辑）。</p>
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">📁 飞书文件/图片下载与处理</h4>
+        <div style="background: var(--accent-b); border-left: 3px solid var(--accent-h); padding: 12px 14px; border-radius: 6px;">
+          <p style="font-size: 11px; color: var(--text-secondary);">
+            iclaw 可以直接下载飞书消息中的图片和文件到本地，然后进行分析或处理。比如你在群里发一张数据表格截图，iclaw 可以提取里面的数据，直接生成柱状图、饼图等可视化结果发回来。
+          </p>
         </div>
       </div>
 
       <div style="margin-bottom: 16px;">
-        <h4 id="h4-23-Artifact-的最佳实践"  style="color: var(--text-primary); margin-bottom: 8px;">💡 Artifact 的最佳实践</h4>
-        
-        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
-          <strong>建立 Artifact 库</strong><br>
-          <span style="font-size: 11px; color: var(--text-body);">在你的电脑上建一个文件夹（或在云盘、GitHub），专门保存重要的 Artifact。例如：<br>
-          📁 HR_Artifacts/<br>
-          ├─ 招聘/<br>
-          │  ├─ 招聘文案_2024.docx<br>
-          │  ├─ 面试流程.xlsx<br>
-          ├─ 员工管理/<br>
-          │  ├─ 员工手册_v2.pdf<br>
-          │  ├─ 离职流程.docx</span>
-        </div>
-
-        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
-          <strong>版本管理</strong><br>
-          <span style="font-size: 11px; color: var(--text-body);">重要的 Artifact 要做版本管理。例如"员工手册_v1_2024年" "员工手册_v2_修订后"，这样可以追踪变化历史。</span>
-        </div>
-
-        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
-          <strong>定期更新</strong><br>
-          <span style="font-size: 11px; color: var(--text-body);">一些 Artifact 需要定期更新（如招聘指南、薪酬标准）。设一个提醒，每个季度或每年更新一次。</span>
-        </div>
-
-        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px;">
-          <strong>团队共享</strong><br>
-          <span style="font-size: 11px; color: var(--text-body);">把重要的 Artifact 分享给团队。你可以直接分享链接，或者上传到团队的 Wiki/Notion，让大家都能访问和参考。</span>
-        </div>
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">📝 文件读写编辑</h4>
+        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
+          iclaw 可以直接在工作区里读写和编辑文件，也能运行 Shell 命令、Python/Node 脚本来处理数据。常见场景：
+        </p>
+        <ul style="font-size: 12px; color: var(--text-body); padding-left: 20px; line-height: 1.8;">
+          <li>整理一批候选人简历文件，统一格式后输出汇总表</li>
+          <li>处理一份 Excel 数据，跑一段脚本清洗、计算后生成新文件</li>
+          <li>把多个文件合并、拆分，或按规则批量重命名</li>
+        </ul>
       </div>
 
       <div>
-        <h4 id="h4-24-Artifact-的注意事项"  style="color: var(--text-primary); margin-bottom: 8px;">⚠️ Artifact 的注意事项</h4>
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">⚠️ 注意事项</h4>
         <div style="background: var(--danger-accent-bg); border-left:3px solid var(--danger-accent-border); padding: 12px 14px; border-radius: 6px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">
-            <strong>隐私和敏感信息：</strong> 不要在 Artifact 中放入真实的员工姓名、工资数字、身份证号等敏感信息。用"员工A""薪酬范围"这样的虚指代替。
-          </p>
           <p style="font-size: 12px; color: var(--text-secondary);">
-            <strong>链接分享的权限：</strong> 分享 Artifact 链接时，确认你的 Claude 账户的隐私设置。如果不想让陌生人看到，不要分享链接到公网。
+            <strong>隐私和敏感信息：</strong> 发截图或文件给 iclaw 分析前，检查一下里面是否包含真实的员工姓名、工资数字、身份证号等敏感信息，能脱敏的先脱敏。
           </p>
         </div>
       </div>
     </div>
 
     <div id="method-config" class="glass-box">
-      <h3 id="h3-8-个性化配置--让-AI-更懂你">⚙️ 个性化配置 — 让 AI 更懂你</h3>
+      <h3 id="h3-8-个性化配置--让-iclaw-更懂你">⚙️ 个性化配置 — 让 iclaw 更懂你</h3>
       
       <p style="font-size: 12px; color: var(--text-body); line-height: 1.6; margin-bottom: 12px;">
-        <strong>在开始使用 AI 之前，花一点时间配置好你的"Agent 准则"</strong>，可以让 AI 更理解你的风格、需求和工作习惯。这样每次对话都会更高效，少做很多重复解释。
+        <strong>在开始使用 iclaw 之前，花一点时间配置好 SOUL.md 和 USER.md</strong>，可以让它更理解你的风格、需求和工作习惯。这样每次对话都会更高效，少做很多重复解释。
       </p>
 
       <div style="margin-bottom: 16px;">
-        <h4 id="h4-25-1-设置你的-Agent-准则"  style="color: var(--text-primary); margin-bottom: 8px;">1️⃣ 设置你的 Agent 准则</h4>
+        <h4 id="h4-25-1-配置-SOUL-md-和-USER-md"  style="color: var(--text-primary); margin-bottom: 8px;">1️⃣ 配置 SOUL.md 和 USER.md</h4>
         <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
-          首次使用 AI 时，建议先定义你的"角色画像"和"使用习惯"。
+          iclaw 每次"醒来"（新会话启动）都会读取这两个文件，让它更懂你、更像你喜欢的风格。
         </p>
         
         <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
-          <strong>🎭 角色画像包括：</strong><br>
+          <strong>🎭 SOUL.md — 定义 iclaw 的性格：</strong><br>
           <span style="font-size: 11px; color: var(--text-body);">
-            • 你的职位和主要职责（如"我是一位招聘专员，负责校招和中层社招招聘"）<br>
-            • 你所在的行业和公司规模（如"互联网公司，5000人规模"）<br>
-            • 你的工作重点（如"重视候选人的学习能力和文化匹配度"）
+            • 说话风格（如"请用简洁语言，避免冗长段落和套话"）<br>
+            • 行为准则（如"给建议前先说清楚风险，不要替我做最终决定"）<br>
+            • 回应习惯（如"我更喜欢表格而不是段落，请添加具体例子"）
           </span>
         </div>
 
         <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
-          <strong>⚡ 使用习惯包括：</strong><br>
+          <strong>👤 USER.md — 记录你的个人信息：</strong><br>
           <span style="font-size: 11px; color: var(--text-body);">
-            • 你的沟通风格（如"请用简洁语言，避免冗长段落"）<br>
-            • 你的输出偏好（如"我更喜欢表格而不是段落"、"请添加具体例子"）<br>
-            • 你的工作节奏（如"我通常在周一和周五做总结"）<br>
-            • 你关心的指标（如"重点关注成本和效率"）
+            • 你的职位和主要职责（如"我是一位招聘专员，负责校招和中层社招招聘"）<br>
+            • 你所在的行业和公司规模（如"互联网公司，5000人规模"）<br>
+            • 你的工作重点和关心的指标（如"重视候选人的学习能力和文化匹配度"）<br>
+            • 你的工作节奏（如"我通常在周一和周五做总结"）
           </span>
         </div>
 
         <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px;">
-          <strong>💡 写准则的技巧：</strong> 可以让 DeepSeek、ChatGPT 等免费工具帮你写好初稿，然后再自己调整。完成后，<strong>保存为 Skill 或 Project 的开场白</strong>，这样每次都能自动调用。
+          <strong>💡 配置的技巧：</strong> 可以先和 iclaw 聊一聊你的工作习惯，让它帮你把内容整理成 SOUL.md / USER.md 的初稿，然后再自己调整确认。不用一次写完美，用起来之后随时可以再编辑补充。
         </div>
       </div>
 
       <div style="margin-bottom: 16px;">
         <h4 id="h4-26-2-寻找和复用现成的-Skill"  style="color: var(--text-primary); margin-bottom: 8px;">2️⃣ 寻找和复用现成的 Skill</h4>
         <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
-          不用所有东西都自己写。很多高手已经配置好了 Skill，可以直接复用。
+          不用所有东西都自己写。很多同事已经配置好了 Skill，可以直接复用。
         </p>
         
         <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
           <strong>🔍 Skill 的来源：</strong><br>
           <span style="font-size: 11px; color: var(--text-body);">
-            • <strong>GitHub：</strong> 搜索相关关键词（如"HR skill"、"recruitment prompt"），找到开源项目直接下载<br>
-            • <strong>Skill Market：</strong> 各个 AI 平台自带的 Skill Market，有官方推荐和社区 Skill<br>
-            • <strong>领域专用：</strong> 有些公司或团队公开了他们的 Skill 库（如 iClaw 等企业内部方案）<br>
-            • <strong>公开论坛：</strong> AI 社区、技术博客上常有人分享他们配置好的 Skill
+            • <strong>团队共享处：</strong> 团队共享的存储位置里通常存放着大家整理好的 <code>.skill</code> 文件<br>
+            • <strong>同事直接分享：</strong> 请同事把用得顺手的 <code>.skill</code> 文件直接转发给你<br>
+            • <strong>自己创建：</strong> 用 <code>skill-creator</code> 这个内置 skill，把你的经验固化成新的 skill
           </span>
         </div>
 
         <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px;">
           <strong>✅ 复用 Skill 的步骤：</strong><br>
           <span style="font-size: 11px; color: var(--text-body);">
-            1. 在 GitHub 或 Skill Market 找到合适的 Skill<br>
-            2. 下载或复制内容<br>
-            3. 根据你的需求调整（如改公司名、改评估标准）<br>
-            4. 上传到你的 Claude Project 或保存为个人 Skill<br>
-            5. 后续直接调用，省去大量重复工作
+            1. 找同事要或从团队共享处拿到合适的 <code>.skill</code> 文件<br>
+            2. 直接把文件发给自己的 iclaw，它会自动安装到 skills 目录<br>
+            3. 用 <code>/tools</code> 确认已经装好<br>
+            4. 后续直接调用，省去大量重复工作
           </span>
         </div>
       </div>
@@ -2550,18 +2415,15 @@
       <div style="margin-bottom: 16px;">
         <h4 id="h4-27-3-参考企业规范和最佳实践"  style="color: var(--text-primary); margin-bottom: 8px;">3️⃣ 参考企业规范和最佳实践</h4>
         <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
-          如果你的企业或集团有统一的 AI 使用规范，可以参考这些标准来配置你的 Agent。
+          如果公司有统一的 AI 使用规范，配置 SOUL.md / USER.md 时可以参考这些标准。
         </p>
         
         <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px;">
           <strong>📋 参考的内容包括：</strong><br>
           <span style="font-size: 11px; color: var(--text-body);">
-            • 公司的 AI 使用政策和规范<br>
+            • 公司的 AI 使用政策和规范（详见「AI使用风险与安全」页）<br>
             • HR 工作的标准流程和评估标准<br>
-            • 企业级 AI 工具的配置建议（如一些集团的 iClaw 等内部方案）<br>
-            • 团队已经验证过的 Skill 和工作流程<br>
-            <br>
-            示例：许多企业在内部平台（如集团的 iClaw）中提供了个性化设置指南，包括推荐的配置方案和预设的 Skill 库。你可以按照这些标准来快速配置自己的 Agent。
+            • 团队已经验证过的 Skill 和工作流程
           </span>
         </div>
       </div>
@@ -2571,17 +2433,17 @@
         
         <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
           <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>✅ 定期审视和更新</strong></p>
-          <p style="font-size: 11px; color: var(--text-body);">每个月检查一下你的 Agent 准则是否还符合你的需求。随着工作重点的变化，准则也应该相应调整。</p>
+          <p style="font-size: 11px; color: var(--text-body);">每个月检查一下你的 SOUL.md / USER.md 是否还符合你的需求。随着工作重点的变化，也应该相应调整。</p>
         </div>
 
         <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
           <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>✅ 记录和分享你的配置</strong></p>
-          <p style="font-size: 11px; color: var(--text-body);">把你调整好的 Skill 和配置分享给团队，帮助同事避免重复配置。如果配置很成功，甚至可以提交到公开的 Skill 库供更多人使用。</p>
+          <p style="font-size: 11px; color: var(--text-body);">把你调整好的 Skill 分享给团队，帮助同事避免重复配置。</p>
         </div>
 
         <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
-          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>✅ 多套配置满足多种场景</strong></p>
-          <p style="font-size: 11px; color: var(--text-body);">你可以为不同的工作场景建立不同的配置。如"招聘 Agent""薪酬 Agent""培训 Agent"，每个都有各自的准则和 Skill，这样切换场景时更高效。</p>
+          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>✅ 别忘了 memory 文件</strong></p>
+          <p style="font-size: 11px; color: var(--text-body);">SOUL.md / USER.md 是相对固定的"人设"，而工作中的具体进展、历史信息交给 memory/ 目录和 MEMORY.md 记录（详见「持续任务与记忆」tab），两者配合使用效果更好。</p>
         </div>
       </div>
     </div>
@@ -2612,7 +2474,7 @@
         <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px;">
           <p style="font-size: 11px; color: var(--text-body);">
             <strong>举个例子：</strong> 如果你的 Prompt 输入了 10,000 Token，AI 输出了 5,000 Token，费用可能是：10,000 × 输入价格 + 5,000 × 输出价格。<br><br>
-            要了解Claude最新的价格，请访问 <a href="https://www.anthropic.com/pricing" style="color: rgba(100,200,255,0.8);">Anthropic 官网</a>
+            用 <code>/status</code> 指令可以随时查看当前会话的模型、用量和费用情况
           </p>
         </div>
       </div>
@@ -2628,7 +2490,7 @@
 
         <div style="margin-bottom: 10px;">
           <strong style="color: var(--text-secondary);">2️⃣ 避免重复提供信息</strong>
-          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">如果在 Project 或 Skill 中已经说过，不要在 Prompt 中再说一遍。直接说"根据我的招聘标准 Skill，评估这个候选人"。</p>
+          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">如果在命名会话或 Skill 中已经说过，不要在 Prompt 中再说一遍。直接说"根据我的招聘标准 Skill，评估这个候选人"。</p>
         </div>
 
         <div style="margin-bottom: 10px;">
@@ -2643,17 +2505,17 @@
 
         <div style="margin-bottom: 10px;">
           <strong style="color: var(--text-secondary);">5️⃣ 分解大任务</strong>
-          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">不好：一个超长的 Prompt 做5件事。好的：分成5个短对话，每个只需要 200-300 Token。<br><br><strong class="token-tip">✦ /plan 指令主要适用于 CLI。</strong> 复杂内容先让模型把方案定清楚，确定方向对了在执行。在 Claude.ai 网页版中，可以直接告诉 AI "先为我制定一个计划"或"先分析一下思路"。在 Codex 中，有两个相关功能：<br><br><strong>• Plan Mode：</strong> 开关选项，开启后 AI 会先生成计划再执行。<br><strong>• 追求模式（Pursuit Mode）：</strong> 另一种执行模式，AI 会更深入地追求目标，投入更多的思考和迭代，适合需要高质量结果的复杂任务。<br><br>这两个模式都能帮助你减少错误和返工。直接让 LLM 执行复杂任务可能会造成错误或返工，每一次错误尝试都会导致上下文堆积。</p>
+          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">不好：一个超长的 Prompt 做5件事。好的：分成5个短对话，每个只需要 200-300 Token。<br><br>复杂任务先让 iclaw 把方案定清楚，确定方向对了再执行，可以直接说"先帮我做个计划，不用着急开始做"。用 <code>/reasoning</code> 开关推理模式，让 iclaw 在回答前多做一步内部推理，适合数学、逻辑、复杂分析类任务。直接让 AI 执行复杂任务可能会造成错误或返工，每一次错误尝试都会导致上下文堆积。</p>
         </div>
 
         <div style="margin-bottom: 10px;">
           <strong style="color: var(--text-secondary);">6️⃣ 利用流式输出</strong>
-          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">在 Claude.ai 上，你只需要为最终生成的内容付费。如果你停止了对话，剩余的输出不会被计费。</p>
+          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">如果发现回答方向不对，及时停下比等它说完再改更省 Token，可以直接用 <code>/stop</code> 打断当前生成。</p>
         </div>
 
         <div style="margin-bottom: 10px;">
-          <strong style="color: var(--text-secondary);">7️⃣ 使用缓存</strong>
-          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">如果你通过 API 调用 Claude，可以使用"缓存"功能。第二次使用同样的背景文件或 Skill，费用会降低90%。<br><br>另外，某些模型可以将你的 Prompt 临时缓存一定时间（一般是分钟级别），在这个时间内调用 Prompt，所用 token 额度会大大减少（成本1/10左右）。但如果半个小时之后再来发，额度会增大。</p>
+          <strong style="color: var(--text-secondary);">7️⃣ 善用缓存机制</strong>
+          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">短时间内重复用同样的背景文件或 Skill，部分模型会有缓存机制降低成本，但如果间隔太久（比如半小时以上）再次调用，缓存效果会打折。具体的缓存策略和费率可以用 <code>/status</code> 查看，或咨询负责 iclaw 的同事。</p>
         </div>
 
         <div style="margin-bottom: 10px;">
@@ -2673,17 +2535,22 @@
 
         <div style="margin-bottom: 10px;">
           <strong style="color: var(--text-secondary);">1️⃣1️⃣ 避免上下文冗余</strong>
-          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">多个问题合并成一条消息，不要想到一条指令是一条。出错请纠正，去重新编辑原本的消息，把正确的要求补进去。<br><br><strong class="token-tip">✦ /btw 指令主要适用于 CLI。</strong> 在 Claude.ai 网页版中，可以直接和 AI 说"这是个临时提问，不需要计入之前的对话"。在 Codex 中，可以开启侧边聊天（Side Panel Chat）功能来替代 /btw，这样侧边的临时对话就不会混入主对话的上下文中。</p>
+          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">多个问题合并成一条消息，不要想到一条指令是一条。出错请纠正，去重新编辑原本的消息，把正确的要求补进去。<br><br>如果只是想临时问一句不相关的问题，不想混进正在处理的任务上下文，可以开一个新的命名会话（<code>session:临时提问</code>）问完就丢，不占用主线任务的上下文。</p>
         </div>
 
         <div style="margin-bottom: 10px;">
           <strong style="color: var(--text-secondary);">1️⃣2️⃣ 主动清理上下文</strong>
-          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;"><strong class="token-tip">✦ 注：以下指令主要适用于 CLI，如 Claude Code、命令行工具等。</strong><br><br><strong>/clear 或 /new：</strong> 新任务开新的 session，可以开启全新的上下文。在 Claude.ai 网页版中，可以直接点击"新对话"或告诉 AI "开启新的对话"。<br><br><strong>/statusline：</strong> 输入这个指令显示上下文使用百分比。在网页版中，你可以直接问 AI "我现在上下文用了多少"。<br><br><strong>/compact：</strong> 主动压缩上下文。在 Claude.ai 网页版中，可以直接说"帮我压缩一下上下文"或"整理一下对话记录"。一些AI会主动压缩上下文，但一般只会在占95%的时候触发。某些模型还会表现出"上下文焦虑"，即当它们自己接近上下文容量上限时，会过早地开始收尾工作。所以当看到上下文已经超过70%或者感觉运行卡顿时，主动请求压缩或者开新的对话，可以说"压缩上下文时保留工具调用的细节"。<br><br>如果要长时间离开，先压缩并指定要保留的内容。</p>
+          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;"><strong>iclaw 的常用指令：</strong><br><br><strong>/new：</strong> 开启新会话，清除当前上下文，适合开始一个全新的任务。<br><br><strong>/status：</strong> 查看当前会话状态、用了哪个模型、Token用量和费用。<br><br><strong>/compact：</strong> 主动压缩上下文，清理历史消息中的冗余内容，节省 Token 但不丢失重要信息。一些AI会自己主动压缩，但一般只会在占用很高时才触发，容易"临近上限就开始草草收尾"。所以当感觉对话变长、运行卡顿时，主动 <code>/compact</code> 一下，比等它自己触发更可控。<br><br>如果要长时间离开某个任务，先 <code>/compact</code> 压缩一下再走，回来时上下文更干净。</p>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+          <strong style="color: var(--text-secondary);">1️⃣3️⃣ 新任务先盯着 iclaw</strong>
+          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">如果发现方向错了，及时止损。用 <code>/stop</code> 停止当前生成，然后再重新编辑上一条消息的提示词。<br><br><strong>通用小建议：</strong> 优先选择编辑而非重写整个文件。除非文件被编辑过，否则不要重复阅读已读过的文件。输出追求简洁，但推理过程必须详尽。</p>
         </div>
 
         <div>
-          <strong style="color: var(--text-secondary);">1️⃣3️⃣ 新任务先盯着 Claude</strong>
-          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">如果发现方向错了，及时止损。按 Esc 按键暂停，然后再重新编辑上一条消息的提示词。<br><br><strong>通用小建议：</strong> 优先选择编辑而非重写整个文件。除非文件被编辑过，否则不要重复阅读已读过的文件。输出追求简洁，但推理过程必须详尽。</p>
+          <strong style="color: var(--text-secondary);">1️⃣4️⃣ 按任务难度切换模型</strong>
+          <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;">不是所有任务都需要用最强的模型。用 <code>/model &lt;name&gt;</code> 可以按需切换：<br><br>• <strong>全局切换</strong> — 所有新会话默认用新模型<br>• <strong>会话级切换</strong> — 只有当前会话用不同模型<br>• <strong>任务级指定</strong> — 单个 Cron 定时任务可以单独指定模型<br><br>复杂推理（如方案设计、疑难分析）用强模型，简单任务（如格式整理、翻译）用轻量模型，可以灵活控制成本。</p>
         </div>
       </div>
 
@@ -2694,7 +2561,7 @@
             <strong>高价值的任务：</strong> 如果这个任务能为公司带来价值（如招聘文案会被反复使用、数据分析会影响决策），值得花更多 Token 做高质量的输出。
           </p>
           <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;">
-            <strong>重复使用的文件：</strong> 如果一个 Artifact 会被使用10次以上（如招聘指南、员工手册），首次多花 Token 打磨质量，后续会节省大量时间和成本。
+            <strong>重复使用的文件：</strong> 如果一份产出（如招聘指南、员工手册）会被使用10次以上，首次多花 Token 打磨质量，后续会节省大量时间和成本。
           </p>
           <p style="font-size: 12px; color: var(--text-secondary);">
             <strong>复杂分析：</strong> 有时多花 Token 提供更多背景信息，能让 AI 做出更准确的分析，避免后续的反复修改。
@@ -2773,7 +2640,7 @@
         <div class="mistake-title">❌ 误区3：把敏感信息上传给 AI</div>
         <div class="mistake-desc">
           有人会把真实的员工名字、工资、身份证号、绩效评分上传给 AI 分析。<br><br>
-          <strong>问题：</strong> 虽然 Claude 等工具有隐私保护，但没有 100% 的保障。一旦信息泄露，影响很大。
+          <strong>问题：</strong> 虽然 iclaw 等工具有隐私保护，但没有 100% 的保障。一旦信息泄露，影响很大。
         </div>
         <div class="mistake-solution">
           ✅ 解决方案：使用虚指代（员工A、员工B，或用员工ID）。例如分析薪酬时，用"P级别，3年经验，市场价25-35k"代替"张三，25.5k"。
@@ -2874,21 +2741,21 @@
       </div>
 
       <div class="mistake-item">
-        <div class="mistake-title">❌ 误区11：混淆 Skill 和 Automation（特别在 Codex 中）</div>
+        <div class="mistake-title">❌ 误区11：混淆 Skill 和 定时任务/心跳机制</div>
         <div class="mistake-desc">
-          有人认为 Skill 和 Automation 是替代关系，不知道何时用哪个。<br><br>
+          有人认为 Skill 和 定时任务（Cron）/心跳机制是替代关系，不知道何时用哪个。<br><br>
           <strong>问题：</strong> 两者实际上是上下层关系。误解可能导致工作流程设计不合理。<br><br>
           <strong>区别：</strong><br>
-          • <strong>Skill</strong> = 模板 / 操作手册。定义"怎么做"，包含说明、资源和可选脚本。可以手动调用，也可以被 AI 根据需要自动选中。<br>
-          • <strong>Automation</strong> = 定时器 / 后台调度器。定义"什么时候重复做"。让 Codex 在后台按计划反复运行某个任务，结果发到 Triage/Inbox；对 Git 仓库还能选择在本地项目或独立 worktree 里跑。<br><br>
-          <strong>对比 Claude.ai 网页版：</strong> Claude.ai 没有 Automation 功能，所有操作都是手动触发。Skill 在 Claude.ai 中也可以使用，作用相同。
+          • <strong>Skill</strong> = 模板 / 操作手册。定义"怎么做"，包含说明、资源和可选脚本，手动调用或让 iclaw 按需自动选中。<br>
+          • <strong>定时任务（Cron）</strong> = 定时器。定义"什么时间点重复做"，需要精确定时时用。<br>
+          • <strong>心跳机制（Heartbeat）</strong> = 后台巡检。定义"隔一段时间主动看看有没有需要关注的事"，时间可以有偏差，适合合并多项检查。
         </div>
         <div class="mistake-solution">
           ✅ 解决方案：<br>
           • 先用 <strong>Skill</strong> 定义工作流程本身（如"每天的日报怎么写"、"候选人评估的标准"）<br>
-          • 再用 <strong>Automation</strong> 定义执行计划（如"每天早上10点自动生成日报"、"每周五自动汇总招聘进度"）<br>
-          • 官方文档提示：Automation 可以结合 Skill 使用，在自动化提示里用 @skill-name 显式触发某个 skill<br>
-          • 如果你只需要一个"工作模板"，用 Skill；如果需要"定时重复执行"，用 Automation；如果需要"定时执行某个特定流程"，就同时用 Skill + Automation。
+          • 需要精确定时执行 → 用 <strong>Cron 定时任务</strong>（如"每周一早上9点整自动生成周报，推送到指定频道"）<br>
+          • 需要主动帮忙盯着、判断重不重要 → 用 <strong>心跳机制</strong>（如"每隔一小时看看邮件和日历，有急事再告诉我"）<br>
+          • 如果只需要一个"工作模板"，用 Skill；需要"定时重复执行"，用 Cron；需要"AI主动判断要不要提醒你"，用心跳机制；三者也可以组合使用
         </div>
       </div>
 
@@ -2931,6 +2798,49 @@
         <p style="font-size: 12px; color: var(--text-secondary); margin: 0; line-height: 1.6;">
           <strong>🎯 总结：</strong> AI 的最佳使用姿态是"辅助而不替代，加速而不自动，参考而不盲从"。把 AI 当作一个聪明的助手，但最终的决策权和责任权始终在人。
         </p>
+      </div>
+    </div>
+
+    <div id="method-advanced" class="glass-box">
+      <h3 id="h3-11-进阶玩法--同时做几件事">🎓 进阶玩法 — 同时做几件事</h3>
+
+      <p style="font-size: 12px; color: var(--text-body); line-height: 1.6; margin-bottom: 12px;">
+        平时用 iclaw 大多是"问一句、等它答完、再问下一句"，一件事排队做完再做下一件。但遇到几件互不相关、可以同时进行的事情时，其实不用这样排队。
+      </p>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🧩 同时做几件事</h4>
+        <div style="background: var(--surface-o); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
+          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;">
+            比如你想让 iclaw <strong>同时</strong>帮你查一下今天的邮件、整理一份文件、再搜一下某个资料，最后把三件事的结果汇总给你——不用一件件等，可以直接说：
+          </p>
+          <div style="background: var(--surface-n); border-radius: 6px; padding: 10px; font-size: 11px; color: var(--text-body); font-style: italic;">
+            "帮我同时做三件事：查一下今天未读的重要邮件、整理一下这份简历文件、搜一下这个候选人所在公司的背景，完成后汇总给我。"
+          </div>
+          <p style="font-size: 11px; color: var(--text-hint); margin-top: 8px;">iclaw 会把这几件不相关的事拆开同时处理，比一件件排队做要快很多。</p>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🛑 中途改主意、叫停</h4>
+        <div style="background: var(--surface-o); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
+          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;">
+            交代出去的事情不是只能干等结果。如果中途发现方向不对，或者想换个思路，可以直接打断：
+          </p>
+          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; line-height: 1.8; margin: 0;">
+            <li><strong>直接说"先别做了"</strong>——对应指令 <code>/kill</code>，直接终止正在跑的任务</li>
+            <li><strong>直接说"换个方向，改成……"</strong>——不用等它做完再重来，中途插话就能改变它接下来的做法</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">💡 什么时候适合用</h4>
+        <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin: 0; line-height: 1.6;">
+            几件事互不依赖、可以并行时才值得这样用（比如"查邮件"和"整理文件"互不相关）。如果后一件事需要等前一件事的结果才能做，就不适合同时进行，老老实实一步步来即可。
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -5970,6 +5880,400 @@ ${getOutputFormatDesc()}
     </div>
   </div>
 
+  <!-- ===== 其他AI工具参考 ===== -->
+  <div id="page-otherai" class="page">
+    <div class="page-header">
+      <div class="page-title">🔀 其他AI工具参考</div>
+      <div class="page-sub">公司统一使用的 AI 工具是 iclaw，如果你或同事平时也会用到 Claude、ChatGPT、Codex、DeepSeek 等其他工具，这里整理了它们的功能对比和使用方式，供参考</div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab-btn active" onclick="showTab('otherai','skill',this)">🎯 Skill对比</div>
+      <div class="tab-btn" onclick="showTab('otherai','token',this)">⚙️ Token优化对照</div>
+      <div class="tab-btn" onclick="showTab('otherai','project',this)">📊 Claude Project</div>
+      <div class="tab-btn" onclick="showTab('otherai','artifact',this)">💾 Claude Artifact</div>
+      <div class="tab-btn" onclick="showTab('otherai','automation',this)">🔁 Automation对比</div>
+    </div>
+
+    <div id="otherai-skill" class="glass-box active">
+      <h3>🎯 不同 AI 工具创建和使用 Skill 的对比</h3>
+
+      <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
+        不同的AI工具（Claude、ChatGPT、Codex等）在创建和使用Skill时有各自的特点。选择合适的工具能让你事半功倍。
+      </p>
+
+      <table style="width: 100%; font-size: 11px; color: var(--text-body); border-collapse: collapse; margin-bottom: 12px;">
+        <tr style="background: var(--surface-d); border-bottom: 1px solid var(--border-table-header);">
+          <td style="padding: 12px; border-right: 1px solid var(--border-table); font-weight: 600; color: var(--text-primary);">工具</td>
+          <td style="padding: 12px; border-right: 1px solid var(--border-table); font-weight: 600; color: var(--text-primary);">创建 Skill</td>
+          <td style="padding: 12px; border-right: 1px solid var(--border-table); font-weight: 600; color: var(--text-primary);">使用 Skill</td>
+          <td style="padding: 12px; font-weight: 600; color: var(--text-primary);">最适合场景</td>
+        </tr>
+
+        <tr style="border-bottom: 1px solid var(--border-table);">
+          <td style="padding: 12px; border-right: 1px solid var(--border-table); font-weight: 500;">Claude<br>（Web/App）</td>
+          <td style="padding: 12px; border-right: 1px solid var(--border-table);">✅ 优秀<br>支持多轮迭代讨论，能很好地理解复杂需求</td>
+          <td style="padding: 12px; border-right: 1px solid var(--border-table);">✅ 优秀<br>上传Skill文件或粘贴内容都支持，体验流畅</td>
+          <td style="padding: 12px;">适合细致的Skill打磨和日常使用</td>
+        </tr>
+
+        <tr style="border-bottom: 1px solid var(--border-table);">
+          <td style="padding: 12px; border-right: 1px solid var(--border-table); font-weight: 500;">Claude Code<br>（CLI）</td>
+          <td style="padding: 12px; border-right: 1px solid var(--border-table);">✅ 优秀<br>在命令行中迭代开发Skill，适合技术型HR</td>
+          <td style="padding: 12px; border-right: 1px solid var(--border-table);">✅ 非常优秀<br>可以集成到工作流中，甚至自动调用Skill</td>
+          <td style="padding: 12px;">技术背景强的HR，或需要自动化Skill使用的场景</td>
+        </tr>
+
+        <tr style="border-bottom: 1px solid var(--border-table);">
+          <td style="padding: 12px; border-right: 1px solid var(--border-table); font-weight: 500;">ChatGPT<br>（免费/Plus）</td>
+          <td style="padding: 12px; border-right: 1px solid var(--border-table);">⭐ 适中<br>可以讨论和迭代，但理解复杂需求不如Claude</td>
+          <td style="padding: 12px; border-right: 1px solid var(--border-table);">⭐ 适中<br>可以使用，但每次都需要重新上传或粘贴</td>
+          <td style="padding: 12px;">成本敏感场景，用免费版初期探索Skill</td>
+        </tr>
+
+        <tr style="border-bottom: 1px solid var(--border-table);">
+          <td style="padding: 12px; border-right: 1px solid var(--border-table); font-weight: 500;">Codex<br></td>
+          <td style="padding: 12px; border-right: 1px solid var(--border-table);">⭐ 不太适合<br>Codex主要针对代码，用来创建Skill不是最优选择</td>
+          <td style="padding: 12px; border-right: 1px solid var(--border-table);">✅ 很好<br>如果已有Skill，可以通过API集成到HR系统中</td>
+          <td style="padding: 12px;">技术团队集成Skill到内部系统</td>
+        </tr>
+
+        <tr>
+          <td style="padding: 12px; border-right: 1px solid var(--border-table); font-weight: 500;">DeepSeek<br>（免费）</td>
+          <td style="padding: 12px; border-right: 1px solid var(--border-table);">✅ 不错<br>免费且能处理复杂逻辑，很适合初期讨论</td>
+          <td style="padding: 12px; border-right: 1px solid var(--border-table);">✅ 不错<br>同样支持上传和粘贴</td>
+          <td style="padding: 12px;">控制成本的首选，适合头脑风暴阶段</td>
+        </tr>
+      </table>
+
+      <div style="background: var(--accent-c); border: 1px solid var(--accent-e); border-radius: 8px; padding: 12px;">
+        <p style="font-size: 12px; color: var(--text-secondary); margin: 0; line-height: 1.6;">
+          <strong>💡 推荐的 Skill 创建流程：</strong><br>
+          1️⃣ <strong>头脑风暴阶段：</strong>用 DeepSeek 或 ChatGPT 免费版讨论思路，不用担心成本<br>
+          2️⃣ <strong>框架确认阶段：</strong>在 Claude 中细化细节，确保框架和标准清晰<br>
+          3️⃣ <strong>生成最终版：</strong>让 Claude 生成定稿，保存为 .md 文件<br>
+          4️⃣ <strong>持续使用：</strong>在 Claude.ai 中上传使用，或通过 Claude Code 集成到工作流
+        </p>
+      </div>
+    </div>
+
+    <div id="otherai-token" class="glass-box">
+      <h3>⚙️ Token优化技巧的工具对照</h3>
+      <p style="font-size: 12px; color: var(--text-body); margin-bottom: 12px;">
+        「AI工作方法 → Token优化」里的通用技巧适用于任何工具。以下是这些技巧在 Claude.ai / Codex 等工具里的具体操作方式，供参考。
+      </p>
+
+      <div style="margin-bottom: 14px;">
+        <strong style="color: var(--text-secondary);">关于"先规划再执行"（对应技巧：分解大任务）</strong>
+        <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;"><strong class="token-tip">✦ /plan 指令主要适用于 CLI。</strong> 在 Claude.ai 网页版中，可以直接告诉 AI "先为我制定一个计划"或"先分析一下思路"。在 Codex 中，有两个相关功能：<br><br><strong>• Plan Mode：</strong> 开关选项，开启后 AI 会先生成计划再执行。<br><strong>• 追求模式（Pursuit Mode）：</strong> 另一种执行模式，AI 会更深入地追求目标，投入更多的思考和迭代，适合需要高质量结果的复杂任务。</p>
+      </div>
+
+      <div style="margin-bottom: 14px;">
+        <strong style="color: var(--text-secondary);">关于"临时提问不占用主上下文"（对应技巧：避免上下文冗余）</strong>
+        <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;"><strong class="token-tip">✦ /btw 指令主要适用于 CLI。</strong> 在 Claude.ai 网页版中，可以直接和 AI 说"这是个临时提问，不需要计入之前的对话"。在 Codex 中，可以开启侧边聊天（Side Panel Chat）功能来替代 /btw，这样侧边的临时对话就不会混入主对话的上下文中。</p>
+      </div>
+
+      <div>
+        <strong style="color: var(--text-secondary);">关于清理/压缩上下文的具体指令（对应技巧：主动清理上下文）</strong>
+        <p style="font-size: 11px; color: var(--text-body); margin-top: 6px;"><strong>/clear 或 /new：</strong> 新任务开新的 session。在 Claude.ai 网页版中，可以直接点击"新对话"或告诉 AI "开启新的对话"。<br><br><strong>/statusline：</strong> 输入这个指令显示上下文使用百分比。在网页版中，你可以直接问 AI "我现在上下文用了多少"。<br><br><strong>/compact：</strong> 主动压缩上下文。在 Claude.ai 网页版中，可以直接说"帮我压缩一下上下文"或"整理一下对话记录"。</p>
+      </div>
+    </div>
+
+    <div id="otherai-project" class="glass-box">
+      <style>
+        .otherai-project-highlight {
+          background: rgba(100,200,100,0.08);
+          border-left: 3px solid rgba(100,200,100,0.4);
+          padding: 12px 14px;
+          border-radius: 6px;
+          margin: 10px 0;
+          font-size: 12px;
+          color: var(--text-secondary);
+        }
+      </style>
+      <h3>📊 Claude Project — 如何让 AI 持续跟进任务</h3>
+
+      <p style="font-size: 12px; color: var(--text-body); line-height: 1.6; margin-bottom: 12px;">
+        有时候一个任务需要多次迭代：招聘需要持续跟进候选人进度、培训方案需要多次调整、数据分析需要补充新数据。<strong>Project 就是让 AI 记住这个任务的所有上下文，不用每次都从零开始。</strong>
+      </p>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🎯 Project 的核心特点</h4>
+        <div style="background: var(--accent-b); border-left: 3px solid var(--accent-h); padding: 12px 14px; border-radius: 6px; margin-bottom: 8px;">
+          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;">
+            <strong>✦ 持久化工作空间：</strong> 跨对话保留记忆。你上传的文件、自定义指令、对话历史都会被保存。每次进入 Project，AI 都能记住之前的所有内容。
+          </p>
+          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;">
+            <strong>✦ 自动化读取资源：</strong> 可以上传 Skill 文件、校准简历、岗位配置等。Claude 每次进入都会自动读取这些资源，不用每次都重新上传。
+          </p>
+          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;">
+            <strong>✦ 多人协作：</strong> Pro/Team 用户可用。Team 版支持多人协作和权限管理，整个团队可以在同一个 Project 中协作。
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🤔 Project vs Skill vs Prompt</h4>
+        <table style="width: 100%; font-size: 11px; color: var(--text-body); border-collapse: collapse;">
+          <tr style="background: var(--surface-b); border-bottom: 1px solid var(--border-table-header);">
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);"><strong>Prompt</strong></td>
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);">一次性的指令</td>
+            <td style="padding: 8px;">用于临时任务，不需要记忆</td>
+          </tr>
+          <tr style="background: var(--surface-b); border-bottom: 1px solid var(--border-table-header);">
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);"><strong>Skill</strong></td>
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);">可复用的标准</td>
+            <td style="padding: 8px;">用于重复出现的工作（每次招聘都用同一套标准）</td>
+          </tr>
+          <tr style="background: var(--surface-b);">
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);"><strong>Project</strong></td>
+            <td style="padding: 8px; border-right: 1px solid var(--border-table);">长期任务的工作空间</td>
+            <td style="padding: 8px;">用于一个需要持续推进的具体项目（这个月的校招、这个季度的薪酬调整）</td>
+          </tr>
+        </table>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">📌 Project 的适用场景</h4>
+
+        <div class="otherai-project-highlight">
+          <strong>招聘进度跟进</strong><br>
+          你在跟进3个候选人，需要AI记住每个人的进度、反馈、下一步。而不是每次都重新介绍这3个人的信息。
+        </div>
+
+        <div class="otherai-project-highlight">
+          <strong>方案设计和迭代</strong><br>
+          在 Project 中设计绩效制度，第一版AI给出初稿，你反馈说"这一条太复杂了"，AI在 Project 中直接修改第一版，保持前后一致。
+        </div>
+
+        <div class="otherai-project-highlight">
+          <strong>数据分析持续更新</strong><br>
+          你需要每月生成HR数据报告。建一个 Project，AI每月在同一个 Project 中更新数据，保持历史记录和对比。
+        </div>
+
+        <div class="otherai-project-highlight">
+          <strong>团队培训计划</strong><br>
+          设计一个为期3个月的培训方案。在 Project 中，AI帮你逐周优化，还能记住前面的周、员工的反馈、学习进度等。
+        </div>
+
+        <div class="otherai-project-highlight">
+          <strong>员工手册编写</strong><br>
+          编写公司的员工手册。第一周写第1-3章，AI记住了你的风格；第二周写第4-6章，AI会自动保持一致的风格和深度。
+        </div>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🛠️ 如何在 Claude 中创建 Project</h4>
+        <ol style="font-size: 12px; color: var(--text-body); padding-left: 20px; line-height: 1.8;">
+          <li>在 Claude.ai 上，点击左边栏的 <strong>"Create Project"</strong></li>
+          <li>给 Project 起一个名字，例如"2024年校招进度"</li>
+          <li>上传相关的文件（JD、候选人信息、公司背景等）或直接粘贴文本</li>
+          <li>在 Project 中开始对话。AI 会把这个 Project 的所有信息作为背景</li>
+          <li>每次新对话时，Project 内的信息都会被 AI 记住</li>
+          <li>可以为 Project 添加备注、标签，方便后续查找</li>
+        </ol>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">💡 Project 的最佳实践</h4>
+
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
+          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;"><strong>✅ 在 Project 中保持清晰的上下文</strong></p>
+          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+            <li>第一次对话时，清楚地说明这个 Project 的目标、背景、现状</li>
+            <li>定期总结进度：已完成、进行中、待处理</li>
+            <li>如果有重要的改变（如需求变化），明确告诉 AI</li>
+          </ul>
+        </div>
+
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-top: 10px;">
+          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;"><strong>✅ 利用 Project 进行版本管理</strong></p>
+          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+            <li>如果需要多个版本（如A方案和B方案），可以在 Project 中并行讨论</li>
+            <li>AI会记住各个版本的细节，帮你对比和选择</li>
+          </ul>
+        </div>
+
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-top: 10px;">
+          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;"><strong>✅ 定期导出和备份</strong></p>
+          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+            <li>Project 完成后，导出为 PDF 或 Word，保存到本地或云盘</li>
+            <li>这既是备份，也是一份最终的工作记录</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">⚠️ Project 的限制</h4>
+        <div style="background: var(--danger-accent-bg); border-left:3px solid var(--danger-accent-border); padding: 12px 14px; border-radius: 6px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">
+            <strong>上下文有限制：</strong> Project 中的对话如果太长（通常在50-100条消息后），AI 可能开始遗忘最早的部分。应对办法是定期总结和导出。
+          </p>
+          <p style="font-size: 12px; color: var(--text-secondary);">
+            <strong>不是实时数据库：</strong> Project 中的数据不会实时同步到其他系统。如果你需要 HR 系统中的最新数据，需要手动更新给 AI。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="otherai-artifact" class="glass-box">
+      <h3>💾 Claude Artifact — 如何沉淀 AI 产出</h3>
+
+      <p style="font-size: 12px; color: var(--text-body); line-height: 1.6; margin-bottom: 12px;">
+        <strong>Artifact 是 AI 生成的可复用文件或内容。</strong>与 Prompt 的一次性输出不同，Artifact 是被保存、编辑、分享、反复使用的成果。
+      </p>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🎯 Artifact 的核心特点</h4>
+        <div style="background: var(--accent-b); border-left: 3px solid var(--accent-h); padding: 12px 14px; border-radius: 6px; margin-bottom: 8px;">
+          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;">
+            <strong>✦ 单次对话的独立输出物：</strong> 是 Claude 在对话中生成的独立内容（代码、工具、卡片、文档等）。
+          </p>
+          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;">
+            <strong>✦ 右侧面板展示：</strong> 出现在右侧面板，可以预览、编辑、分享。
+          </p>
+          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;">
+            <strong>✦ 跨对话持久化存储：</strong> 不跨对话保存，但可以带持久化存储（Pro 及以上账户）。意味着你可以长期保存和复用 Artifact。
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">📋 什么是 Artifact？</h4>
+        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
+          当你让 AI 生成一个重要的、可以被反复使用的内容时，AI 会在专门的窗口中生成，你可以：
+        </p>
+        <ul style="font-size: 12px; color: var(--text-body); padding-left: 20px; line-height: 1.8;">
+          <li>💾 <strong>保存：</strong> 下载为 Word、PDF、HTML 等格式</li>
+          <li>✏️ <strong>编辑：</strong> 直接在 Artifact 中修改内容</li>
+          <li>🔄 <strong>反复使用：</strong> 明年招聘时，直接用去年的招聘文案 Artifact 改一改</li>
+          <li>🤝 <strong>分享：</strong> 复制链接分享给同事</li>
+          <li>📊 <strong>版本管理：</strong> 同一个 Artifact 可以有多个版本</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🎯 Artifact 的常见类型</h4>
+
+        <table style="width: 100%; font-size: 11px; color: var(--text-body); border-collapse: collapse;">
+          <tr style="background: var(--surface-b); border-bottom: 1px solid var(--border-table-header);">
+            <td style="padding: 10px; border-right: 1px solid var(--border-table); font-weight: 600; color: var(--text-secondary);">类型</td>
+            <td style="padding: 10px; border-right: 1px solid var(--border-table); font-weight: 600; color: var(--text-secondary);">例子</td>
+            <td style="padding: 10px; font-weight: 600; color: var(--text-secondary);">使用频率</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-table);">
+            <td style="padding: 10px; border-right: 1px solid var(--border-table);">📄 文档</td>
+            <td style="padding: 10px; border-right: 1px solid var(--border-table);">员工手册、招聘指南、OKR模板</td>
+            <td style="padding: 10px;">经常复用</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-table);">
+            <td style="padding: 10px; border-right: 1px solid var(--border-table);">📝 文案</td>
+            <td style="padding: 10px; border-right: 1px solid var(--border-table);">招聘文案、内部邮件模板、新闻稿</td>
+            <td style="padding: 10px;">定期修改后复用</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-table);">
+            <td style="padding: 10px; border-right: 1px solid var(--border-table);">📊 表格/流程图</td>
+            <td style="padding: 10px; border-right: 1px solid var(--border-table);">薪酬表、面试流程图、组织结构</td>
+            <td style="padding: 10px;">频繁更新和参考</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-table);">
+            <td style="padding: 10px; border-right: 1px solid var(--border-table);">🔧 工具/计算器</td>
+            <td style="padding: 10px; border-right: 1px solid var(--border-table);">薪酬计算器、年假计算工具</td>
+            <td style="padding: 10px;">长期使用</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; border-right: 1px solid var(--border-table);">💻 代码</td>
+            <td style="padding: 10px; border-right: 1px solid var(--border-table);">HR系统、数据处理脚本</td>
+            <td style="padding: 10px;">技术性应用</td>
+          </tr>
+        </table>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">🛠️ 如何创建和管理 Artifact</h4>
+
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>1️⃣ 自动生成</strong></p>
+          <p style="font-size: 11px; color: var(--text-body);">当你要求 AI 生成比较长的内容（如一份完整的文档），AI 会自动在 Artifact 窗口中生成。你会看到一个单独的面板。</p>
+        </div>
+
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>2️⃣ 编辑和优化</strong></p>
+          <p style="font-size: 11px; color: var(--text-body);">在 Artifact 中你可以直接修改内容，也可以告诉 AI "把第3段的语气改得更友好"，AI 会在 Artifact 中实时更新。</p>
+        </div>
+
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
+          <p style="font-size: 12px; color: var(--text-body); margin-bottom: 8px;"><strong>3️⃣ 保存和分享</strong></p>
+          <p style="font-size: 11px; color: var(--text-body);">右上角有"下载""复制链接"等按钮。你可以下载为 .docx 或 .pdf，或者复制链接分享给同事（他们可以看到这个 Artifact，但不能编辑）。</p>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">💡 Artifact 的最佳实践</h4>
+
+        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
+          <strong>建立 Artifact 库</strong><br>
+          <span style="font-size: 11px; color: var(--text-body);">在你的电脑上建一个文件夹（或在云盘、GitHub），专门保存重要的 Artifact。例如：<br>
+          📁 HR_Artifacts/<br>
+          ├─ 招聘/<br>
+          │  ├─ 招聘文案_2024.docx<br>
+          │  ├─ 面试流程.xlsx<br>
+          ├─ 员工管理/<br>
+          │  ├─ 员工手册_v2.pdf<br>
+          │  ├─ 离职流程.docx</span>
+        </div>
+
+        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
+          <strong>版本管理</strong><br>
+          <span style="font-size: 11px; color: var(--text-body);">重要的 Artifact 要做版本管理。例如"员工手册_v1_2024年" "员工手册_v2_修订后"，这样可以追踪变化历史。</span>
+        </div>
+
+        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
+          <strong>定期更新</strong><br>
+          <span style="font-size: 11px; color: var(--text-body);">一些 Artifact 需要定期更新（如招聘指南、薪酬标准）。设一个提醒，每个季度或每年更新一次。</span>
+        </div>
+
+        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px;">
+          <strong>团队共享</strong><br>
+          <span style="font-size: 11px; color: var(--text-body);">把重要的 Artifact 分享给团队。你可以直接分享链接，或者上传到团队的 Wiki/Notion，让大家都能访问和参考。</span>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: var(--text-primary); margin-bottom: 8px;">⚠️ Artifact 的注意事项</h4>
+        <div style="background: var(--danger-accent-bg); border-left:3px solid var(--danger-accent-border); padding: 12px 14px; border-radius: 6px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">
+            <strong>隐私和敏感信息：</strong> 不要在 Artifact 中放入真实的员工姓名、工资数字、身份证号等敏感信息。用"员工A""薪酬范围"这样的虚指代替。
+          </p>
+          <p style="font-size: 12px; color: var(--text-secondary);">
+            <strong>链接分享的权限：</strong> 分享 Artifact 链接时，确认你的 Claude 账户的隐私设置。如果不想让陌生人看到，不要分享链接到公网。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="otherai-automation" class="glass-box">
+      <h3>🔁 Skill 与 Automation 的关系（以 Codex 为例）</h3>
+      <p style="font-size: 12px; color: var(--text-body); line-height: 1.6; margin-bottom: 12px;">
+        Skill 和 Automation 是上下层关系，不是替代关系，理解清楚能帮你更合理地设计工作流。
+      </p>
+      <div class="mistake-item" style="background: rgba(200,100,100,0.08); border-left: 3px solid rgba(200,100,100,0.4); padding: 12px 14px; border-radius: 6px;">
+        <div class="mistake-desc" style="font-size: 11px; color: var(--text-body); line-height: 1.5; margin-bottom: 6px;">
+          <strong>区别：</strong><br>
+          • <strong>Skill</strong> = 模板 / 操作手册。定义"怎么做"，包含说明、资源和可选脚本。可以手动调用，也可以被 AI 根据需要自动选中。<br>
+          • <strong>Automation</strong> = 定时器 / 后台调度器。定义"什么时候重复做"。让 Codex 在后台按计划反复运行某个任务，结果发到 Triage/Inbox；对 Git 仓库还能选择在本地项目或独立 worktree 里跑。<br><br>
+          <strong>对比 Claude.ai 网页版：</strong> Claude.ai 没有 Automation 功能，所有操作都是手动触发。Skill 在 Claude.ai 中也可以使用，作用相同。
+        </div>
+        <div class="mistake-solution" style="font-size: 11px; color: var(--success-text-dim); font-weight: 500;">
+          ✅ 使用建议：<br>
+          • 先用 <strong>Skill</strong> 定义工作流程本身（如"每天的日报怎么写"、"候选人评估的标准"）<br>
+          • 再用 <strong>Automation</strong> 定义执行计划（如"每天早上10点自动生成日报"、"每周五自动汇总招聘进度"）<br>
+          • 官方文档提示：Automation 可以结合 Skill 使用，在自动化提示里用 @skill-name 显式触发某个 skill
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div><!-- /main -->
 
 <script>
@@ -6042,7 +6346,8 @@ ${getOutputFormatDesc()}
         'basic': 'AI基础认知',
         'method': 'AI工作方法',
         'template': '话术/Prompt/Skill库',
-        'safety': 'AI使用风险与安全'
+        'safety': 'AI使用风险与安全',
+        'otherai': '其他AI工具参考'
       };
       return titleMap[pageId] || pageId;
     }
