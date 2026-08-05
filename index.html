@@ -1048,9 +1048,8 @@
   <div class="nav-item" onclick="showPage('basic', this)">AI基础认知</div>
   <div class="nav-item" onclick="showPage('method', this)">AI工作方法</div>
   <div class="nav-item" onclick="showPage('iclaw', this)">iclaw使用指南</div>
-  <div class="nav-item" onclick="showPage('chengxiaobang', this)">程小帮使用指南</div>
+  <div class="nav-item" onclick="showPage('cxb', this)">程小帮使用指南</div>
   <div class="nav-item" onclick="showPage('template', this)">话术/Prompt/Skill库</div>
-  <div class="nav-item" onclick="showPage('safety', this)">AI使用风险与安全</div>
   <div class="nav-item" onclick="showPage('otherai', this)">其他AI工具参考</div>
   
   <div class="topnav-utils">
@@ -1090,13 +1089,13 @@
           </div>
           <div class="module-card" onclick="showPage('method', document.querySelectorAll('.nav-item')[1])">
             <div class="card-title">工作方法（通用）</div>
-            <div class="card-desc">Prompt、Skill、Token优化的通用原则与常见误区</div>
+            <div class="card-desc">Prompt、Skill、Token优化、常见误区，以及数据安全与合规要点</div>
           </div>
           <div class="module-card" onclick="showPage('iclaw', document.querySelectorAll('.nav-item')[2])">
             <div class="card-title">🐾 iclaw使用指南</div>
             <div class="card-desc">飞书里的公司官方AI助手，个性化配置、Skill、记忆机制等</div>
           </div>
-          <div class="module-card" onclick="showPage('chengxiaobang', document.querySelectorAll('.nav-item')[3])">
+          <div class="module-card" onclick="showPage('cxb', document.querySelectorAll('.nav-item')[3])">
             <div class="card-title">💻 程小帮使用指南</div>
             <div class="card-desc">桌面版公司官方AI Agent，办公文档、知识库、飞书协作等</div>
           </div>
@@ -1104,11 +1103,7 @@
             <div class="card-title">话术/Prompt/Skill库</div>
             <div class="card-desc">常用场景即用模板，可复用 Skill 资源一键获取</div>
           </div>
-          <div class="module-card" onclick="showPage('safety', document.querySelectorAll('.nav-item')[5])">
-            <div class="card-title">风险安全</div>
-            <div class="card-desc">HR 场景的数据安全、合规要点与使用规范</div>
-          </div>
-          <div class="module-card" onclick="showPage('otherai', document.querySelectorAll('.nav-item')[6])">
+          <div class="module-card" onclick="showPage('otherai', document.querySelectorAll('.nav-item')[5])">
             <div class="card-title">其他AI工具参考</div>
             <div class="card-desc">Claude / ChatGPT / Codex / DeepSeek 等工具的功能对比与用法</div>
           </div>
@@ -1561,7 +1556,7 @@
   <div id="page-method" class="page">
     <div class="page-header">
       <div class="page-title">🎯 AI工作方法（通用）</div>
-      <div class="page-sub">跟工具无关的方法论：怎么写Prompt、什么是Skill、Token怎么省、常踩的坑。具体到 iclaw / 程小帮 怎么操作，见各自专页</div>
+      <div class="page-sub">跟工具无关的方法论：怎么写Prompt、什么是Skill、Token怎么省、常踩的坑、以及安全合规要点。具体到 iclaw / 程小帮 怎么操作，见各自专页</div>
     </div>
 
     <div class="tabs">
@@ -1569,6 +1564,12 @@
       <div class="tab-btn" onclick="showTab('method','skill',this)"> Skill</div>
       <div class="tab-btn" onclick="showTab('method','token',this)"> Token优化</div>
       <div class="tab-btn" onclick="showTab('method','mistake',this)">🚨 常见误区</div>
+    </div>
+    <div style="font-size: 11px; color: var(--text-hint); margin: -14px 0 8px 2px; letter-spacing: 0.5px;">⚠️ 风险与安全</div>
+    <div class="tabs">
+      <div class="tab-btn" onclick="showTab('method','data',this)">🔐 数据安全</div>
+      <div class="tab-btn" onclick="showTab('method','compliance',this)">📋 合规性</div>
+      <div class="tab-btn" onclick="showTab('method','norm',this)">✔️ 使用规范</div>
     </div>
 
     <div id="method-prompt" class="glass-box active">
@@ -2567,7 +2568,416 @@
       </div>
     </div>
 
-  </div>
+    <div id="method-data" class="glass-box">
+      <h3 id="h3-14-数据安全">🔐 数据安全</h3>
+      
+      <div style="margin-bottom: 18px;">
+        <h4 id="h4-48-1-员工隐私保护"  style="color: var(--text-primary); margin-bottom: 10px;">1️⃣ 员工隐私保护</h4>
+        <div style="background: var(--surface-a); border-left:3px solid var(--accent-h); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>🚫 禁止上传真实员工信息：</strong></p>
+          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+            <li>✗ 真实姓名、工号、身份证号</li>
+            <li>✗ 电话号码、家庭住址、紧急联系人</li>
+            <li>✗ 生物识别信息（照片用于识别）</li>
+            <li>✗ 医疗、心理健康相关记录</li>
+          </ul>
+        </div>
+        
+        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 8px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>✅ 信息脱敏的正确做法：</strong></p>
+          <div style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+            <div style="margin-bottom: 8px;"><strong>方案1：泛化处理</strong>
+            <br>❌ 错误：「张三，25.5k，3年经验，北京」
+            <br>✅ 正确：「P3级员工，25-30k范围，3年经验，一线城市」</div>
+            
+            <div style="margin-bottom: 8px;"><strong>方案2：编号替代</strong>
+            <br>❌ 错误：把真实员工数据列成表格分析
+            <br>✅ 正确：使用「员工A、员工B」或「EMP001、EMP002」</div>
+            
+            <div style="margin-bottom: 8px;"><strong>方案3：数据聚合</strong>
+            <br>❌ 错误：分析单个员工的薪酬和绩效
+            <br>✅ 正确：「该部门平均薪酬30k，中位数28k，80%员工在25-35k范围」</div>
+          </div>
+        </div>
+        
+        <div style="background: var(--warning-bg); border: 1px solid var(--warning-border); border-radius: 6px; padding: 12px; margin-top: 10px;">
+          <p style="font-size: 11px; color: var(--text-secondary); margin: 0;"><strong>💡 实操提示：</strong> 在向AI上传数据前，问自己："如果这份数据被泄露，会对员工造成什么影响？"如果答案是"有较大风险"，就必须脱敏。</p>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 18px;">
+        <h4 id="h4-49-2-敏感信息处理薪酬绩效评估等"  style="color: var(--text-primary); margin-bottom: 10px;">2️⃣ 敏感信息处理（薪酬、绩效评估等）</h4>
+        
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+          <div style="margin-bottom: 10px;">
+            <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;"><strong>🔴 高风险信息 — 禁止上传原始数据</strong></p>
+            <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+              <li><strong>薪酬信息：</strong> 不传「李四月薪25k」，传「P3级别市场薪酬25-35k」</li>
+              <li><strong>绩效评分：</strong> 不传「王五评分3.2分」，传「该评分等级分布：优秀10%、良好70%、需改进20%」</li>
+              <li><strong>健康/隐私：</strong> 完全禁止上传（孕期、生病、心理问题等）</li>
+              <li><strong>背景调查信息：</strong> 不传详细的背景信息，仅传「通过/未通过」</li>
+            </ul>
+          </div>
+          
+          <div style="border-top: 1px solid var(--border-table-header); padding-top: 10px;">
+            <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;"><strong>🟡 中风险信息 — 需谨慎处理</strong></p>
+            <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+              <li><strong>离职原因分析：</strong> 可传「员工离职率、部门、职级」，但不传「个人离职原因」</li>
+              <li><strong>招聘反馈：</strong> 可传「5个候选人，2个通过，3个未通过」，不传「具体理由和评语」</li>
+              <li><strong>学历/背景：</strong> 脱敏后可用（如「985大学」而非「清华大学」）</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>✅ 正确的用法示例</strong></p>
+          <div style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+            <div style="margin-bottom: 8px;"><strong>「薪酬对标」</strong>
+            <br>❌ 上传：实际员工名单 + 薪酬
+            <br>✅ 上传：「公司P3级别分布：5人，薪酬范围25-30k，平均27.5k」</div>
+            
+            <div style="margin-bottom: 8px;"><strong>「绩效分析」</strong>
+            <br>❌ 上传：每个员工的评分和评语
+            <br>✅ 上传：「本期绩效分布：A等15%, B等70%, C等15%。主要改进方向：技术深度、团队协作」</div>
+            
+            <div><strong>「离职分析」</strong>
+            <br>❌ 上传：「员工A因为与经理不合离职」
+            <br>✅ 上传：「过去6个月，技术部离职率8%，高于公司平均4%。主要离职者职级为P3-P4」</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 18px;">
+        <h4 id="h4-50-3-第三方AI工具的数据存储与传输策略"  style="color: var(--text-primary); margin-bottom: 10px;">3️⃣ 第三方AI工具的数据存储与传输策略</h4>
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>在使用任何AI工具前，问这5个问题：</strong></p>
+          <ol style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0; line-height: 1.8;">
+            <li><strong>数据存储位置：</strong> 数据存储在哪个国家/地区？是否符合数据本地化要求？</li>
+            <li><strong>数据保留时间：</strong> AI厂商会保留我的数据多久？能否立即删除？</li>
+            <li><strong>数据用途：</strong> 我的数据是否会被用于训练AI模型？是否会被其他用户看到？</li>
+            <li><strong>加密和访问控制：</strong> 数据在传输和存储时如何加密？谁有权限访问？</li>
+            <li><strong>审查和合规：</strong> 该工具是否通过了公司内部安全审查？是否有用户协议和隐私政策？</li>
+          </ol>
+          
+        </div>
+      </div>
+
+      <div>
+        <h4 id="h4-51-4-信息脱敏的操作步骤"  style="color: var(--text-primary); margin-bottom: 10px;">4️⃣ 信息脱敏的操作步骤</h4>
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;"><strong>5步脱敏流程</strong></p>
+          <ol style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0; line-height: 1.9;">
+            <li><strong>识别敏感字段</strong> — 浏览数据，找出所有可识别个人的字段（姓名、工号、邮箱等）</li>
+            <li><strong>选择脱敏方法</strong> — 删除、替换、泛化或加密，根据数据类型选择</li>
+            <li><strong>创建映射表</strong> — 记录脱敏前后的对应关系（仅自己保存，不上传给AI）</li>
+            <li><strong>验证脱敏效果</strong> — 检查脱敏后的数据是否仍能识别个人身份</li>
+            <li><strong>上传和使用</strong> — 只上传脱敏后的数据给AI，保留原始数据的备份在本地</li>
+          </ol>
+          
+          <div style="background: var(--warning-bg); border: 1px solid var(--warning-border); border-radius: 6px; padding: 12px; margin-top: 10px;">
+            <p style="font-size: 11px; color: var(--text-secondary); margin: 0;"><strong>⚠️ 脱敏后要做的事：</strong> 脱敏数据使用完后，删除所有上传给AI的文件。如果数据涉及员工隐私，再做一次脱敏检查，确保没有泄露风险。</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: var(--text-primary); margin-bottom: 10px;">5️⃣ 授权 AI 操作你的账号身份时的注意事项</h4>
+        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
+          像程小帮这类桌面 Agent，授权后能<strong>以你的身份</strong>操作飞书（发消息、读写云文档、管理日程等），这类"身份代理"型授权需要格外注意：
+        </p>
+        <div style="background: var(--danger-accent-bg); border-left:3px solid var(--danger-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">
+            <strong>以你身份发出的内容，责任在你：</strong> AI 代发的消息、代写的云文档，一旦发出，别人看到的是"你"说的、"你"写的。重要或对外的内容，发出前务必自己确认过一遍。
+          </p>
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">
+            <strong>群绑定后，额度和责任都在绑定者身上：</strong> 把 Agent 拉进群并绑定后，群里任何人 @ 它都由你的账号回答，消耗的是你的模型额度；涉及高风险操作的审批卡，也只有你（绑定者）能确认，别人点"同意"不生效。建议先在小范围群里试用，再决定要不要绑定大群。
+          </p>
+          <p style="font-size: 12px; color: var(--text-secondary);">
+            <strong>「完全访问」模式要谨慎开启：</strong> 跳过审批直接执行意味着 AI 不会再等你确认高风险操作，只在非常熟悉、反复验证过的任务上开启，一般任务建议保持默认的"替我审批"。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="method-compliance" class="glass-box">
+      <h3 id="h3-15-合规性">📋 合规性</h3>
+      
+      <div style="margin-bottom: 18px;">
+        <h4 id="h4-52-1-劳动法相关--自动化决策的法律风险"  style="color: var(--text-primary); margin-bottom: 10px;">1️⃣ 劳动法相关 — 自动化决策的法律风险</h4>
+        <div style="background: var(--danger-accent-bg); border-left:3px solid var(--danger-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>🚫 AI不能单独做出的决定：</strong></p>
+          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+            <li><strong>招聘拒绝决定</strong> — AI可以初筛，最终拒绝需人工确认</li>
+            <li><strong>晋升/降级决策</strong> — AI可提供数据分析，决定权在管理者</li>
+            <li><strong>绩效等级评定</strong> — AI可提示异常值，评级权在评估者</li>
+            <li><strong>解聘决定</strong> — 完全禁止由AI自动做出，必须经过完整的人力审查和法务确认</li>
+            <li><strong>薪酬决定</strong> — AI可建议范围，最终核定需人工确认</li>
+          </ul>
+        </div>
+        
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>✅ HR场景中AI的正确角色</strong></p>
+          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+            <li><strong>招聘初筛：</strong> AI帮你快速过滤不符合基本条件的简历（节省时间）→ 人工复审和面试</li>
+            <li><strong>数据分析：</strong> AI生成薪酬对标、员工留存风险分析 → 管理层参考做决策</li>
+            <li><strong>提案和建议：</strong> AI提出改进意见，如「可考虑推出远程工作政策」 → 组织讨论和评估</li>
+            <li><strong>流程自动化：</strong> AI自动生成体检提醒、入职清单 → 但涉及重要决定的仍需人工审批</li>
+          </ul>
+        </div>
+        
+        <div style="background: var(--warning-bg); border: 1px solid var(--warning-border); border-radius: 6px; padding: 12px;">
+          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;"><strong>⚖️ 法律风险提示</strong></p>
+          <p style="font-size: 11px; color: var(--text-body); margin: 0;">在中国，如果因为AI的建议导致员工被违法解雇、被不公平对待，公司和决策人需承担法律责任。即使AI做了推荐，人也要审核。建议：对所有涉及重要人事决定的AI应用进行法务审查。</p>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 18px;">
+        <h4 id="h4-53-2-数据保护法规--本地化存储与访问要求"  style="color: var(--text-primary); margin-bottom: 10px;">2️⃣ 数据保护法规 — 本地化存储与访问要求</h4>
+        
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>中国企业需要了解的法规</strong></p>
+          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0; line-height: 1.8;">
+            <li><strong>《个人信息保护法 (PIPL)》：</strong> 禁止任意跨境传输个人信息。包含员工信息、应聘者信息的数据，默认不能发送到国外服务器</li>
+            <li><strong>《数据安全法》：</strong> 重要数据（如员工花名册、薪酬表）应本地存储</li>
+            <li><strong>《劳动法》第三十八条：</strong> 保障员工知情权，AI使用可能影响员工，需告知</li>
+          </ul>
+        </div>
+        
+        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>✅ 合规操作方案</strong></p>
+          <div style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+            <div style="margin-bottom: 8px;"><strong>脱敏后上传（推荐）</strong>
+            <br>• 在本地脱敏数据（删除敏感标识）
+            <br>• 上传脱敏数据给国外AI服务
+            <br>• 用脱敏后的结果，结合本地员工信息做决策</div>
+            
+            <div style="margin-bottom: 8px;"><strong>国内私有化部署</strong>
+            <br>• 在公司内部服务器部署AI模型
+            <br>• 所有数据不离开公司
+            <br>• 成本最高，但最安全</div>
+            
+            <div><strong>向员工披露</strong>
+            <br>• 在HR政策或员工手册中说明：「HR工作中可能使用AI辅助决策，但最终决策由人工做出」
+            <br>• 如果用AI做数据分析涉及员工，建议知会员工或工会</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 18px;">
+        <h4 id="h4-54-3-行业规范与内部审批流程"  style="color: var(--text-primary); margin-bottom: 10px;">3️⃣ 行业规范与内部审批流程</h4>
+        
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;"><strong>建议的内部AI治理框架</strong></p>
+          
+          <div style="margin-bottom: 12px;">
+            <p style="font-size: 11px; color: var(--text-secondary); font-weight: 600; margin-bottom: 6px;">第一步：建立AI使用审批制度</p>
+            <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+              <li><strong>低风险应用</strong>（如生成邮件模板）→ HR主管批准即可</li>
+              <li><strong>中风险应用</strong>（如数据分析）→ HR总监 + IT安全审查</li>
+              <li><strong>高风险应用</strong>（如涉及人事决定）→ HR总监 + 法务 + 信息安全部门 + CEO或董事会批准</li>
+            </ul>
+          </div>
+          
+          <div style="margin-bottom: 12px;">
+            <p style="font-size: 11px; color: var(--text-secondary); font-weight: 600; margin-bottom: 6px;">第二步：建立使用日志和记录</p>
+            <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+              <li>记录：何时、何人、用AI做了什么、输出了什么、如何审核的</li>
+              <li>目的：可追溯性。如果出现争议，能证明整个决策过程都经过人工审核</li>
+              <li>保留期：建议至少1年</li>
+            </ul>
+          </div>
+          
+          <div>
+            <p style="font-size: 11px; color: var(--text-secondary); font-weight: 600; margin-bottom: 6px;">第三步：定期审查和更新规范</p>
+            <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+              <li>每季度审查一次AI使用情况和合规风险</li>
+              <li>如果发现问题，及时调整规范</li>
+              <li>培训所有使用AI的员工了解最新规范</li>
+            </ul>
+          </div>
+          
+          <div style="background: var(--accent-c); border: 1px solid var(--accent-e); border-radius: 6px; padding: 12px; margin-top: 12px;">
+            <p style="font-size: 11px; color: var(--text-secondary); margin: 0;"><strong>💡 参考模板：</strong> 可以参考《生成式人工智能服务管理暂行办法》等国家级指南，制定符合公司规模的内部政策。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="method-norm" class="glass-box">
+      <h3 id="h3-17-使用规范">✔️ 使用规范</h3>
+      
+      <div style="margin-bottom: 18px;">
+        <h4 id="h4-58-1-哪些场景不适合用AI"  style="color: var(--text-primary); margin-bottom: 10px;">1️⃣ 哪些场景不适合用AI？</h4>
+        
+        <div style="background: var(--danger-accent-bg); border-left:3px solid var(--danger-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>🚫 禁止场景</strong></p>
+          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0; line-height: 1.8;">
+            <li><strong>涉及员工隐私的敏感决定</strong> — 例如判断某员工是否应该被解聘、是否有心理健康问题等</li>
+            <li><strong>完全自动化的人事决策</strong> — 例如让AI完全自动审批假期申请、调薪申请等（必须有人工最后审核）</li>
+            <li><strong>上传未脱敏的员工数据</strong> — 含真实姓名、联系方式、身份证号等的数据表</li>
+            <li><strong>直接用AI的输出作为员工沟通</strong> — 特别是敏感沟通（辞退通知、降薪通知等）必须经过人工个性化处理</li>
+            <li><strong>用AI做出承诺性的决定</strong> — 例如「AI说可以给你这个薪资」而没有经过正式的谈判和审批</li>
+            <li><strong>忽视法律咨询</strong> — 涉及法律风险的HR决定，不能只依赖AI分析，必须咨询律师</li>
+          </ul>
+        </div>
+        
+        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>✅ 适合场景</strong></p>
+          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0; line-height: 1.8;">
+            <li><strong>信息整理和总结</strong> — 整理面试笔记、总结员工反馈</li>
+            <li><strong>内容生成（需审核）</strong> — 写招聘文案、邮件模板、员工手册等（必须修改和审核）</li>
+            <li><strong>数据分析（脱敏数据）</strong> — 分析薪酬趋势、员工流失风险等（基于脱敏和聚合数据）</li>
+            <li><strong>流程优化建议</strong> — AI提出改进招聘流程、绩效管理流程的想法</li>
+            <li><strong>初步筛选</strong> — 简历初筛、应聘表初步审核（最终还需人工复审）</li>
+            <li><strong>知识库和FAQ</strong> — 用AI生成公司政策的常见问题解答</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 18px;">
+        <h4 id="h4-59-2-信息脱敏的操作步骤详细版"  style="color: var(--text-primary); margin-bottom: 10px;">2️⃣ 信息脱敏的操作步骤（详细版）</h4>
+        
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 12px;"><strong>脱敏前的检查清单</strong></p>
+          <ol style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0; line-height: 1.9;">
+            <li><strong>识别数据</strong>
+              <ul style="font-size: 11px; padding-left: 20px; margin-top: 4px;">
+                <li>□ 员工姓名 → 用「员工A」或「EMP001」替换</li>
+                <li>□ 工号/ID → 删除或用新ID替换</li>
+                <li>□ 邮箱/电话 → 删除</li>
+                <li>□ 身份证号 → 删除（仅保留「身份已验证」标记）</li>
+              </ul>
+            </li>
+            
+            <li><strong>脱敏薪酬数据</strong>
+              <ul style="font-size: 11px; padding-left: 20px; margin-top: 4px;">
+                <li>□ 「25k」→ 「25-30k范围」或「P3级别市场薪资」</li>
+                <li>□ 「张三加薪8%」→ 「该级别平均加薪6-10%」</li>
+              </ul>
+            </li>
+            
+            <li><strong>脱敏绩效数据</strong>
+              <ul style="font-size: 11px; padding-left: 20px; margin-top: 4px;">
+                <li>□ 「王五评分3.2/5」→ 「该评分等级人数占15%」</li>
+                <li>□ 不传具体评语，只传分布</li>
+              </ul>
+            </li>
+            
+            <li><strong>脱敏背景信息</strong>
+              <ul style="font-size: 11px; padding-left: 20px; margin-top: 4px;">
+                <li>□ 「毕业于清华大学」→ 「顶级985大学」</li>
+                <li>□ 「在Google工作3年」→ 「在大型科技公司工作3年」</li>
+              </ul>
+            </li>
+            
+            <li><strong>验证脱敏效果</strong> — 脱敏后的数据，是否仍然能识别出具体某个人？如果能，继续脱敏</li>
+          </ol>
+          
+          <div style="background: var(--warning-bg); border: 1px solid var(--warning-border); border-radius: 6px; padding: 12px; margin-top: 12px;">
+            <p style="font-size: 11px; color: var(--text-secondary); margin: 0;"><strong>⚠️ 脱敏后的处理：</strong> 脱敏数据用完后，删除所有上传给AI的文件。原始数据保存在公司内部受保护的位置。如果涉及多个员工的数据，脱敏要特别谨慎，因为多个特征的组合可能仍然能识别个人。</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 18px;">
+        <h4 id="h4-60-3-内部审批流程与使用记录"  style="color: var(--text-primary); margin-bottom: 10px;">3️⃣ 内部审批流程与使用记录</h4>
+        
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;"><strong>建议的AI使用审批表</strong></p>
+          
+          <table style="width: 100%; font-size: 10px; color: var(--text-body); border-collapse: collapse; margin-bottom: 10px;">
+            <tr style="background: var(--surface-d); border-bottom: 1px solid var(--border-table-header);">
+              <td style="padding: 8px; border-right: 1px solid var(--border-table); font-weight: 600; color: var(--text-primary);">项目</td>
+              <td style="padding: 8px; font-weight: 600; color: var(--text-primary);">内容</td>
+            </tr>
+            
+            <tr style="border-bottom: 1px solid var(--border-table);">
+              <td style="padding: 8px; border-right: 1px solid var(--border-table);">应用名称</td>
+              <td style="padding: 8px;">例：「招聘初筛AI助手」</td>
+            </tr>
+            
+            <tr style="border-bottom: 1px solid var(--border-table);">
+              <td style="padding: 8px; border-right: 1px solid var(--border-table);">用途</td>
+              <td style="padding: 8px;">AI将用来做什么？例：「初步筛选简历，过滤不符合基本要求的候选人」</td>
+            </tr>
+            
+            <tr style="border-bottom: 1px solid var(--border-table);">
+              <td style="padding: 8px; border-right: 1px solid var(--border-table);">涉及数据</td>
+              <td style="padding: 8px;">会上传什么数据？「简历（已脱敏，仅保留技能和经验）」</td>
+            </tr>
+            
+            <tr style="border-bottom: 1px solid var(--border-table);">
+              <td style="padding: 8px; border-right: 1px solid var(--border-table);">风险等级</td>
+              <td style="padding: 8px;">低/中/高？为什么？</td>
+            </tr>
+            
+            <tr style="border-bottom: 1px solid var(--border-table);">
+              <td style="padding: 8px; border-right: 1px solid var(--border-table);">审批人</td>
+              <td style="padding: 8px;">谁批准了这个应用？何时批准？</td>
+            </tr>
+            
+            <tr style="border-bottom: 1px solid var(--border-table);">
+              <td style="padding: 8px; border-right: 1px solid var(--border-table);">使用记录</td>
+              <td style="padding: 8px;">谁、何时、用AI做了什么、结果如何、如何审核的</td>
+            </tr>
+            
+            <tr>
+              <td style="padding: 8px; border-right: 1px solid var(--border-table);">审核反馈</td>
+              <td style="padding: 8px;">使用中发现的问题？如何改进？</td>
+            </tr>
+          </table>
+          
+          <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px;">
+            <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>✅ 使用记录的目的</strong></p>
+            <p style="font-size: 11px; color: var(--text-body); margin: 0;">• 可追溯性：出了问题能查到整个决策过程<br>• 合规证明：证明公司有严格的AI治理<br>• 持续改进：发现问题后，调整审批标准或使用方式</p>
+          </div>
+        </div>
+        
+        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
+          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;"><strong>不同风险等级的审批要求</strong></p>
+          
+          <div style="margin-bottom: 10px;">
+            <p style="font-size: 11px; color: var(--success-text-dim); font-weight: 600; margin-bottom: 6px;">🟢 低风险 — 快速审批</p>
+            <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+              <li>例：生成邮件模板、写招聘文案</li>
+              <li>审批：HR主管批准即可，无需其他部门</li>
+              <li>记录：简单记录使用日期、用途、谁在用</li>
+            </ul>
+          </div>
+          
+          <div style="margin-bottom: 10px;">
+            <p style="font-size: 11px; color: rgba(255,200,0,0.85); font-weight: 600; margin-bottom: 6px;">🟡 中风险 — 标准审批</p>
+            <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+              <li>例：分析员工数据、薪酬对标、离职风险分析</li>
+              <li>审批：HR总监 + IT/安全部门批准</li>
+              <li>要求：数据必须脱敏；详细的使用记录；定期审查</li>
+            </ul>
+          </div>
+          
+          <div>
+            <p style="font-size: 11px; color: rgba(200,100,100,0.85); font-weight: 600; margin-bottom: 6px;">🔴 高风险 — 严格审批</p>
+            <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+              <li>例：涉及招聘/晋升/解聘的决策支持、法律意见</li>
+              <li>审批：HR总监 + 法务 + CTO/CISO + CEO/董事会</li>
+              <li>要求：多轮审批；详细的设计文档；第三方安全评估；建立反馈机制</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: var(--accent-c); border: 1px solid var(--accent-e); border-radius: 8px; padding: 12px;">
+        <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;"><strong>🎯 AI使用的黄金法则</strong></p>
+        <ol style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
+          <li><strong>人为主，AI辅助</strong> — AI只是工具，最终决策权在人</li>
+          <li><strong>数据脱敏，隐私优先</strong> — 任何员工个人信息上传前，先脱敏</li>
+          <li><strong>关键决定需审批</strong> — 涉及人事的重要决定，必须经过多人审核</li>
+          <li><strong>结果要验证</strong> — 数据相关的AI输出，必须自己查证</li>
+          <li><strong>流程要记录</strong> — 用AI的过程要有迹可查，便于后续审查</li>
+          <li><strong>定期审视和改进</strong> — 每季度检查一次AI的使用情况，是否合规、有效、有风险</li>
+        </ol>
+      </div>
+    </div>
+    </div>
 
   <!-- ===== iclaw 使用指南 ===== -->
   <div id="page-iclaw" class="page">
@@ -2582,7 +2992,6 @@
       <div class="tab-btn" onclick="showTab('iclaw','token',this)">💰 Token优化指令</div>
       <div class="tab-btn" onclick="showTab('iclaw','memory',this)">🔁 持续任务与记忆</div>
       <div class="tab-btn" onclick="showTab('iclaw','media',this)">📷 图片与文件能力</div>
-      <div class="tab-btn" onclick="showTab('iclaw','mistake',this)">🚨 误区案例</div>
       <div class="tab-btn" onclick="showTab('iclaw','advanced',this)">🎓 进阶玩法</div>
     </div>
 
@@ -2631,7 +3040,7 @@
         <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px;">
           <strong>📋 参考的内容包括：</strong><br>
           <span style="font-size: 11px; color: var(--text-body);">
-            • 公司的 AI 使用政策和规范（详见「AI使用风险与安全」页）<br>
+            • 公司的 AI 使用政策和规范（详见「AI工作方法（通用）」页的 数据安全/合规性/使用规范 tab）<br>
             • HR 工作的标准流程和评估标准<br>
             • 团队已经验证过的 Skill 和工作流程
           </span>
@@ -2828,6 +3237,11 @@
           </ul>
           <p style="font-size: 11px; color: var(--text-hint); margin-top: 8px; font-style: italic;">如果需要精确定时（比如每周一早上9点整发周报到指定频道），用 Cron 定时任务更合适。</p>
         </div>
+        <div style="background: rgba(200,100,100,0.08); border-left: 3px solid rgba(200,100,100,0.4); padding: 12px 14px; border-radius: 6px; margin-top: 10px;">
+          <p style="font-size: 11px; color: var(--text-body); line-height: 1.6;">
+            <strong>Skill / Cron / 心跳机制怎么选：</strong> 在 iclaw 里，"自动化"具体分成两种——<strong>Cron 定时任务</strong>是定时器，定义"什么时间点重复做"，需要精确定时时用（如"每周一早上9点整自动生成周报，推送到指定频道"）；<strong>心跳机制</strong>是后台巡检，定义"隔一段时间主动看看有没有需要关注的事"，时间可以有偏差。如果只需要一个"工作模板"，用 Skill；需要"定时重复执行"，用 Cron；需要"AI主动判断要不要提醒你"，用心跳机制；三者也可以组合使用。
+          </p>
+        </div>
       </div>
 
       <div>
@@ -2888,19 +3302,6 @@
       </div>
     </div>
 
-    <div id="iclaw-mistake" class="glass-box">
-      <h3>🚨 误区案例：Skill 与 心跳机制/定时任务</h3>
-      <p style="font-size: 12px; color: var(--text-body); margin-bottom: 12px;">通用框架见「AI工作方法（通用）」页误区11。这里是在 iclaw 里的具体案例。</p>
-      <div class="mistake-item" style="background: rgba(200,100,100,0.08); border-left: 3px solid rgba(200,100,100,0.4); padding: 12px 14px; border-radius: 6px;">
-        <div style="font-size: 11px; color: var(--text-body); line-height: 1.6;">
-          在 iclaw 里，"自动化"具体分成两种：<br><br>
-          • <strong>Cron 定时任务</strong> = 定时器。定义"什么时间点重复做"，需要精确定时时用（如"每周一早上9点整自动生成周报，推送到指定频道"）。<br>
-          • <strong>心跳机制（Heartbeat）</strong> = 后台巡检。定义"隔一段时间主动看看有没有需要关注的事"，时间可以有偏差，适合合并多项检查（如"每隔一小时看看邮件和日历，有急事再告诉我"）。<br><br>
-          如果只需要一个"工作模板"，用 Skill；需要"定时重复执行"，用 Cron；需要"AI主动判断要不要提醒你"，用心跳机制；三者也可以组合使用。
-        </div>
-      </div>
-    </div>
-
     <div id="iclaw-advanced" class="glass-box">
       <h3>🎓 进阶玩法 — 同时做几件事</h3>
 
@@ -2946,7 +3347,7 @@
   </div>
 
   <!-- ===== 程小帮使用指南 ===== -->
-  <div id="page-chengxiaobang" class="page">
+  <div id="page-cxb" class="page">
     <div class="page-header">
       <div class="page-title">💻 程小帮使用指南</div>
       <div class="page-sub">程小帮是公司官方的桌面版 AI Agent，全员可用。通用的方法论见「AI工作方法（通用）」页</div>
@@ -3001,10 +3402,10 @@
       <h3>💰 公司 Coding Plan 与多模型</h3>
       <div style="margin-bottom: 16px;">
         <div style="background: var(--accent-b); border-left: 3px solid var(--accent-h); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">下载后，会直接<strong>使用coding plan的额度</strong>，不需要自己配置。</p>
+          <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">企业版订阅登录后，你可以<strong>直接使用公司下发的模型额度</strong>，不需要自己配置 API Key。</p>
         </div>
         <div style="background: var(--accent-b); border-left: 3px solid var(--accent-h); padding: 12px 14px; border-radius: 6px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin: 0;"><strong>可以切换模型：</strong> 输入框下方能切换不同的模型和推理模式，例如GPT, Claude的Sonnet。简单问答用轻量模型响应更快，复杂分析用更强的模型效果更好——按需切换即可，不用一直用同一个。</p>
+          <p style="font-size: 12px; color: var(--text-secondary); margin: 0;"><strong>可以切换模型：</strong> 输入框下方能切换不同的模型和推理模式。简单问答用轻量模型响应更快，复杂分析用更强的模型效果更好——按需切换即可，不用一直用同一个。</p>
         </div>
       </div>
 
@@ -3016,6 +3417,10 @@
         </ul>
       </div>
 
+      <div>
+        <div style="background: var(--warning-bg); border-left: 3px solid rgba(255,200,0,0.4); padding: 12px 14px; border-radius: 6px;">
+          <p style="font-size: 11px; color: var(--text-secondary); margin: 0;">如果公司还给团队配了 Claude Code、Codex 等编程 CLI 工具，侧边栏「更多」→「AI Plan 配置」可以把订阅额度接进这些工具里用。这个偏技术岗常用，日常办公一般不用管。</p>
+        </div>
       </div>
     </div>
 
@@ -3040,7 +3445,7 @@
       <div style="margin-bottom: 16px;">
         <h4 style="color: var(--text-primary); margin-bottom: 8px;">1️⃣ 桌面端里让 AI 操作你的飞书</h4>
         <p style="font-size: 12px; color: var(--text-body);">在设置页「飞书操作授权」完成授权后，AI 能以你的身份处理飞书消息、读写云文档、管理日程等。比如直接说"把这篇总结发到 xx 群"，它会帮你发出去。</p>
-        <p style="font-size: 11px; color: var(--text-hint); font-style: italic; margin-top: 6px;">这是授权 AI 以你的身份操作，相关注意事项见「AI使用风险与安全」页。</p>
+        <p style="font-size: 11px; color: var(--text-hint); font-style: italic; margin-top: 6px;">这是授权 AI 以你的身份操作，相关注意事项见「AI工作方法（通用）」页的 数据安全 tab。</p>
       </div>
 
       <div>
@@ -3176,9 +3581,9 @@
     </div>
 
     <div class="tabs">
-      <div class="tab-btn active" onclick="showTab('template','tools',this)">🔍 Prompt工具</div>
+      <div class="tab-btn active" onclick="showTab('template','skill',this)">📖 Skill 库</div>
+      <div class="tab-btn" onclick="showTab('template','tools',this)">🔍 Prompt工具</div>
       <div class="tab-btn" onclick="showTab('template','quick',this)">💬 常用话术</div>
-      <div class="tab-btn" onclick="showTab('template','skill',this)">📖 Skill 库</div>
     </div>
         <div id="template-quick" class="glass-box">
       <h3>💬 常用话术</h3>
@@ -3537,7 +3942,7 @@ function expandSection(sectionId) {
         </div>
 
         
-    <div id="template-skill" class="glass-box">
+    <div id="template-skill" class="glass-box active">
       <style>
         /* === Skill 库分类标签 === */
         .skill-sub-tabs {
@@ -3638,7 +4043,51 @@ function expandSection(sectionId) {
           border-color: rgba(34,197,94,0.3);
           color: #22c55e;
         }
-      
+        /* === Skill 资源链接块 === */
+        .skill-resource {
+          padding: 10px 0;
+          border-bottom: 1px solid var(--surface-h);
+        }
+        .skill-resource:last-child {
+          border-bottom: none;
+          padding-bottom: 0;
+        }
+        .skill-resource:first-child {
+          padding-top: 4px;
+        }
+        .skill-resource-link {
+          display: inline-block;
+          font-size: 13px;
+          font-weight: 600;
+          color: rgba(99,140,255,0.85);
+          text-decoration: none;
+          margin-bottom: 3px;
+          word-break: break-all;
+          transition: color 0.2s;
+        }
+        .skill-resource-link:hover {
+          color: rgba(79,172,254,1);
+          text-decoration: underline;
+        }
+        .skill-resource-desc {
+          font-size: 11.5px;
+          color: var(--text-muted);
+          line-height: 1.75;
+          margin: 3px 0 0 0;
+          white-space: pre-line;
+        }
+        .skill-subgroup-title {
+          font-size: 12px;
+          font-weight: 600;
+          color: var(--text-secondary);
+          margin: 16px 0 6px 0;
+          padding-left: 8px;
+          border-left: 3px solid rgba(99,140,255,0.3);
+        }
+        .skill-subgroup-title:first-child {
+          margin-top: 0;
+        }
+
     
     /* 移动端响应 */
     @media (max-width: 1400px) {
@@ -3745,38 +4194,341 @@ function expandSection(sectionId) {
 
       <!-- 分类标签 -->
       <div class="skill-sub-tabs">
-        <div class="skill-sub-tab active" onclick="showSkillTab('office')">💼 日常办公</div>
+        <div class="skill-sub-tab active" onclick="showSkillTab('official')">🏛️ 官方规范</div>
+        <div class="skill-sub-tab" onclick="showSkillTab('guardrails')">⚖️ AI行为规范</div>
+        <div class="skill-sub-tab" onclick="showSkillTab('enterprise')">🏢 企业合集</div>
+        <div class="skill-sub-tab" onclick="showSkillTab('microsoft')">🪟 Microsoft</div>
+        <div class="skill-sub-tab" onclick="showSkillTab('office')">💼 日常办公</div>
+        <div class="skill-sub-tab" onclick="showSkillTab('hr')">👥 HR全链路</div>
         <div class="skill-sub-tab" onclick="showSkillTab('design')">🎨 UI设计</div>
-        <div class="skill-sub-tab" onclick="showSkillTab('hr')">👥 HR</div>
+        <div class="skill-sub-tab" onclick="showSkillTab('datawriting')">📊 数据与写作</div>
+      </div>
+
+      <!-- ===== 🏛️ 官方规范 ===== -->
+      <div id="skill-official" class="skill-section active">
+        <div class="skill-block">
+          <div class="skill-block-header">
+            <h4>📐 格式规范与官方源头</h4>
+          </div>
+          <p class="skill-desc">SKILL.md 格式的官方定义和教程，理解"一个标准 Skill 文件长什么样、该怎么写"</p>
+          <div class="skill-resource">
+            <a href="https://github.com/anthropics/skills" target="_blank" rel="noopener noreferrer" class="skill-resource-link">Anthropic 官方 Agent Skills</a>
+            <p class="skill-resource-desc">Anthropic 官方维护的 Agent Skills 仓库，是 SKILL.md 格式的源头。包含 docx（Word 文档处理）、pdf、pptx（PPT 生成）、xlsx（Excel 处理）四个文档技能，以及创意设计、技术开发、企业沟通等示例。每个技能包含 SKILL.md 主文件 + scripts/ 脚本 + 参考文档。仓库内还有 template/ 模板目录和 spec/ 规范文档，适合学习"一个标准 Skill 文件长什么样、该怎么写"。注意：官方仓库目前没有 HR 相关技能。MIT 协议。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/openai/skills" target="_blank" rel="noopener noreferrer" class="skill-resource-link">OpenAI 官方 Skills</a>
+            <p class="skill-resource-desc">OpenAI 官方 Skills 仓库，已标记为 deprecated（弃用）。首发 6 个角色插件：数据分析、创意写作、销售、产品设计、股票分析、投行，没有 HR 相关技能。官方表示未来会迁移到 openai/plugins 并增加更多角色。可作为"大厂如何定义 Agent 技能"的参考，但不再推荐直接使用。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://learn.microsoft.com/zh-cn/office/dev/add-ins/excel/excel-copilot-skill" target="_blank" rel="noopener noreferrer" class="skill-resource-link">微软官方 Excel Copilot 技能规范</a>
+            <p class="skill-resource-desc">微软官方文档，手把手教你给 Excel Copilot 写一个 SKILL.md 技能文件。完整流程：建文件夹 → 写 SKILL.md（含 YAML frontmatter 的 name/description/metadata.tags 字段）→ 加数据护栏（指定可用数据范围）→ 加执行指引 → 写 Office.js 脚本 → 建 manifest → 打包 → 测试。这是理解"SKILL.md 怎么写"最权威的官方教程，中文版可直接阅读。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://handsonai.info/platforms/m365-copilot/getting-started" target="_blank" rel="noopener noreferrer" class="skill-resource-link">M365 Copilot Cowork 添加 Skills 指南</a>
+            <p class="skill-resource-desc">讲解 M365 Copilot Cowork（Frontier 预览功能）如何发现和使用自定义 SKILL.md 文件。操作步骤：在 OneDrive 创建 Documents/Cowork/Skills/ 文件夹 → 从 GitHub 下载 SKILL.md（点 Raw 按钮保存）→ 放入该文件夹 → Cowork 下次对话时自动发现并加载。上限 20 个自定义技能，每个文件不超过 1MB。适合想在 M365 环境中部署自定义技能的用户。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== ⚖️ AI行为规范 ===== -->
+      <div id="skill-guardrails" class="skill-section">
+        <div class="skill-block">
+          <div class="skill-block-header">
+            <h4>🛡️ 内容护栏</h4>
+          </div>
+          <p class="skill-desc">防注入 / 防幻觉 / 防泄密 / 伦理边界 — 用 Skill 给 AI 立安全规矩</p>
+          <div class="skill-resource">
+            <a href="https://github.com/MindfulwareDev/PromptProof" target="_blank" rel="noopener noreferrer" class="skill-resource-link">PromptProof</a>
+            <p class="skill-resource-desc">60+ 个即插即用的"护栏 prompt"，可直接塞进系统提示词、Custom Instructions 或 API 调用。覆盖 8 大类 50+ 个 guard：防 prompt 注入、防幻觉、防偏见、PII 个人信息保护、角色越界锁定、高危操作把关、输出合规校验等。带 CLI 工具 + 对抗测试套件 + OpenAI/Anthropic/Ollama/LangChain 集成模板。GPL v3 协议。适合需要给 AI 加"安全围栏"的开发者和企业用户。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/drewdeal/AI-Constitution" target="_blank" rel="noopener noreferrer" class="skill-resource-link">AI-Constitution（AI 宪法模板）</a>
+            <p class="skill-resource-desc">一份可嵌入任何 AI 系统的"宪法"模板，定义 AI 的核心价值观、行为指令、安全策略、人格身份规则、交互规范、自主性约束。提供 constitution.md（人类可读）+ constitution.yaml（机器可读）+ 注释版 + 扩展模块。CC0 公共域协议，可商用闭源。适合需要为 AI 定义"底线规则"的场景，比如企业 AI 助手、客服机器人等。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/daideguchi/constitutional-ai-templates" target="_blank" rel="noopener noreferrer" class="skill-resource-link">Constitutional AI Templates</a>
+            <p class="skill-resource-desc">15+ 套预置伦理框架模板，按行业分类：企业通用、数据隐私（GDPR）、金融合规、法律、医疗（HIPAA/医学伦理）、教育（K12/科研）、AI 研究伦理（人类受试者）。每套模板带自动安全执行、合规追踪、自改进机制。适合需要按行业合规要求约束 AI 行为的场景。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/AxonLabsDev/BodAIGuard" target="_blank" rel="noopener noreferrer" class="skill-resource-link">BodAIGuard</a>
+            <p class="skill-resource-desc">通用 AI Agent 行为护栏框架，含 45 条 block 规则 + 45 条 confirm 规则，覆盖 12 类风险（含路径规则）。支持 5 种执行模式：hooks、HTTP 代理、MCP stdio 代理、系统提示词注入、REST API。防 prompt 注入三级检测，fail-closed 默认拦截（无法判断时一律拦截）。兼容 Claude Code / Codex / Gemini。适合需要生产级 Agent 安全防护的团队。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/asgeirtj/system_prompts_leaks" target="_blank" rel="noopener noreferrer" class="skill-resource-link">system_prompts_leaks</a>
+            <p class="skill-resource-desc">逆向工程主流 AI（ChatGPT、Claude、Gemini）的系统提示词，揭示商业 AI 底层行为逻辑——包括拒绝规则、伦理约束、内容过滤机制。适合研究"专业 AI 是怎么被规范行为的"的真实样本，可从中学习大厂如何编写系统级行为约束。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/thu-coai/safety-prompts" target="_blank" rel="noopener noreferrer" class="skill-resource-link">thu-coai/safety-prompts（清华安全评测集）</a>
+            <p class="skill-resource-desc">清华大学 COAI 实验室出品的中文大模型安全评测 prompt 集，涵盖多种指令攻击场景：prompt 泄漏、角色扮演后发指令、不安全主题询问、不安全观点诱导等。既是评测工具集，也是"AI 该怎么识别和拒绝危险指令"的对照样本。适合需要做中文 AI 安全测试或研究拒绝策略的场景。</p>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="skill-block-header">
+            <h4>⚙️ 工作流纪律框架</h4>
+          </div>
+          <p class="skill-desc">强制 AI 按规范流程做事 — 先想后做、测试先行、做完要审</p>
+          <div class="skill-resource">
+            <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener noreferrer" class="skill-resource-link">Superpowers</a>
+            <p class="skill-resource-desc">作者 Jesse Vincent（@obra，30 年开源老兵）。核心理念：不给 AI 加能力，而是给 AI 加纪律。把"资深工程师的工作习惯"固化成 14 个可组合的 Skill 文件（Markdown），强制 Agent 在每个关键决策点先加载并按清单执行。核心铁律：TDD（没有失败测试就写生产代码 → 框架会删掉它重来）、先想后做（brainstorming 苏格拉底式提问 → 没出设计文档不许进下一阶段）、完成声明必须验证（禁止"看起来对了"就算完）。支持 11 类编码 Agent（Claude Code / Cursor / Codex 等）。MIT 协议。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noopener noreferrer" class="skill-resource-link">Addy Osmani 的 agent-skills</a>
+            <p class="skill-resource-desc">Google Chrome 团队工程负责人 Addy Osmani 出品。把高级工程师的工程判断编码成 24 个结构化 Skill + 8 个斜杠命令 + 4 个 Agent 角色。核心哲学：①流程优先非散文 ②反合理化（每个技能内置"AI 可能跳过步骤的借口表"+ 反驳）③验证不可协商 ④融入 Google 工程文化（Hyrum's Law / Beyonce Rule / 测试金字塔 / Chesterton's Fence）。8 个命令覆盖全生命周期：/spec → /plan → /build → /test → /review → /code-simplify → /webperf → /ship。SKILL.md 格式与 Superpowers 同源可互换。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/github/spec-kit" target="_blank" rel="noopener noreferrer" class="skill-resource-link">GitHub spec-kit</a>
+            <p class="skill-resource-desc">GitHub 官方开源，规范优先开发（Specification-Driven Development）。独有 constitution（宪法）概念——一套不可变的项目原则（编码标准、架构约束、安全策略），所有后续开发都受它约束。四阶段门控流程：Constitution（定原则）→ Specify（写 spec.md）→ Plan（写 plan.md）→ Tasks（AI 拆任务）→ Implement（AI 执行），每阶段需人工批准才能进下一步。Agent 无关，支持 20+ AI 编码代理。适合需要防止 AI 跑飞的团队。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/bmad-code-org/BMAD-METHOD" target="_blank" rel="noopener noreferrer" class="skill-resource-link">BMAD-METHOD</a>
+            <p class="skill-resource-desc">用多个 AI 角色模拟一个人类敏捷团队——Analyst（分析师）、PM（产品经理）、Architect（架构师）、Dev（开发）、QA（测试）、Scrum-Master（敏捷教练）。每个角色有独立的指令文件和职责边界，通过角色间的协作完成从需求到交付的全流程。优势：角色分工明确、敏捷融合深、可扩展到非编码领域。适合需要多 Agent 协作的复杂项目。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/Fission-AI/OpenSpec" target="_blank" rel="noopener noreferrer" class="skill-resource-link">OpenSpec</a>
+            <p class="skill-resource-desc">专注现有代码库的迭代变更管理，核心理念是"承认大部分工作发生在已有项目上（1→n）而非全新项目（0→1）"。流程：提案（写 spec）→ 审查 → 实现 → 归档。最小化设置，不需要从头搭建。适合在已有项目中引入规范化的 AI 协作流程。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/Deepractice/PromptX" target="_blank" rel="noopener noreferrer" class="skill-resource-link">PromptX</a>
+            <p class="skill-resource-desc">通过 MCP 协议注入角色化上下文，核心理念"把 AI 当人不当软件"。一句话即可创建 AI 人格（如"你是一个金融科技技术 PM"），快速集成 Slack、PostgreSQL 等外部工具作为 AI 的能力扩展。894 次提交，MIT 协议。适合需要快速给 AI 定义专业角色并连接外部系统的场景。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 🏢 企业技能合集 ===== -->
+      <div id="skill-enterprise" class="skill-section">
+        <div class="skill-block">
+          <div class="skill-block-header">
+            <h4>🏢 企业级技能合集</h4>
+          </div>
+          <p class="skill-desc">聚合多岗位、多场景的 Skill 仓库，一站式获取企业全角色 AI 技能</p>
+          <div class="skill-resource">
+            <a href="https://github.com/w95/awesome-claude-corporate-skills" target="_blank" rel="noopener noreferrer" class="skill-resource-link">w95/awesome-claude-corporate-skills</a>
+            <p class="skill-resource-desc">166 个生产级企业 Skill，按 14 个岗位分类：高管领导力、财务（42 个）、HR（9 个）、营销、销售、法务合规、运营、IT 工程、产品、数据、客户成功、采购、文档处理。聚合了 Anthropic 官方 + 社区 + 原创技能。HR 分类含：JD 写作、面试套件、入职计划、绩效评估、薪酬基准、员工手册、DEI 战略、敬业度调研、简历生成。安装方式：cp -r 03-human-resources/. ~/.claude/skills/ 或在 Claude Cowork 中选仓库为工作区。MIT 协议。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/ComposioHQ/awesome-claude-skills" target="_blank" rel="noopener noreferrer" class="skill-resource-link">ComposioHQ/awesome-claude-skills</a>
+            <p class="skill-resource-desc">1000+ 精选 Skill 合集，覆盖文档处理、开发、数据、营销、沟通、创意、协作等方向。HR 相关技能散布其中：定制化简历生成（resume-generator）、线索研究（可用于候选人搜索）、会议洞察分析（可用于面试复盘）、内部沟通（可用于员工沟通）。支持 Claude Code / Codex / Cursor / Gemini CLI / Antigravity / Windsurf。还提供 Composio MCP Gateway 可连接 1000+ App。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/you112ef/awesome-system-prompts" target="_blank" rel="noopener noreferrer" class="skill-resource-link">awesome-system-prompts</a>
+            <p class="skill-resource-desc">主流 AI 工具（ChatGPT、Claude、Cursor、Devin、Manus、v0 等）的系统提示词合集，402 次提交。适合研究"专业 AI 产品是如何定义自身行为和边界的"，可从中提取可复用的行为约束模式，应用到自己的 Skill 或系统提示词中。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 🪟 Microsoft 生态 ===== -->
+      <div id="skill-microsoft" class="skill-section">
+        <div class="skill-block">
+          <div class="skill-block-header">
+            <h4>🪟 Microsoft Copilot 技能生态</h4>
+          </div>
+          <p class="skill-desc">微软官方 HR 场景方案 + M365 Copilot 技能框架</p>
+          <div class="skill-resource">
+            <a href="https://enablement.microsoft.com/en-gb/scenario-library/human-resources/" target="_blank" rel="noopener noreferrer" class="skill-resource-link">Microsoft Copilot HR 场景库（官方）</a>
+            <p class="skill-resource-desc">微软官方 Adoption 站点提供的 HR 场景库，是最权威的官方 HR AI 方案。6 大类 19 个场景 + 7 个专用 Agent：人才管理、学习与发展、薪酬与福利、招聘、日常工作场景、员工参与。7 个 Agent 包括：员工自助服务、智能入职、智能学习、工时对账、休假合规、招聘助手、福利问答。每个场景带 KPI 量化指标（工单数、解决时间、福利使用率、eNPS、入职时间、留存率、招聘成本）。还有"HR 经理的一天"真实场景演示 + 可下载的 HR 场景工具包（PPT 格式）。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://techcommunity.microsoft.com/blog/microsoft365copilotblog/people-skills/4497646" target="_blank" rel="noopener noreferrer" class="skill-resource-link">Microsoft People Skills（官方功能）</a>
+            <p class="skill-resource-desc">微软官方 M365 正式功能（非 prompt 模板）。AI 持续从文档、邮件、会议、岗位上下文中推断员工技能，自动维护技能画像，并映射到组织自定义的技能分类体系。已在 Copilot、Learning Agent、Workforce Insights Agent 中使用。适合引用为"AI 帮 HR 做人才盘点和技能管理"的官方产品案例。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/andreaswasita/copilot-cowork-dojo" target="_blank" rel="noopener noreferrer" class="skill-resource-link">copilot-cowork-dojo</a>
+            <p class="skill-resource-desc">把"道场（dojo）"理念用到 M365 Copilot Cowork 上，为知识工作者提供技能 + 纪律框架。三套技能体系：基础 Kumite（意图框定、上下文收集、初稿生成、结构化评审、迭代精修、交付前终检）、实战 Kumite（会议准备/复盘、邮件分诊、文档摘要、研究综合、决策备忘、状态更新、内部沟通、长文档协作）、Office Kumite（Word/Excel/PowerPoint/PDF 专门技能：样式/批注/公式/透视/图表/版式）。含 HR 场景包（入职计划、绩效评估准备、政策问答）+ governance（负责任 AI、数据处理、人工升级）+ 多 Agent 协作模式。</p>
+          </div>
+        </div>
       </div>
 
       <!-- ===== 💼 日常办公 ===== -->
-      <div id="skill-office" class="skill-section active">
+      <div id="skill-office" class="skill-section">
         <div class="skill-block">
           <div class="skill-block-header">
             <h4 id="h4-37-会议纪要自动生成">📝 会议纪要自动生成</h4>
-            <button class="skill-copy-btn" onclick="copySkill(this)">📋 复制</button>
           </div>
           <p class="skill-desc">结构化会议记录 + 行动项追踪，告别流水账</p>
-          <textarea class="skill-textarea" readonly>待粘贴 Skill 内容或网页链接</textarea>
+          <div class="skill-resource">
+            <a href="https://github.com/Ronnie2025/ai-workflow-prompts-zh" target="_blank" rel="noopener noreferrer" class="skill-resource-link">ai-workflow-prompts-zh</a>
+            <p class="skill-resource-desc">纯中文 AI 工作流提示词库（MIT 协议），共收录 17 个结构化 prompt，每个都按"角色设定 → 输入要求 → 输出格式"三段式编写，可直接复制到 ChatGPT / Claude / 豆包等任意 AI 工具使用。与会议纪要直接相关的 prompt：「会议记录转行动清单」— 输入原始会议记录（文字或语音转写），自动提取：参会人、议题摘要、决议事项、行动项（含负责人+截止日期）、遗留问题；「输出自检」— AI 生成内容后的质量自检清单。使用方式：打开仓库 → 找到对应 .md 文件 → 复制全文 → 粘贴到 AI 对话框。在线预览：ronnie2025.github.io/ai-workflow-prompts-zh。适合人群：不熟悉 prompt 编写、想直接拿来用的职场人。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/chuihualol/awesome-doubao-prompts" target="_blank" rel="noopener noreferrer" class="skill-resource-link">awesome-doubao-prompts</a>
+            <p class="skill-resource-desc">豆包官方风格的中文提示词库，收录办公场景常用模板，每个 prompt 带占位变量（如 [会议主题]、[参会人员]），粘贴后替换变量即可运行。与会议纪要相关的 prompt：「会议纪要整理专家」— 输入会议原文，输出结构化纪要：会议信息、议题讨论、决议、行动项、下次会议安排。使用方式：打开仓库 → 找到对应 prompt → 复制 → 替换方括号内的变量 → 粘贴到 AI 对话框。适合人群：习惯用豆包/国产 AI 工具、需要中文场景模板的用户。</p>
+          </div>
         </div>
 
         <div class="skill-block">
           <div class="skill-block-header">
             <h4 id="h4-38-工作周报智能撰写">📊 工作周报智能撰写</h4>
-            <button class="skill-copy-btn" onclick="copySkill(this)">📋 复制</button>
           </div>
           <p class="skill-desc">亮点 / 进展 / 问题 / 计划四段式，轻松交出专业周报</p>
-          <textarea class="skill-textarea" readonly>待粘贴 Skill 内容或网页链接</textarea>
+          <div class="skill-resource">
+            <a href="https://github.com/Ronnie2025/ai-workflow-prompts-zh" target="_blank" rel="noopener noreferrer" class="skill-resource-link">ai-workflow-prompts-zh</a>
+            <p class="skill-resource-desc">与周报直接相关的 prompt：「周报生成」— 输入本周工作流水，输出亮点/进展/风险/下周计划四段式周报；「下一步行动拆解」— 把模糊目标拆成可执行任务清单；「复盘」— 按"目标-结果-差距-根因-改进"五步结构化复盘，可直接嵌入周报的风险与改进部分；「输出自检」— AI 生成内容后的质量自检清单。使用方式同上，复制 .md 全文粘贴到 AI 对话框即可。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/PlexPt/awesome-chatgpt-prompts-zh" target="_blank" rel="noopener noreferrer" class="skill-resource-link">awesome-chatgpt-prompts-zh</a>
+            <p class="skill-resource-desc">中文调教指南，大量角色化 prompt。含「担任产品经理」等角色可辅助周报中的项目进展梳理和优先级排序。使用方式：打开仓库 → 搜索关键词（如"周报""产品经理"）→ 复制 prompt → 粘贴到 AI 对话框。适合需要从不同角色视角梳理工作进展的用户。</p>
+          </div>
         </div>
 
         <div class="skill-block">
           <div class="skill-block-header">
             <h4 id="h4-39-专业邮件写作助手">📧 专业邮件写作助手</h4>
-            <button class="skill-copy-btn" onclick="copySkill(this)">📋 复制</button>
           </div>
           <p class="skill-desc">覆盖汇报/请求/跟进/感谢/道歉 5 种场景</p>
-          <textarea class="skill-textarea" readonly>待粘贴 Skill 内容或网页链接</textarea>
+          <div class="skill-resource">
+            <a href="https://github.com/chuihualol/awesome-doubao-prompts" target="_blank" rel="noopener noreferrer" class="skill-resource-link">awesome-doubao-prompts</a>
+            <p class="skill-resource-desc">含「工作邮件写作助手」模板，覆盖汇报/请求/跟进/感谢/道歉 5 种场景。每个 prompt 带占位变量（如 [收件人]、[邮件目的]、[关键信息]），粘贴后替换变量即可生成专业邮件。使用方式：打开仓库 → 找到邮件相关 prompt → 复制 → 替换变量 → 粘贴到 AI 对话框。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/PlexPt/awesome-chatgpt-prompts-zh" target="_blank" rel="noopener noreferrer" class="skill-resource-link">awesome-chatgpt-prompts-zh</a>
+            <p class="skill-resource-desc">含商业写作、简历求职信等邮件场景 prompt。如「担任写作助手」「担任求职顾问」等角色化 prompt，可辅助撰写各类正式邮件。使用方式：打开仓库 → 搜索关键词 → 复制 prompt → 粘贴到 AI 对话框。适合需要多场景邮件模板的用户。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 👥 HR全链路 ===== -->
+      <div id="skill-hr" class="skill-section">
+        <div class="skill-block">
+          <div class="skill-block-header">
+            <h4 id="h4-43-招聘与面试">🎯 招聘与面试</h4>
+          </div>
+          <p class="skill-desc">JD 写作 / 结构化面试 / 候选人评估 / 拒信与 offer</p>
+          <div class="skill-resource">
+            <a href="https://github.com/tuanductran/hr-skills" target="_blank" rel="noopener noreferrer" class="skill-resource-link">tuanductran/hr-skills</a>
+            <p class="skill-resource-desc">GitHub 上最全的 HR Agent Skills 库，20+ 个技能，遵循 Agent Skills 规范，原生支持 Claude.ai / Claude Code。招聘相关技能包括：招聘流程管理、技术招聘、JD 写作。每个技能结构：SKILL.md + content/ + prompts/ + examples/。安装：cp -r skills/hr-* ~/.claude/skills/。MIT 协议，402 次提交。适合想系统建立"HR 专属 AI 技能库"的用户。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/Gonzih/skills-hr" target="_blank" rel="noopener noreferrer" class="skill-resource-link">Gonzih/skills-hr</a>
+            <p class="skill-resource-desc">4 个 Claude Code 招聘技能：/job-description-writer（偏见检查 JD，输出 ATS 版 + LinkedIn 版 + 邮件主题）、/interview-kit（结构化面试套件，STAR 题 + 评分标准 + 复盘指南）、/offer-letter-generator（录用信，正式 PDF 版 + 邮件版 + 法律清单）、/performance-review-helper（绩效评估含偏见检查）。安装：npm install @gonzih/skills-hr。MIT 协议。轻量快速上手。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://masterprompting.net/blog/ai-prompts-for-hr" target="_blank" rel="noopener noreferrer" class="skill-resource-link">AI Prompts for HR: 35 模板</a>
+            <p class="skill-resource-desc">35 个 HR 模板，深度最高。招聘相关：JD 写作、结构化面试题（STAR + 强弱答案对照）、候选人拒信、offer 邮件。亮点：经理叙事改写（把管理者草稿改写成专业、可辩护、无歧视表述）、反馈语言指南（SBI 模型 + 实例 + 触发防御时的应对）、PIP 改进计划（明确标注需法务审核）、校准会议主持指南、离职清单 + 离职面谈。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://dev.to/navbuildz/the-30-best-ai-prompts-for-hr-and-people-operations-4mj0" target="_blank" rel="noopener noreferrer" class="skill-resource-link">30 Best AI Prompts for HR</a>
+            <p class="skill-resource-desc">30 个 prompt 用 {{clipboard}} 占位（粘贴上下文即可），通用 ChatGPT/Claude/Gemini。招聘相关：JD 写作、包容性 JD 改写、结构化面试题（STAR）、候选人拒信、offer 邮件。还覆盖 30-60-90 入职、绩效评估、PIP、自评模板、360 反馈提炼主题、全员公告、裁员沟通、政策文档。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://gethirex.com/interview-questions/ai-engineer" target="_blank" rel="noopener noreferrer" class="skill-resource-link">Hirex 结构化面试题库</a>
+            <p class="skill-resource-desc">四类问题结构：暖场 / 角色技术能力 / 行为文化契合 / 案例解题，可直接套用到任意岗位的面试设计。适合需要快速搭建结构化面试框架的 HR。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://irenshi.cn/p/402297" target="_blank" rel="noopener noreferrer" class="skill-resource-link">AI 从业人员招聘指南</a>
+            <p class="skill-resource-desc">含面试问题库、STAR 行为事件法打分指引、30-60-90 日入职留用计划。偏组织管理视角，适合招聘 AI/技术人才的 HR。</p>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="skill-block-header">
+            <h4 id="h4-44-入职与培训发展">📋 入职与培训发展</h4>
+          </div>
+          <p class="skill-desc">30-60-90 入职计划 / 培训需求分析 / IDP 个人发展 / 课程设计</p>
+          <div class="skill-resource">
+            <a href="https://github.com/andreaswasita/copilot-cowork-dojo" target="_blank" rel="noopener noreferrer" class="skill-resource-link">copilot-cowork-dojo</a>
+            <p class="skill-resource-desc">HR 场景包含入职计划、绩效评估准备、政策问答。Office Kumite 含 Word/Excel/PPT 专门技能（样式/批注/公式/透视/图表/版式），可辅助制作入职文档和培训材料。还有 governance（负责任 AI、数据处理、人工升级）模块确保 HR 场景合规。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://yourco.io/blog/ai-prompts-guide-hr-templates" target="_blank" rel="noopener noreferrer" class="skill-resource-link">The AI Prompts Guide for HR</a>
+            <p class="skill-resource-desc">可免费下载完整模板包。入职与培训模块含 30-60-90 天入职计划、新员工培训。专门照顾"非桌面员工"（一线/倒班）——把欢迎语压缩成短信、把政策 FAQ 做成休息室速查表、错峰发消息避免打扰夜班。五大块：招聘与 JD / 入职与培训 / 绩效与反馈 / 员工参与与文化 / 政策与合规。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://www.valuex2.com/25-best-generative-ai-prompts-for-all-your-hr-functions" target="_blank" rel="noopener noreferrer" class="skill-resource-link">25 Best Generative AI Prompts for HR</a>
+            <p class="skill-resource-desc">员工发展章节特别细：90 天成长地图（70-20-10 学习模型：70% 实战 + 20% 导师 + 10% 培训）、Micro-Learning 策展人（10 分钟内学习材料 + 学习顺序建议）。还有 HR Analytics：招聘耗时基准分析、漏斗瓶颈可视化（Mermaid 代码）。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://cloud.baidu.com/article/4398355" target="_blank" rel="noopener noreferrer" class="skill-resource-link">Deepseek 100 个人资岗 prompt</a>
+            <p class="skill-resource-desc">30 个人资场景。入职培训相关：培训需求分析（技能/动机/流程根因分析）、IDP 个人发展计划、晋升评估（技术序列晋升答辩评分细则）。还附跨场景技巧：prompt 优化公式、多轮交互策略、风险控制要点（数据脱敏/合规审查/逻辑验证）。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://sureprompts.com/prompts-for/hr-professionals" target="_blank" rel="noopener noreferrer" class="skill-resource-link">SurePrompts - HR Professionals</a>
+            <p class="skill-resource-desc">12 个 HR 模板，入职培训相关：Corporate Training Curriculum Pro（培训课程设计）、Career Development Plan Pro（个性化职业晋升路径）。免费即用，Pro 版需付费但模板免费预览。</p>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="skill-block-header">
+            <h4 id="h4-45-绩效薪酬与员工关系">📊 绩效、薪酬与员工关系</h4>
+          </div>
+          <p class="skill-desc">绩效评估 / PIP / 校准会议 / 薪酬体系 / 劳动纠纷</p>
+          <div class="skill-resource">
+            <a href="https://masterprompting.net/blog/ai-prompts-for-hr" target="_blank" rel="noopener noreferrer" class="skill-resource-link">AI Prompts for HR: 35 模板</a>
+            <p class="skill-resource-desc">绩效薪酬相关：PIP 改进计划（明确标注这是法律文件，需法务审核）、经理叙事改写（把管理者草稿改写成专业、可辩护、无歧视表述）、目标设定框架（OKR/SMART）、反馈语言指南（SBI 模型 + 3 个实例 + 触发防御时的应对）、校准会议主持指南、离职清单 + 离职面谈（强调"要情报不要公关话术"）。深度最高。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://godle.app/jobs/performance-talent-management" target="_blank" rel="noopener noreferrer" class="skill-resource-link">GODLE Performance/Talent Management</a>
+            <p class="skill-resource-desc">10 个即点即用模板：绩效评估周期设计、人才校准框架（解决"85% 员工被评为超出预期"的通胀问题）、PIP、OKR 落地、发展计划。每个带场景化示例（1500 人科技公司等）。一键导出到 ChatGPT/Claude/Grok。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://www.sohu.com/a/1020360937_122455752" target="_blank" rel="noopener noreferrer" class="skill-resource-link">"100+ 人力资源场景"HR 万能模板</a>
+            <p class="skill-resource-desc">中文最全。薪酬体系：岗位等级/薪酬带宽/调薪机制/年终奖/宽带薪酬。员工关系：劳动纠纷风险点分析/沟通话术/合法处理流程/证据留存。还有 OD 组织诊断/优化建议/汇报关系调整/部门协同。每个都有"角色设定 + 任务目标 + 输出格式"结构。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://cloud.baidu.com/article/4398355" target="_blank" rel="noopener noreferrer" class="skill-resource-link">Deepseek 100 个人资岗 prompt</a>
+            <p class="skill-resource-desc">绩效员工关系相关：冲突调解（加班争议 5 步沟通法）、非货币化激励（10 种方式）、文化落地（价值观转行为准则）。还含多样性管理（跨文化沟通）。</p>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="skill-block-header">
+            <h4 id="h4-46-人才盘点与继任者">🔍 人才盘点与继任者计划</h4>
+          </div>
+          <p class="skill-desc">九宫格 / 高潜识别 / 继任者就绪度 / 技能画像 / 组织诊断</p>
+          <div class="skill-resource">
+            <a href="https://aiunpacker.com/prompts/succession-planning-ai-prompts-for-hr-directors/" target="_blank" rel="noopener noreferrer" class="skill-resource-link">Succession Planning AI Prompts</a>
+            <p class="skill-resource-desc">专攻继任者计划的全套 prompt。含：胜任力框架搭建、继任者就绪度评估（输出 Ready now / 6 个月 / 12 个月表 + 差距分析 + 风险）、人才池识别、高潜识别（Performance / Potential / Aspiration / Commitment 四维 + 保留风险）、发展经历规划。适合 HR Director 级别使用。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://godle.app/jobs/performance-talent-management" target="_blank" rel="noopener noreferrer" class="skill-resource-link">GODLE Performance/Talent Management</a>
+            <p class="skill-resource-desc">人才盘点相关：人才校准框架、继任者计划、9-Box 九宫格、高潜项目、人才盘点准备会。每个带场景化示例，一键导出到 ChatGPT/Claude/Grok。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://sureprompts.com/prompts-for/hr-professionals" target="_blank" rel="noopener noreferrer" class="skill-resource-link">SurePrompts - HR Professionals</a>
+            <p class="skill-resource-desc">人才发展相关：Career Development Plan Pro（个性化职业晋升路径）、Succession Planning Framework Pro（关键岗位继任）。免费即用。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://techcommunity.microsoft.com/blog/microsoft365copilotblog/people-skills/4497646" target="_blank" rel="noopener noreferrer" class="skill-resource-link">Microsoft People Skills（官方功能）</a>
+            <p class="skill-resource-desc">微软官方 M365 正式功能。AI 持续从文档/邮件/会议/岗位推断员工技能，自动维护技能画像，映射到组织技能分类。已在 Copilot/Learning Agent/Workforce Insights Agent 中使用。适合引用为"AI 帮 HR 做人才盘点和技能管理"的官方产品案例。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://www.sohu.com/a/1020360937_122455752" target="_blank" rel="noopener noreferrer" class="skill-resource-link">"100+ 人力资源场景"HR 万能模板</a>
+            <p class="skill-resource-desc">人才盘点：九宫格标准/评估维度/高潜识别/后备干部培养/常见误区。组织架构优化 OD：组织诊断/常见问题/优化建议/汇报关系调整/部门协同。</p>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="skill-block-header">
+            <h4 id="h4-47-敬业度文化与DEI">💗 敬业度、文化与 DEI</h4>
+          </div>
+          <p class="skill-desc">留任访谈 / 敬业度调研 / 同行认可 / 文化落地 / 多样性管理</p>
+          <div class="skill-resource">
+            <a href="https://www.valuex2.com/25-best-generative-ai-prompts-for-all-your-hr-functions" target="_blank" rel="noopener noreferrer" class="skill-resource-link">25 Best Generative AI Prompts for HR</a>
+            <p class="skill-resource-desc">员工敬业度章节特别细：Stay-Interview 留任访谈脚本（6 个开放问题：职业发展/认可/工作量/使命对齐/未来目标）、敬业度 Pulse 调研（5 题 Likert + 一个"魔法棒"开放题）、Peer Recognition 同行认可（把行为链接到公司价值观的 60 字 shout-out）。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://sureprompts.com/prompts-for/hr-professionals" target="_blank" rel="noopener noreferrer" class="skill-resource-link">SurePrompts - HR Professionals</a>
+            <p class="skill-resource-desc">文化与敬业度相关：Employee Engagement Survey Pro（调查设计与分析）、Team Building Workshop Pro（团队建设）、DEI Strategy（多元化与包容性计划）。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/w95/awesome-claude-corporate-skills" target="_blank" rel="noopener noreferrer" class="skill-resource-link">w95 HR 板块</a>
+            <p class="skill-resource-desc">HR 分类中的敬业度相关技能：employee-engagement-survey（调查设计与分析）、dei-strategy（多元化与包容性计划）。安装：cp -r 03-human-resources/. ~/.claude/skills/。MIT 协议。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://cloud.baidu.com/article/4398355" target="_blank" rel="noopener noreferrer" class="skill-resource-link">Deepseek 100 个人资岗 prompt</a>
+            <p class="skill-resource-desc">文化与敬业度相关：文化落地（价值观转行为准则）、多样性管理（跨文化沟通）、员工关怀（远程办公健康管理）。</p>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="skill-block-header">
+            <h4 id="h4-48-HR方法论与护栏">🛡️ HR 方法论与护栏</h4>
+          </div>
+          <p class="skill-desc">怎么安全地写 HR prompt — 隐私优先 + 护栏约束 + 避免越界</p>
+          <div class="skill-resource">
+            <a href="https://datawizards.cloud/prompting-for-hr-workflows-reproducible-templates-for-recrui" target="_blank" rel="noopener noreferrer" class="skill-resource-link">Prompting for HR Workflows</a>
+            <p class="skill-resource-desc">强调"可复现 + 隐私优先"。候选人沟通 prompt 要求"只用批准的事实，不臆测录用决定"；入职 prompt 要求"不推断个人特质/人口统计/健康信息"；绩效摘要 prompt 要求"区分观察行为与推断，标注证据缺口，避免人格标签"。教你怎么写"带护栏的 HR prompt"，避免 AI 越界。适合需要合规化 HR AI 使用的团队。</p>
+          </div>
         </div>
       </div>
 
@@ -3785,58 +4537,87 @@ function expandSection(sectionId) {
         <div class="skill-block">
           <div class="skill-block-header">
             <h4 id="h4-40-UI-设计评审框架">🔍 UI 设计评审框架</h4>
-            <button class="skill-copy-btn" onclick="copySkill(this)">📋 复制</button>
           </div>
           <p class="skill-desc">从可用性、一致性、可访问性、信息传达四个维度系统评审</p>
-          <textarea class="skill-textarea" readonly>待粘贴 Skill 内容或网页链接</textarea>
+          <div class="skill-resource">
+            <a href="https://github.com/oil-oil/oiloil-ui-ux-guide" target="_blank" rel="noopener noreferrer" class="skill-resource-link">oiloil-ui-ux-guide</a>
+            <p class="skill-resource-desc">一个完整的 UI/UX 设计 Skill，三种模式可切换。review 模式 → 从可用性、一致性、可访问性、信息传达四个维度系统评审，输出 P0/P1/P2 问题清单 + 可执行修复建议 + 验收检查点。使用方式：将 SKILL.md 安装到 Claude Code 的 skills 目录，对话中触发 review 模式即可。适合需要在设计评审环节引入 AI 辅助的团队。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/Trystan-SA/claude-design-system-prompt" target="_blank" rel="noopener noreferrer" class="skill-resource-link">claude-design-system-prompt</a>
+            <p class="skill-resource-desc">把 AI 训成"资深设计师"的系统级提示词，20 章 + 14 个可调用技能（生产/系统/审查三类）。审查类技能含色彩、字体、可访问性、视觉层级检查。适合需要 AI 从专业设计师视角做设计审查的场景。</p>
+          </div>
         </div>
 
         <div class="skill-block">
           <div class="skill-block-header">
             <h4 id="h4-41-设计规范文档生成">🎨 设计规范文档生成</h4>
-            <button class="skill-copy-btn" onclick="copySkill(this)">📋 复制</button>
           </div>
           <p class="skill-desc">Design Token + 组件规范模板，快速产出设计系统文档</p>
-          <textarea class="skill-textarea" readonly>待粘贴 Skill 内容或网页链接</textarea>
+          <div class="skill-resource">
+            <a href="https://github.com/oil-oil/oiloil-ui-ux-guide" target="_blank" rel="noopener noreferrer" class="skill-resource-link">oiloil-ui-ux-guide</a>
+            <p class="skill-resource-desc">design 模式 → 扫描项目的 design tokens（颜色/字体/间距/圆角等），通过访谈式对话引导设计师补充信息，最终输出完整的 design-spec.md 设计规范文档。包含 token 定义、组件规范、使用示例。适合需要快速产出设计系统文档的团队。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/Trystan-SA/claude-design-system-prompt" target="_blank" rel="noopener noreferrer" class="skill-resource-link">claude-design-system-prompt</a>
+            <p class="skill-resource-desc">系统类技能含设计系统、色彩规范、字体规范等生成能力。20 章覆盖从设计原则到组件库的完整体系。适合需要 AI 辅助编写设计系统文档的场景。</p>
+          </div>
         </div>
 
         <div class="skill-block">
           <div class="skill-block-header">
             <h4 id="h4-42-用户反馈与可用性分析">📊 用户反馈与可用性分析</h4>
-            <button class="skill-copy-btn" onclick="copySkill(this)">📋 复制</button>
           </div>
           <p class="skill-desc">反馈聚类 + 严重度评分 + 改进路线图</p>
-          <textarea class="skill-textarea" readonly>待粘贴 Skill 内容或网页链接</textarea>
+          <div class="skill-resource">
+            <a href="https://github.com/oil-oil/oiloil-ui-ux-guide" target="_blank" rel="noopener noreferrer" class="skill-resource-link">oiloil-ui-ux-guide</a>
+            <p class="skill-resource-desc">guide 模式 → 输出"该做/不该做"规则清单，可用于分析用户反馈并输出改进建议。配合 review 模式可形成"收集反馈 → 分析问题 → 输出修复方案"的完整闭环。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://sureprompts.com/blog/ai-prompts-for-designers" target="_blank" rel="noopener noreferrer" class="skill-resource-link">AI Prompts for Designers（40 个）</a>
+            <p class="skill-resource-desc">40 个设计师专用 prompt，含品牌规范指南、创意简报、UX 文案审计、错误信息系统、空状态文案等结构化模板。适合需要从用户反馈中提炼设计改进方向的设计师。每个模板带使用说明和示例。</p>
+          </div>
         </div>
       </div>
 
-      <!-- ===== 👥 HR ===== -->
-      <div id="skill-hr" class="skill-section">
+      <!-- ===== 📊 数据与写作 ===== -->
+      <div id="skill-datawriting" class="skill-section">
         <div class="skill-block">
           <div class="skill-block-header">
-            <h4 id="h4-43-候选人综合评估">🎯 候选人综合评估</h4>
-            <button class="skill-copy-btn" onclick="copySkill(this)">📋 复制</button>
+            <h4>📊 数据分析</h4>
           </div>
-          <p class="skill-desc">四维度加权评分体系，输出结构化评估报告</p>
-          <textarea class="skill-textarea" readonly>待粘贴 Skill 内容或网页链接</textarea>
+          <p class="skill-desc">SQL 生成 / 数据清洗 / EDA / 可视化 / 自动化报告</p>
+          <div class="skill-resource">
+            <a href="https://aiagentivo.com/skills/openclaw-skills-data-analyst-pro" target="_blank" rel="noopener noreferrer" class="skill-resource-link">data-analyst-pro（中文）</a>
+            <p class="skill-resource-desc">标准 .skill 格式（SKILL.md）。含 SQL 查询模式 30+ 模板（基础探索/时间序列/漏斗分析/环比增长）、Python/Pandas 自动化分析、数据可视化、数据清洗、统计分析、自动化报告。源文件：raw.githubusercontent.com/openclaw/skills/main/skills/beibei030/pro-data-analyst/SKILL.md。可直接 curl 装到 .claude/skills/。中文。适合需要数据分析师 AI 技能的用户。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://www.aitraining2u.com/ai-prompts-for-data-analytics.html" target="_blank" rel="noopener noreferrer" class="skill-resource-link">30 AI Prompts for Data & Analytics</a>
+            <p class="skill-resource-desc">30 个 copy-ready prompt，工具无关（Claude/Copilot/ChatGPT 通用）。覆盖：业务问题转 SQL、SQL 优化评审、SQL 排错、Excel/Sheets 公式、数据清洗、EDA（探索性数据分析）、可视化、报告撰写。每个 prompt 给 AI 一个分析师角色 + 引用你的数据/schema + 指定方法和输出格式。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://promplify.ai/blog/prompt-templates-for-data-analysts" target="_blank" rel="noopener noreferrer" class="skill-resource-link">Prompt Templates for Data Analysts</a>
+            <p class="skill-resource-desc">10 个结构化模板：SQL 生成（含方言/schema/关系/约束/排序）、数据清洗转换、EDA、统计分析、可视化、报告写作。每个模板带填好的示例，可直接替换变量使用。适合需要规范化数据分析流程的用户。</p>
+          </div>
         </div>
 
         <div class="skill-block">
           <div class="skill-block-header">
-            <h4 id="h4-44-结构化面试问题生成">❓ 结构化面试问题生成</h4>
-            <button class="skill-copy-btn" onclick="copySkill(this)">📋 复制</button>
+            <h4>✍️ 写作与内容创作</h4>
           </div>
-          <p class="skill-desc">STAR 法则 + 四类问题配比，覆盖技能/行为/情景/文化</p>
-          <textarea class="skill-textarea" readonly>待粘贴 Skill 内容或网页链接</textarea>
-        </div>
-
-        <div class="skill-block">
-          <div class="skill-block-header">
-            <h4 id="h4-45-离职面谈分析">💬 离职面谈分析</h4>
-            <button class="skill-copy-btn" onclick="copySkill(this)">📋 复制</button>
+          <p class="skill-desc">小红书 / 公众号 / 营销文案 / 视频脚本 / 论文剖析 / 知识卡片</p>
+          <div class="skill-resource">
+            <a href="https://github.com/zhchlmm/awesome-prompt" target="_blank" rel="noopener noreferrer" class="skill-resource-link">awesome-prompt（中文精品）</a>
+            <p class="skill-resource-desc">中文精品 prompt 集。内容创作类：小红书图文、公众号爆款标题、内容总结/知识卡片、杂志风卡片、公众号/播客封面。商业营销类：商业级视频广告脚本、写作风格分析提取。学习分析类：论文深度剖析、阅读理解巩固、AI 指令萃取师。适合需要中文内容创作 AI 辅助的用户。</p>
           </div>
-          <p class="skill-desc">五层递进问题 + 离职原因分类框架，输出组织洞察</p>
-          <textarea class="skill-textarea" readonly>待粘贴 Skill 内容或网页链接</textarea>
+          <div class="skill-resource">
+            <a href="https://github.com/ROBOTdingDONG/Awesome_Prompt_Catalog" target="_blank" rel="noopener noreferrer" class="skill-resource-link">Awesome_Prompt_Catalog（500+）</a>
+            <p class="skill-resource-desc">500+ 经策展并测试的 prompt，按 8 大类 40+ 子类：商业营销 85+、开发代码 120+、创意内容 90+、数据分析 70+、专项行业 65+（医疗/金融/法律/教育）、技术写作 80+。支持 15+ 模型（GPT-4/o3/Claude4/Gemini2.5/Llama4）。适合需要跨场景、跨模型 prompt 模板的用户。</p>
+          </div>
+          <div class="skill-resource">
+            <a href="https://github.com/xiongxianzhu/awesome-prompts" target="_blank" rel="noopener noreferrer" class="skill-resource-link">awesome-prompts（中文，分类清晰）</a>
+            <p class="skill-resource-desc">分 development / content / productivity / creative / business 五大类，含"一键生成完整项目""专业内容写作助手""创意头脑风暴"等精选 prompt，每个带使用说明和示例。适合需要按场景快速查找 prompt 的用户。</p>
+          </div>
         </div>
       </div>
 
@@ -3851,44 +4632,11 @@ function expandSection(sectionId) {
           event.target.closest('.skill-sub-tab').classList.add('active');
           document.getElementById('skill-' + category).classList.add('active');
         };
-        window.copySkill = function(btn) {
-          var textarea = btn.closest('.skill-block').querySelector('.skill-textarea');
-          var text = textarea.value;
-          // 使用同步方式，兼容 file:// 协议
-          var success = typeof syncCopyToClipboard === 'function'
-            ? syncCopyToClipboard(text)
-            : (function(t) {
-                try {
-                  var ta = document.createElement('textarea');
-                  ta.value = t;
-                  ta.style.position = 'fixed';
-                  ta.style.left = '-9999px';
-                  ta.style.top = '0';
-                  document.body.appendChild(ta);
-                  ta.focus(); ta.select();
-                  ta.setSelectionRange(0, ta.value.length);
-                  var ok = document.execCommand('copy');
-                  document.body.removeChild(ta);
-                  return ok;
-                } catch(e) { return false; }
-              })(text);
-          var orig = btn.textContent;
-          if (success) {
-            btn.textContent = '\u2714 已复制';
-            btn.classList.add('copied');
-            setTimeout(function() {
-              btn.textContent = orig;
-              btn.classList.remove('copied');
-            }, 2000);
-          } else {
-            alert('⚠️ 复制失败，请手动选中内容后 Ctrl+C 复制');
-          }
-        };
       </script>
     </div>
 
     <!-- Prompt诊断工具 -->
-    <div id="template-tools" class="glass-box active">
+    <div id="template-tools" class="glass-box">
       <h3 id="h3-13-Prompt诊断工具">🔍 Prompt诊断工具</h3>
       
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px;">
@@ -5789,439 +6537,6 @@ ${getOutputFormatDesc()}
     </div>
   </div>
 
-  <!-- ===== AI使用风险与安全 ===== -->
-  <div id="page-safety" class="page">
-    <div class="page-header">
-      <div class="page-title">⚠️ AI使用风险与安全</div>
-      <div class="page-sub">HR 场景的安全合规指南</div>
-    </div>
-
-    <div class="tabs">
-      <div class="tab-btn active" onclick="showTab('safety','data',this)">🔐 数据安全</div>
-      <div class="tab-btn" onclick="showTab('safety','compliance',this)">📋 合规性</div>
-      <div class="tab-btn" onclick="showTab('safety','norm',this)">✔️ 使用规范</div>
-    </div>
-
-    <div id="safety-data" class="glass-box active">
-      <h3 id="h3-14-数据安全">🔐 数据安全</h3>
-      
-      <div style="margin-bottom: 18px;">
-        <h4 id="h4-48-1-员工隐私保护"  style="color: var(--text-primary); margin-bottom: 10px;">1️⃣ 员工隐私保护</h4>
-        <div style="background: var(--surface-a); border-left:3px solid var(--accent-h); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>🚫 禁止上传真实员工信息：</strong></p>
-          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-            <li>✗ 真实姓名、工号、身份证号</li>
-            <li>✗ 电话号码、家庭住址、紧急联系人</li>
-            <li>✗ 生物识别信息（照片用于识别）</li>
-            <li>✗ 医疗、心理健康相关记录</li>
-          </ul>
-        </div>
-        
-        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 8px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>✅ 信息脱敏的正确做法：</strong></p>
-          <div style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-            <div style="margin-bottom: 8px;"><strong>方案1：泛化处理</strong>
-            <br>❌ 错误：「张三，25.5k，3年经验，北京」
-            <br>✅ 正确：「P3级员工，25-30k范围，3年经验，一线城市」</div>
-            
-            <div style="margin-bottom: 8px;"><strong>方案2：编号替代</strong>
-            <br>❌ 错误：把真实员工数据列成表格分析
-            <br>✅ 正确：使用「员工A、员工B」或「EMP001、EMP002」</div>
-            
-            <div style="margin-bottom: 8px;"><strong>方案3：数据聚合</strong>
-            <br>❌ 错误：分析单个员工的薪酬和绩效
-            <br>✅ 正确：「该部门平均薪酬30k，中位数28k，80%员工在25-35k范围」</div>
-          </div>
-        </div>
-        
-        <div style="background: var(--warning-bg); border: 1px solid var(--warning-border); border-radius: 6px; padding: 12px; margin-top: 10px;">
-          <p style="font-size: 11px; color: var(--text-secondary); margin: 0;"><strong>💡 实操提示：</strong> 在向AI上传数据前，问自己："如果这份数据被泄露，会对员工造成什么影响？"如果答案是"有较大风险"，就必须脱敏。</p>
-        </div>
-      </div>
-
-      <div style="margin-bottom: 18px;">
-        <h4 id="h4-49-2-敏感信息处理薪酬绩效评估等"  style="color: var(--text-primary); margin-bottom: 10px;">2️⃣ 敏感信息处理（薪酬、绩效评估等）</h4>
-        
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
-          <div style="margin-bottom: 10px;">
-            <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;"><strong>🔴 高风险信息 — 禁止上传原始数据</strong></p>
-            <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-              <li><strong>薪酬信息：</strong> 不传「李四月薪25k」，传「P3级别市场薪酬25-35k」</li>
-              <li><strong>绩效评分：</strong> 不传「王五评分3.2分」，传「该评分等级分布：优秀10%、良好70%、需改进20%」</li>
-              <li><strong>健康/隐私：</strong> 完全禁止上传（孕期、生病、心理问题等）</li>
-              <li><strong>背景调查信息：</strong> 不传详细的背景信息，仅传「通过/未通过」</li>
-            </ul>
-          </div>
-          
-          <div style="border-top: 1px solid var(--border-table-header); padding-top: 10px;">
-            <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;"><strong>🟡 中风险信息 — 需谨慎处理</strong></p>
-            <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-              <li><strong>离职原因分析：</strong> 可传「员工离职率、部门、职级」，但不传「个人离职原因」</li>
-              <li><strong>招聘反馈：</strong> 可传「5个候选人，2个通过，3个未通过」，不传「具体理由和评语」</li>
-              <li><strong>学历/背景：</strong> 脱敏后可用（如「985大学」而非「清华大学」）</li>
-            </ul>
-          </div>
-        </div>
-        
-        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>✅ 正确的用法示例</strong></p>
-          <div style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-            <div style="margin-bottom: 8px;"><strong>「薪酬对标」</strong>
-            <br>❌ 上传：实际员工名单 + 薪酬
-            <br>✅ 上传：「公司P3级别分布：5人，薪酬范围25-30k，平均27.5k」</div>
-            
-            <div style="margin-bottom: 8px;"><strong>「绩效分析」</strong>
-            <br>❌ 上传：每个员工的评分和评语
-            <br>✅ 上传：「本期绩效分布：A等15%, B等70%, C等15%。主要改进方向：技术深度、团队协作」</div>
-            
-            <div><strong>「离职分析」</strong>
-            <br>❌ 上传：「员工A因为与经理不合离职」
-            <br>✅ 上传：「过去6个月，技术部离职率8%，高于公司平均4%。主要离职者职级为P3-P4」</div>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-bottom: 18px;">
-        <h4 id="h4-50-3-第三方AI工具的数据存储与传输策略"  style="color: var(--text-primary); margin-bottom: 10px;">3️⃣ 第三方AI工具的数据存储与传输策略</h4>
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>在使用任何AI工具前，问这5个问题：</strong></p>
-          <ol style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0; line-height: 1.8;">
-            <li><strong>数据存储位置：</strong> 数据存储在哪个国家/地区？是否符合数据本地化要求？</li>
-            <li><strong>数据保留时间：</strong> AI厂商会保留我的数据多久？能否立即删除？</li>
-            <li><strong>数据用途：</strong> 我的数据是否会被用于训练AI模型？是否会被其他用户看到？</li>
-            <li><strong>加密和访问控制：</strong> 数据在传输和存储时如何加密？谁有权限访问？</li>
-            <li><strong>审查和合规：</strong> 该工具是否通过了公司内部安全审查？是否有用户协议和隐私政策？</li>
-          </ol>
-          
-          <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-top: 12px;">
-            <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;"><strong>🔒 主流AI工具的数据政策参考</strong></p>
-            <ul style="font-size: 10px; color: var(--text-body); padding-left: 20px; margin: 0;">
-              <li><strong>Claude (Anthropic)：</strong> 默认不保留对话内容用于模型训练；企业版可自托管</li>
-              <li><strong>ChatGPT (OpenAI)：</strong> 免费版可能被用于改进模型；付费企业版有专属选项</li>
-              <li><strong>内部私有部署：</strong> 最安全，但成本和维护复杂度最高</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <h4 id="h4-51-4-信息脱敏的操作步骤"  style="color: var(--text-primary); margin-bottom: 10px;">4️⃣ 信息脱敏的操作步骤</h4>
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;"><strong>5步脱敏流程</strong></p>
-          <ol style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0; line-height: 1.9;">
-            <li><strong>识别敏感字段</strong> — 浏览数据，找出所有可识别个人的字段（姓名、工号、邮箱等）</li>
-            <li><strong>选择脱敏方法</strong> — 删除、替换、泛化或加密，根据数据类型选择</li>
-            <li><strong>创建映射表</strong> — 记录脱敏前后的对应关系（仅自己保存，不上传给AI）</li>
-            <li><strong>验证脱敏效果</strong> — 检查脱敏后的数据是否仍能识别个人身份</li>
-            <li><strong>上传和使用</strong> — 只上传脱敏后的数据给AI，保留原始数据的备份在本地</li>
-          </ol>
-          
-          <div style="background: var(--warning-bg); border: 1px solid var(--warning-border); border-radius: 6px; padding: 12px; margin-top: 10px;">
-            <p style="font-size: 11px; color: var(--text-secondary); margin: 0;"><strong>⚠️ 脱敏后要做的事：</strong> 脱敏数据使用完后，删除所有上传给AI的文件。如果数据涉及员工隐私，再做一次脱敏检查，确保没有泄露风险。</p>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <h4 style="color: var(--text-primary); margin-bottom: 10px;">5️⃣ 授权 AI 操作你的账号身份时的注意事项</h4>
-        <p style="font-size: 12px; color: var(--text-body); margin-bottom: 10px;">
-          像程小帮这类桌面 Agent，授权后能<strong>以你的身份</strong>操作飞书（发消息、读写云文档、管理日程等），这类"身份代理"型授权需要格外注意：
-        </p>
-        <div style="background: var(--danger-accent-bg); border-left:3px solid var(--danger-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">
-            <strong>以你身份发出的内容，责任在你：</strong> AI 代发的消息、代写的云文档，一旦发出，别人看到的是"你"说的、"你"写的。重要或对外的内容，发出前务必自己确认过一遍。
-          </p>
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">
-            <strong>群绑定后，额度和责任都在绑定者身上：</strong> 把 Agent 拉进群并绑定后，群里任何人 @ 它都由你的账号回答，消耗的是你的模型额度；涉及高风险操作的审批卡，也只有你（绑定者）能确认，别人点"同意"不生效。建议先在小范围群里试用，再决定要不要绑定大群。
-          </p>
-          <p style="font-size: 12px; color: var(--text-secondary);">
-            <strong>「完全访问」模式要谨慎开启：</strong> 跳过审批直接执行意味着 AI 不会再等你确认高风险操作，只在非常熟悉、反复验证过的任务上开启，一般任务建议保持默认的"替我审批"。
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div id="safety-compliance" class="glass-box">
-      <h3 id="h3-15-合规性">📋 合规性</h3>
-      
-      <div style="margin-bottom: 18px;">
-        <h4 id="h4-52-1-劳动法相关--自动化决策的法律风险"  style="color: var(--text-primary); margin-bottom: 10px;">1️⃣ 劳动法相关 — 自动化决策的法律风险</h4>
-        <div style="background: var(--danger-accent-bg); border-left:3px solid var(--danger-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>🚫 AI不能单独做出的决定：</strong></p>
-          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-            <li><strong>招聘拒绝决定</strong> — AI可以初筛，最终拒绝需人工确认</li>
-            <li><strong>晋升/降级决策</strong> — AI可提供数据分析，决定权在管理者</li>
-            <li><strong>绩效等级评定</strong> — AI可提示异常值，评级权在评估者</li>
-            <li><strong>解聘决定</strong> — 完全禁止由AI自动做出，必须经过完整的人力审查和法务确认</li>
-            <li><strong>薪酬决定</strong> — AI可建议范围，最终核定需人工确认</li>
-          </ul>
-        </div>
-        
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>✅ HR场景中AI的正确角色</strong></p>
-          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-            <li><strong>招聘初筛：</strong> AI帮你快速过滤不符合基本条件的简历（节省时间）→ 人工复审和面试</li>
-            <li><strong>数据分析：</strong> AI生成薪酬对标、员工留存风险分析 → 管理层参考做决策</li>
-            <li><strong>提案和建议：</strong> AI提出改进意见，如「可考虑推出远程工作政策」 → 组织讨论和评估</li>
-            <li><strong>流程自动化：</strong> AI自动生成体检提醒、入职清单 → 但涉及重要决定的仍需人工审批</li>
-          </ul>
-        </div>
-        
-        <div style="background: var(--warning-bg); border: 1px solid var(--warning-border); border-radius: 6px; padding: 12px;">
-          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;"><strong>⚖️ 法律风险提示</strong></p>
-          <p style="font-size: 11px; color: var(--text-body); margin: 0;">在中国，如果因为AI的建议导致员工被违法解雇、被不公平对待，公司和决策人需承担法律责任。即使AI做了推荐，人也要审核。建议：对所有涉及重要人事决定的AI应用进行法务审查。</p>
-        </div>
-      </div>
-
-      <div style="margin-bottom: 18px;">
-        <h4 id="h4-53-2-数据保护法规--本地化存储与访问要求"  style="color: var(--text-primary); margin-bottom: 10px;">2️⃣ 数据保护法规 — 本地化存储与访问要求</h4>
-        
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>中国企业需要了解的法规</strong></p>
-          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0; line-height: 1.8;">
-            <li><strong>《个人信息保护法 (PIPL)》：</strong> 禁止任意跨境传输个人信息。包含员工信息、应聘者信息的数据，默认不能发送到国外服务器</li>
-            <li><strong>《数据安全法》：</strong> 重要数据（如员工花名册、薪酬表）应本地存储</li>
-            <li><strong>《劳动法》第三十八条：</strong> 保障员工知情权，AI使用可能影响员工，需告知</li>
-          </ul>
-        </div>
-        
-        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>✅ 合规操作方案</strong></p>
-          <div style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-            <div style="margin-bottom: 8px;"><strong>脱敏后上传（推荐）</strong>
-            <br>• 在本地脱敏数据（删除敏感标识）
-            <br>• 上传脱敏数据给国外AI服务
-            <br>• 用脱敏后的结果，结合本地员工信息做决策</div>
-            
-            <div style="margin-bottom: 8px;"><strong>国内私有化部署</strong>
-            <br>• 在公司内部服务器部署AI模型
-            <br>• 所有数据不离开公司
-            <br>• 成本最高，但最安全</div>
-            
-            <div><strong>向员工披露</strong>
-            <br>• 在HR政策或员工手册中说明：「HR工作中可能使用AI辅助决策，但最终决策由人工做出」
-            <br>• 如果用AI做数据分析涉及员工，建议知会员工或工会</div>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-bottom: 18px;">
-        <h4 id="h4-54-3-行业规范与内部审批流程"  style="color: var(--text-primary); margin-bottom: 10px;">3️⃣ 行业规范与内部审批流程</h4>
-        
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;"><strong>建议的内部AI治理框架</strong></p>
-          
-          <div style="margin-bottom: 12px;">
-            <p style="font-size: 11px; color: var(--text-secondary); font-weight: 600; margin-bottom: 6px;">第一步：建立AI使用审批制度</p>
-            <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-              <li><strong>低风险应用</strong>（如生成邮件模板）→ HR主管批准即可</li>
-              <li><strong>中风险应用</strong>（如数据分析）→ HR总监 + IT安全审查</li>
-              <li><strong>高风险应用</strong>（如涉及人事决定）→ HR总监 + 法务 + 信息安全部门 + CEO或董事会批准</li>
-            </ul>
-          </div>
-          
-          <div style="margin-bottom: 12px;">
-            <p style="font-size: 11px; color: var(--text-secondary); font-weight: 600; margin-bottom: 6px;">第二步：建立使用日志和记录</p>
-            <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-              <li>记录：何时、何人、用AI做了什么、输出了什么、如何审核的</li>
-              <li>目的：可追溯性。如果出现争议，能证明整个决策过程都经过人工审核</li>
-              <li>保留期：建议至少1年</li>
-            </ul>
-          </div>
-          
-          <div>
-            <p style="font-size: 11px; color: var(--text-secondary); font-weight: 600; margin-bottom: 6px;">第三步：定期审查和更新规范</p>
-            <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-              <li>每季度审查一次AI使用情况和合规风险</li>
-              <li>如果发现问题，及时调整规范</li>
-              <li>培训所有使用AI的员工了解最新规范</li>
-            </ul>
-          </div>
-          
-          <div style="background: var(--accent-c); border: 1px solid var(--accent-e); border-radius: 6px; padding: 12px; margin-top: 12px;">
-            <p style="font-size: 11px; color: var(--text-secondary); margin: 0;"><strong>💡 参考模板：</strong> 可以参考《生成式人工智能服务管理暂行办法》等国家级指南，制定符合公司规模的内部政策。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="safety-norm" class="glass-box">
-      <h3 id="h3-17-使用规范">✔️ 使用规范</h3>
-      
-      <div style="margin-bottom: 18px;">
-        <h4 id="h4-58-1-哪些场景不适合用AI"  style="color: var(--text-primary); margin-bottom: 10px;">1️⃣ 哪些场景不适合用AI？</h4>
-        
-        <div style="background: var(--danger-accent-bg); border-left:3px solid var(--danger-accent-border); padding: 12px 14px; border-radius: 6px; margin-bottom: 10px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>🚫 禁止场景</strong></p>
-          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0; line-height: 1.8;">
-            <li><strong>涉及员工隐私的敏感决定</strong> — 例如判断某员工是否应该被解聘、是否有心理健康问题等</li>
-            <li><strong>完全自动化的人事决策</strong> — 例如让AI完全自动审批假期申请、调薪申请等（必须有人工最后审核）</li>
-            <li><strong>上传未脱敏的员工数据</strong> — 含真实姓名、联系方式、身份证号等的数据表</li>
-            <li><strong>直接用AI的输出作为员工沟通</strong> — 特别是敏感沟通（辞退通知、降薪通知等）必须经过人工个性化处理</li>
-            <li><strong>用AI做出承诺性的决定</strong> — 例如「AI说可以给你这个薪资」而没有经过正式的谈判和审批</li>
-            <li><strong>忽视法律咨询</strong> — 涉及法律风险的HR决定，不能只依赖AI分析，必须咨询律师</li>
-          </ul>
-        </div>
-        
-        <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>✅ 适合场景</strong></p>
-          <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0; line-height: 1.8;">
-            <li><strong>信息整理和总结</strong> — 整理面试笔记、总结员工反馈</li>
-            <li><strong>内容生成（需审核）</strong> — 写招聘文案、邮件模板、员工手册等（必须修改和审核）</li>
-            <li><strong>数据分析（脱敏数据）</strong> — 分析薪酬趋势、员工流失风险等（基于脱敏和聚合数据）</li>
-            <li><strong>流程优化建议</strong> — AI提出改进招聘流程、绩效管理流程的想法</li>
-            <li><strong>初步筛选</strong> — 简历初筛、应聘表初步审核（最终还需人工复审）</li>
-            <li><strong>知识库和FAQ</strong> — 用AI生成公司政策的常见问题解答</li>
-          </ul>
-        </div>
-      </div>
-
-      <div style="margin-bottom: 18px;">
-        <h4 id="h4-59-2-信息脱敏的操作步骤详细版"  style="color: var(--text-primary); margin-bottom: 10px;">2️⃣ 信息脱敏的操作步骤（详细版）</h4>
-        
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 12px;"><strong>脱敏前的检查清单</strong></p>
-          <ol style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0; line-height: 1.9;">
-            <li><strong>识别数据</strong>
-              <ul style="font-size: 11px; padding-left: 20px; margin-top: 4px;">
-                <li>□ 员工姓名 → 用「员工A」或「EMP001」替换</li>
-                <li>□ 工号/ID → 删除或用新ID替换</li>
-                <li>□ 邮箱/电话 → 删除</li>
-                <li>□ 身份证号 → 删除（仅保留「身份已验证」标记）</li>
-              </ul>
-            </li>
-            
-            <li><strong>脱敏薪酬数据</strong>
-              <ul style="font-size: 11px; padding-left: 20px; margin-top: 4px;">
-                <li>□ 「25k」→ 「25-30k范围」或「P3级别市场薪资」</li>
-                <li>□ 「张三加薪8%」→ 「该级别平均加薪6-10%」</li>
-              </ul>
-            </li>
-            
-            <li><strong>脱敏绩效数据</strong>
-              <ul style="font-size: 11px; padding-left: 20px; margin-top: 4px;">
-                <li>□ 「王五评分3.2/5」→ 「该评分等级人数占15%」</li>
-                <li>□ 不传具体评语，只传分布</li>
-              </ul>
-            </li>
-            
-            <li><strong>脱敏背景信息</strong>
-              <ul style="font-size: 11px; padding-left: 20px; margin-top: 4px;">
-                <li>□ 「毕业于清华大学」→ 「顶级985大学」</li>
-                <li>□ 「在Google工作3年」→ 「在大型科技公司工作3年」</li>
-              </ul>
-            </li>
-            
-            <li><strong>验证脱敏效果</strong> — 脱敏后的数据，是否仍然能识别出具体某个人？如果能，继续脱敏</li>
-          </ol>
-          
-          <div style="background: var(--warning-bg); border: 1px solid var(--warning-border); border-radius: 6px; padding: 12px; margin-top: 12px;">
-            <p style="font-size: 11px; color: var(--text-secondary); margin: 0;"><strong>⚠️ 脱敏后的处理：</strong> 脱敏数据用完后，删除所有上传给AI的文件。原始数据保存在公司内部受保护的位置。如果涉及多个员工的数据，脱敏要特别谨慎，因为多个特征的组合可能仍然能识别个人。</p>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-bottom: 18px;">
-        <h4 id="h4-60-3-内部审批流程与使用记录"  style="color: var(--text-primary); margin-bottom: 10px;">3️⃣ 内部审批流程与使用记录</h4>
-        
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;"><strong>建议的AI使用审批表</strong></p>
-          
-          <table style="width: 100%; font-size: 10px; color: var(--text-body); border-collapse: collapse; margin-bottom: 10px;">
-            <tr style="background: var(--surface-d); border-bottom: 1px solid var(--border-table-header);">
-              <td style="padding: 8px; border-right: 1px solid var(--border-table); font-weight: 600; color: var(--text-primary);">项目</td>
-              <td style="padding: 8px; font-weight: 600; color: var(--text-primary);">内容</td>
-            </tr>
-            
-            <tr style="border-bottom: 1px solid var(--border-table);">
-              <td style="padding: 8px; border-right: 1px solid var(--border-table);">应用名称</td>
-              <td style="padding: 8px;">例：「招聘初筛AI助手」</td>
-            </tr>
-            
-            <tr style="border-bottom: 1px solid var(--border-table);">
-              <td style="padding: 8px; border-right: 1px solid var(--border-table);">用途</td>
-              <td style="padding: 8px;">AI将用来做什么？例：「初步筛选简历，过滤不符合基本要求的候选人」</td>
-            </tr>
-            
-            <tr style="border-bottom: 1px solid var(--border-table);">
-              <td style="padding: 8px; border-right: 1px solid var(--border-table);">涉及数据</td>
-              <td style="padding: 8px;">会上传什么数据？「简历（已脱敏，仅保留技能和经验）」</td>
-            </tr>
-            
-            <tr style="border-bottom: 1px solid var(--border-table);">
-              <td style="padding: 8px; border-right: 1px solid var(--border-table);">风险等级</td>
-              <td style="padding: 8px;">低/中/高？为什么？</td>
-            </tr>
-            
-            <tr style="border-bottom: 1px solid var(--border-table);">
-              <td style="padding: 8px; border-right: 1px solid var(--border-table);">审批人</td>
-              <td style="padding: 8px;">谁批准了这个应用？何时批准？</td>
-            </tr>
-            
-            <tr style="border-bottom: 1px solid var(--border-table);">
-              <td style="padding: 8px; border-right: 1px solid var(--border-table);">使用记录</td>
-              <td style="padding: 8px;">谁、何时、用AI做了什么、结果如何、如何审核的</td>
-            </tr>
-            
-            <tr>
-              <td style="padding: 8px; border-right: 1px solid var(--border-table);">审核反馈</td>
-              <td style="padding: 8px;">使用中发现的问题？如何改进？</td>
-            </tr>
-          </table>
-          
-          <div style="background: var(--success-accent-bg); border-left:3px solid var(--success-accent-border); padding: 12px 14px; border-radius: 6px;">
-            <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;"><strong>✅ 使用记录的目的</strong></p>
-            <p style="font-size: 11px; color: var(--text-body); margin: 0;">• 可追溯性：出了问题能查到整个决策过程<br>• 合规证明：证明公司有严格的AI治理<br>• 持续改进：发现问题后，调整审批标准或使用方式</p>
-          </div>
-        </div>
-        
-        <div style="background: var(--surface-n); border: 1px solid var(--border-table); border-radius: 8px; padding: 12px;">
-          <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;"><strong>不同风险等级的审批要求</strong></p>
-          
-          <div style="margin-bottom: 10px;">
-            <p style="font-size: 11px; color: var(--success-text-dim); font-weight: 600; margin-bottom: 6px;">🟢 低风险 — 快速审批</p>
-            <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-              <li>例：生成邮件模板、写招聘文案</li>
-              <li>审批：HR主管批准即可，无需其他部门</li>
-              <li>记录：简单记录使用日期、用途、谁在用</li>
-            </ul>
-          </div>
-          
-          <div style="margin-bottom: 10px;">
-            <p style="font-size: 11px; color: rgba(255,200,0,0.85); font-weight: 600; margin-bottom: 6px;">🟡 中风险 — 标准审批</p>
-            <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-              <li>例：分析员工数据、薪酬对标、离职风险分析</li>
-              <li>审批：HR总监 + IT/安全部门批准</li>
-              <li>要求：数据必须脱敏；详细的使用记录；定期审查</li>
-            </ul>
-          </div>
-          
-          <div>
-            <p style="font-size: 11px; color: rgba(200,100,100,0.85); font-weight: 600; margin-bottom: 6px;">🔴 高风险 — 严格审批</p>
-            <ul style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-              <li>例：涉及招聘/晋升/解聘的决策支持、法律意见</li>
-              <li>审批：HR总监 + 法务 + CTO/CISO + CEO/董事会</li>
-              <li>要求：多轮审批；详细的设计文档；第三方安全评估；建立反馈机制</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div style="background: var(--accent-c); border: 1px solid var(--accent-e); border-radius: 8px; padding: 12px;">
-        <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;"><strong>🎯 AI使用的黄金法则</strong></p>
-        <ol style="font-size: 11px; color: var(--text-body); padding-left: 20px; margin: 0;">
-          <li><strong>人为主，AI辅助</strong> — AI只是工具，最终决策权在人</li>
-          <li><strong>数据脱敏，隐私优先</strong> — 任何员工个人信息上传前，先脱敏</li>
-          <li><strong>关键决定需审批</strong> — 涉及人事的重要决定，必须经过多人审核</li>
-          <li><strong>结果要验证</strong> — 数据相关的AI输出，必须自己查证</li>
-          <li><strong>流程要记录</strong> — 用AI的过程要有迹可查，便于后续审查</li>
-          <li><strong>定期审视和改进</strong> — 每季度检查一次AI的使用情况，是否合规、有效、有风险</li>
-        </ol>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== 其他AI工具参考 ===== -->
   <div id="page-otherai" class="page">
     <div class="page-header">
       <div class="page-title">🔀 其他AI工具参考</div>
@@ -6687,9 +7002,8 @@ ${getOutputFormatDesc()}
         'basic': 'AI基础认知',
         'method': 'AI工作方法（通用）',
         'iclaw': 'iclaw使用指南',
-        'chengxiaobang': '程小帮使用指南',
+        'cxb': '程小帮使用指南',
         'template': '话术/Prompt/Skill库',
-        'safety': 'AI使用风险与安全',
         'otherai': '其他AI工具参考'
       };
       return titleMap[pageId] || pageId;
